@@ -1,8 +1,23 @@
 name: Node.js Package
 
 on:
-    release:
-        types: [created]
+    push:
+        branches:
+            - "1.x_no_tests"
+        tags:
+            - v1*
+        paths-ignore:
+            - "docs/**"
+            - "assets/**"
+            - "**.md"
+    pull_request:
+        branches:
+            - "1.x_no_tests"
+        types: [opened, reopened, synchronize]
+        paths-ignore:
+            - "docs/**"
+            - "assets/**"
+            - "**.md"
 
 jobs:
     build:

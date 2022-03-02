@@ -1,5 +1,6 @@
 {
     "name": "hweb3.js",
+    "version": "0.0.1",
     "private": true,
     "description": "Hedera JavaScript API wrapper repository",
     "license": "LGPL-3.0",

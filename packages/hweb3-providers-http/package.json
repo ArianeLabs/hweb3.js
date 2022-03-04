@@ -1,5 +1,5 @@
 {
-    "name": "hweb3-providers-http",
+    "name": "@micdeb-ariane/hweb3-providers-http",
     "version": "1.0.0",
     "description": "Module to handle Hweb3 transactions.",
     "repository": "https://github.com/ArianeLabs/hweb3.js/tree/1.x/packages/hweb3-providers-http",

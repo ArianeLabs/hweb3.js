@@ -30,14 +30,14 @@
 
 "use strict";
 
-var core = require('web3-core');
-var Method = require('web3-core-method');
-var utils = require('web3-utils');
-var Subscription = require('web3-core-subscriptions').subscription;
-var formatters = require('web3-core-helpers').formatters;
-var errors = require('web3-core-helpers').errors;
-var promiEvent = require('web3-core-promievent');
-var abi = require('web3-eth-abi');
+var core = require('@micdeb-ariane/hweb3-core');
+var Method = require('@micdeb-ariane/hweb3-core-method');
+var utils = require('@micdeb-ariane/hweb3-utils');
+var Subscription = require('@micdeb-ariane/hweb3-core-subscriptions').subscription;
+var formatters = require('@micdeb-ariane/hweb3-core-helpers').formatters;
+var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
+var promiEvent = require('@micdeb-ariane/hweb3-core-promievent');
+var abi = require('@micdeb-ariane/hweb3-eth-abi');
 
 
 /**
@@ -285,7 +285,7 @@ var Contract = function Contract(jsonInterface, address, options) {
             _this.options.blockHeaderTimeout = val;
         },
         enumerable: true
-    });    
+    });
     Object.defineProperty(this, 'defaultAccount', {
         get: function () {
             return defaultAccount;

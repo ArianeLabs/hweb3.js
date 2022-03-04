@@ -15,11 +15,11 @@
     "main": "lib/index.js",
     "dependencies": {
         "@types/node": "^12.12.6",
-        "web3-core": "1.7.0-rc.0",
-        "web3-core-helpers": "1.7.0-rc.0",
-        "web3-core-method": "1.7.0-rc.0",
-        "web3-net": "1.7.0-rc.0",
-        "web3-utils": "1.7.0-rc.0"
+        "@micdeb-ariane/hweb3-core": "1.7.0-rc.0",
+        "@micdeb-ariane/hweb3-core-helpers": "1.7.0-rc.0",
+        "@micdeb-ariane/hweb3-core-method": "1.7.0-rc.0",
+        "@micdeb-ariane/hweb3-net": "1.7.0-rc.0",
+        "@micdeb-ariane/hweb3-utils": "1.7.0-rc.0"
     },
     "devDependencies": {
         "dtslint": "^3.4.1",

@@ -22,11 +22,11 @@
 
 "use strict";
 
-var core = require('web3-core');
-var Subscriptions = require('web3-core-subscriptions').subscriptions;
-var Method = require('web3-core-method');
+var core = require('@micdeb-ariane/hweb3-core');
+var Subscriptions = require('@micdeb-ariane/hweb3-core-subscriptions').subscriptions;
+var Method = require('@micdeb-ariane/hweb3-core-method');
 // var formatters = require('web3-core-helpers').formatters;
-var Net = require('web3-net');
+var Net = require('@micdeb-ariane/hweb3-net');
 
 
 var Shh = function Shh() {

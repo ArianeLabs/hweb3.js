@@ -15,7 +15,7 @@
     "main": "lib/index.js",
     "dependencies": {
         "oboe": "2.1.5",
-        "web3-core-helpers": "1.7.0-rc.0"
+        "@micdeb-ariane/hweb3-core-helpers": "1.7.0-rc.0"
     },
     "devDependencies": {
         "@types/node": "^12.12.6",

@@ -16,7 +16,7 @@
     },
     "main": "lib/index.js",
     "dependencies": {
-        "web3-eth2-core": "1.7.0-rc.0"
+        "@micdeb-ariane/hweb3-eth2-core": "1.7.0-rc.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.12.10",

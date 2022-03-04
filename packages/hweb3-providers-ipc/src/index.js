@@ -22,7 +22,7 @@
 
 "use strict";
 
-var errors = require('web3-core-helpers').errors;
+var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
 var oboe = require('oboe');
 
 

@@ -18,13 +18,13 @@
  */
 
 import * as net from 'net';
-import { Bzz } from 'web3-bzz';
-import { BatchRequest, provider, Providers, Extension } from 'web3-core';
-import { Eth } from 'web3-eth';
-import { Personal } from 'web3-eth-personal';
-import { Network } from 'web3-net';
-import { Shh } from 'web3-shh';
-import { Utils } from 'web3-utils';
+import { Bzz } from '@micdeb-ariane/hweb3-bzz';
+import { BatchRequest, provider, Providers, Extension } from '@micdeb-ariane/hweb3-core';
+import { Eth } from '@micdeb-ariane/hweb3-eth';
+import { Personal } from '@micdeb-ariane/hweb3-eth-personal';
+import { Network } from '@micdeb-ariane/hweb3-net';
+import { Shh } from '@micdeb-ariane/hweb3-shh';
+import { Utils } from '@micdeb-ariane/hweb3-utils';
 
 export default class Web3 {
     constructor();

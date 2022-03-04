@@ -15,7 +15,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "eventemitter3": "4.0.4",
-    "web3-core-helpers": "1.7.0-rc.0",
+    "@micdeb-ariane/hweb3-core-helpers": "1.7.0-rc.0",
     "websocket": "^1.0.32"
   },
   "devDependencies": {

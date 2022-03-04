@@ -20,7 +20,7 @@
 "use strict";
 
 
-var errors = require('web3-core-helpers').errors;
+var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
 var BatchManager = require('./batch.js');
 var givenProvider = require('./givenProvider.js');
 var { Transaction, Client } = require('@hashgraph/sdk');

@@ -20,7 +20,7 @@
  * @date 2022
  */
 
-import { HttpProviderBase } from 'web3-core-helpers';
+import { HttpProviderBase } from '@micdeb-ariane/hweb3-core-helpers';
 import { Client, Transaction } from '@hashgraph/sdk';
 import { ITransactionResponse, ITransactionReceipt } from "@hashgraph/proto";
 import {proto} from '@hashgraph/proto/lib/proto';

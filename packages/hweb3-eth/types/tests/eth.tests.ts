@@ -18,7 +18,7 @@
  * @date 2018
  */
 
-import {Log} from 'web3-core';
+import {Log} from '@micdeb-ariane/hweb3-core';
 import {
     BlockTransactionObject,
     BlockTransactionString,
@@ -34,7 +34,7 @@ import {
     Common,
     chain,
     FeeHistoryResult
-} from 'web3-eth';
+} from '@micdeb-ariane/hweb3-eth';
 import BN = require('bn.js');
 import BigNumber from 'bignumber.js';
 

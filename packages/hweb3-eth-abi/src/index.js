@@ -22,7 +22,7 @@
  */
 
 var Buffer = require('buffer').Buffer;
-var utils = require('web3-utils');
+var utils = require('@micdeb-ariane/hweb3-utils');
 
 var EthersAbiCoder = require('@ethersproject/abi').AbiCoder;
 var ParamType = require('@ethersproject/abi').ParamType;

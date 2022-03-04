@@ -17,7 +17,7 @@
  * @date 2018
  */
 
-import { Bzz } from 'web3-bzz';
+import { Bzz } from '@micdeb-ariane/hweb3-bzz';
 
 // $ExpectType Bzz
 const bzz_empty = new Bzz();

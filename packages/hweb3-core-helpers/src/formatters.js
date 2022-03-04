@@ -23,8 +23,8 @@
 
 "use strict";
 
-var utils = require('web3-utils');
-var Iban = require('web3-eth-iban');
+var utils = require('@micdeb-ariane/hweb3-utils');
+var Iban = require('@micdeb-ariane/hweb3-eth-iban');
 
 
 /**
@@ -157,7 +157,7 @@ var _txInputFormatter = function (options) {
     if (options.gas || options.gasLimit) {
         options.gas = options.gas || options.gasLimit;
     }
-    
+
     if (options.maxPriorityFeePerGas || options.maxFeePerGas) {
         delete options.gasPrice;
     }

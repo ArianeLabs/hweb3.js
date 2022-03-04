@@ -23,7 +23,7 @@
 "use strict";
 
 var Jsonrpc = require('./jsonrpc');
-var errors = require('web3-core-helpers').errors;
+var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
 
 var Batch = function (requestManager) {
     this.requestManager = requestManager;
@@ -74,7 +74,7 @@ Batch.prototype.execute = function () {
 };
 
 // Sort responses
-Batch.prototype._sortResponses = function (responses) {    
+Batch.prototype._sortResponses = function (responses) {
     return (responses || []).sort((a, b) => a.id - b.id);
 }
 

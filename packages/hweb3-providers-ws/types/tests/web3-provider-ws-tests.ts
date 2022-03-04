@@ -20,8 +20,8 @@
  * @date 2018
  */
 
-import { WebsocketProviderOptions, JsonRpcResponse } from 'web3-core-helpers';
-import { WebsocketProvider } from 'web3-providers';
+import { WebsocketProviderOptions, JsonRpcResponse } from '@micdeb-ariane/hweb3-core-helpers';
+import { WebsocketProvider } from '@micdeb-ariane/hweb3-providers';
 
 const options: WebsocketProviderOptions = {
     timeout: 30000,

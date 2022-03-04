@@ -23,13 +23,13 @@
 'use strict';
 
 const { PrivateKey } = require("@hashgraph/sdk");
-var core = require('web3-core');
-var Method = require('web3-core-method');
+var core = require('@micdeb-ariane/hweb3-core');
+var Method = require('@micdeb-ariane/hweb3-core-method');
 var Account = require('eth-lib/lib/account');
 var cryp = (typeof global === 'undefined') ? require('crypto-browserify') : require('crypto');
 var scrypt = require('scrypt-js');
 var uuid = require('uuid');
-var utils = require('web3-utils');
+var utils = require('@micdeb-ariane/hweb3-utils');
 var ethereumjsUtil = require('ethereumjs-util');
 
 const createNewAccountId = require('./createNewAccountId');

@@ -21,8 +21,8 @@
 "use strict";
 
 var config = require('./config');
-var formatters = require('web3-core-helpers').formatters;
-var utils = require('web3-utils');
+var formatters = require('@micdeb-ariane/hweb3-core-helpers').formatters;
+var utils = require('@micdeb-ariane/hweb3-utils');
 var Registry = require('./contracts/Registry');
 var ResolverMethodHandler = require('./lib/ResolverMethodHandler');
 var contenthash = require('./lib/contentHash');

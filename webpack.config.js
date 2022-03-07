@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
     mode: "production",
     entry: {
-        web3: "./packages/web3/lib/index.js",
+        web3: "./packages/hweb3/lib/index.js",
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -21,8 +21,8 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            // To avoid blotting up the `bn.js` library all over the packages 
-            // use single library instance. 
+            // To avoid blotting up the `bn.js` library all over the packages
+            // use single library instance.
             "bn.js": path.resolve(__dirname, 'node_modules/bn.js')
         }
     },

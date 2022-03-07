@@ -47,7 +47,7 @@ var RequestManager = function RequestManager(client) {
 RequestManager.givenProvider = givenProvider;
 
 RequestManager.providers = {
-    HttpProvider: require('hweb3-providers-http'),
+    HttpProvider: require('@micdeb-ariane/hweb3-providers-http'),
 };
 
 

@@ -11,8 +11,8 @@
 	"main": "lib/index.js",
 	"dependencies": {
 		"@hashgraph/sdk": "^2.9.1",
-		"@micdeb-ariane/hweb3-eth-iban": "^1.7.2",
-		"@micdeb-ariane/hweb3-utils": "^1.7.2"
+		"@micdeb-ariane/hweb3-eth-iban": "1.7.2",
+		"@micdeb-ariane/hweb3-utils": "1.7.2"
 	},
 	"devDependencies": {
 		"@types/node": "^12.12.6",

@@ -50,12 +50,12 @@
 		"typescript": "^3.9.5"
 	},
 	"dependencies": {
-		"@micdeb-ariane/hweb3-bzz": "^1.7.2",
-		"@micdeb-ariane/hweb3-core": "^1.7.2",
-		"@micdeb-ariane/hweb3-eth": "^1.7.2",
-		"@micdeb-ariane/hweb3-eth-personal": "^1.7.2",
-		"@micdeb-ariane/hweb3-net": "^1.7.2",
-		"@micdeb-ariane/hweb3-shh": "^1.7.2",
-		"@micdeb-ariane/hweb3-utils": "^1.7.2"
+		"@micdeb-ariane/hweb3-bzz": "1.7.2",
+		"@micdeb-ariane/hweb3-core": "1.7.2",
+		"@micdeb-ariane/hweb3-eth": "1.7.2",
+		"@micdeb-ariane/hweb3-eth-personal": "1.7.2",
+		"@micdeb-ariane/hweb3-net": "1.7.2",
+		"@micdeb-ariane/hweb3-shh": "1.7.2",
+		"@micdeb-ariane/hweb3-utils": "1.7.2"
 	}
 }

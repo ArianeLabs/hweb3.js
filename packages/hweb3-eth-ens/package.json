@@ -10,17 +10,17 @@
 	"types": "types/index.d.ts",
 	"main": "lib/index.js",
 	"dependencies": {
-		"@micdeb-ariane/hweb3-core": "^1.7.2",
-		"@micdeb-ariane/hweb3-core-helpers": "^1.7.2",
-		"@micdeb-ariane/hweb3-core-promievent": "^1.7.2",
-		"@micdeb-ariane/hweb3-eth-abi": "^1.7.2",
-		"@micdeb-ariane/hweb3-eth-contract": "^1.7.2",
-		"@micdeb-ariane/hweb3-utils": "^1.7.2",
+		"@micdeb-ariane/hweb3-core": "1.7.2",
+		"@micdeb-ariane/hweb3-core-helpers": "1.7.2",
+		"@micdeb-ariane/hweb3-core-promievent": "1.7.2",
+		"@micdeb-ariane/hweb3-eth-abi": "1.7.2",
+		"@micdeb-ariane/hweb3-eth-contract": "1.7.2",
+		"@micdeb-ariane/hweb3-utils": "1.7.2",
 		"content-hash": "^2.5.2",
 		"eth-ens-namehash": "2.0.8"
 	},
 	"devDependencies": {
-		"@micdeb-ariane/hweb3-eth": "^1.7.2",
+		"@micdeb-ariane/hweb3-eth": "1.7.2",
 		"dtslint": "^3.4.1",
 		"typescript": "^3.9.5"
 	}

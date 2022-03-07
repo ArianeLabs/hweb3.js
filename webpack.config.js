@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
     mode: "production",
     entry: {
-        web3: "./packages/hweb3/lib/index.js",
+        hweb3: "./packages/hweb3/lib/index.js",
     },
     plugins: [
         new CleanWebpackPlugin(),

@@ -7,6 +7,10 @@
 	"engines": {
 		"node": ">=8.0.0"
 	},
+    "scripts": {
+        "compile": "tsc -b tsconfig.json",
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
+    },
 	"types": "types/index.d.ts",
 	"main": "lib/index.js",
 	"dependencies": {

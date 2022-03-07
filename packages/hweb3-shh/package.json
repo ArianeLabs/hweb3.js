@@ -13,5 +13,11 @@
 		"@types/node": "^12.12.6",
 		"dtslint": "^3.4.1",
 		"typescript": "^3.9.5"
+	},
+	"dependencies": {
+		"@micdeb-ariane/hweb3-core": "^1.7.2",
+		"@micdeb-ariane/hweb3-core-method": "^1.7.2",
+		"@micdeb-ariane/hweb3-core-subscriptions": "^1.7.2",
+		"@micdeb-ariane/hweb3-net": "^1.7.2"
 	}
 }

@@ -10,11 +10,11 @@
 	"types": "types/index.d.ts",
 	"main": "lib/index.js",
 	"dependencies": {
-		"@micdeb-ariane/hweb3-core": "^1.7.1",
-		"@micdeb-ariane/hweb3-core-helpers": "^1.7.1",
-		"@micdeb-ariane/hweb3-core-method": "^1.7.1",
-		"@micdeb-ariane/hweb3-net": "^1.7.1",
-		"@micdeb-ariane/hweb3-utils": "^1.7.1",
+		"@micdeb-ariane/hweb3-core": "1.7.1",
+		"@micdeb-ariane/hweb3-core-helpers": "1.7.1",
+		"@micdeb-ariane/hweb3-core-method": "1.7.1",
+		"@micdeb-ariane/hweb3-net": "1.7.1",
+		"@micdeb-ariane/hweb3-utils": "1.7.1",
 		"@types/node": "^12.12.6"
 	},
 	"devDependencies": {

@@ -22,7 +22,7 @@
 
 'use strict';
 
-const { PrivateKey } = require("@hashgraph/sdk");
+var hederaCore = require("@hashgraph/sdk");
 var core = require('@micdeb-ariane/hweb3-core');
 var Method = require('@micdeb-ariane/hweb3-core-method');
 var Account = require('eth-lib/lib/account');
@@ -127,7 +127,7 @@ Accounts.prototype._addAccountFunctions = function (newAccountPrivateKey, addres
 };
 
 Accounts.prototype.create = function create(cb) {
-    const newAccountPrivateKey = PrivateKey.generateED25519();
+    const newAccountPrivateKey = hederaCore.PrivateKey.generateED25519();
     createNewAccountId.call(this, newAccountPrivateKey, cb);
 };
 

@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@ethereumjs/common": "^2.5.0",
 		"@ethereumjs/tx": "^3.3.2",
-		"@hashgraph/sdk": "^2.9.1",
+		"@hashgraph/sdk": "^2.10.1",
 		"@micdeb-ariane/hweb3-core": "1.7.5",
 		"@micdeb-ariane/hweb3-core-helpers": "1.7.5",
 		"@micdeb-ariane/hweb3-core-method": "1.7.5",

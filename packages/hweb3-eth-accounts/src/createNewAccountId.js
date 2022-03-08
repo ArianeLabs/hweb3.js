@@ -19,7 +19,11 @@ const createNewAccountId = function(newAccountPrivateKey, cb) {
                 throw error;
             }
 
-            cb(response)
+            const resp = response;
+            resp.privateKey = newAccountPrivateKey;
+            resp.publicKey = newAccountPublicKey;
+
+            cb(resp);
         });
     });
 };

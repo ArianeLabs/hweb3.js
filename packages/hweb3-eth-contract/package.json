@@ -1,6 +1,6 @@
 {
     "name": "@micdeb-ariane/hweb3-eth-contract",
-    "version": "1.7.6",
+    "version": "1.7.7",
     "description": "Web3 module to interact with Ethereum smart contracts.",
     "repository": "https://github.com/ethereum/web3.js/tree/1.x/packages/web3-eth-contract",
     "license": "LGPL-3.0",
@@ -14,13 +14,13 @@
     },
     "main": "lib/index.js",
     "dependencies": {
-        "@micdeb-ariane/hweb3-core": "1.7.6",
-        "@micdeb-ariane/hweb3-core-helpers": "1.7.6",
-        "@micdeb-ariane/hweb3-core-method": "1.7.6",
-        "@micdeb-ariane/hweb3-core-promievent": "1.7.6",
-        "@micdeb-ariane/hweb3-core-subscriptions": "1.7.6",
-        "@micdeb-ariane/hweb3-eth-abi": "1.7.6",
-        "@micdeb-ariane/hweb3-utils": "1.7.6",
+        "@micdeb-ariane/hweb3-core": "1.7.7",
+        "@micdeb-ariane/hweb3-core-helpers": "1.7.7",
+        "@micdeb-ariane/hweb3-core-method": "1.7.7",
+        "@micdeb-ariane/hweb3-core-promievent": "1.7.7",
+        "@micdeb-ariane/hweb3-core-subscriptions": "1.7.7",
+        "@micdeb-ariane/hweb3-eth-abi": "1.7.7",
+        "@micdeb-ariane/hweb3-utils": "1.7.7",
         "@types/bn.js": "^4.11.5"
     },
     "devDependencies": {

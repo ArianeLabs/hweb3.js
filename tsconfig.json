@@ -5,7 +5,7 @@
         "target": "esnext",
         "pretty": true,
         "module": "commonjs",
-        "esModuleInterop": false,
+        "esModuleInterop": true,
         "allowSyntheticDefaultImports": true
     }
 }

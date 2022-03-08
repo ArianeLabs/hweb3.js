@@ -19,7 +19,7 @@ const createNewAccountId = function(newAccountPrivateKey, cb) {
                 throw error;
             }
 
-            const resp = response;
+            const resp = Object.assign({}, response);
             resp.privateKey = newAccountPrivateKey;
             resp.publicKey = newAccountPublicKey;
 

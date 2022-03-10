@@ -20,8 +20,8 @@
  * @date 2022
  */
 
-var { Client, Transaction } = require('@hashgraph/sdk');
-var { proto } = require("@hashgraph/proto");
+import { Client, Transaction } from '@hashgraph/sdk';
+import { proto } from "@hashgraph/proto";
 
 /**
  * HttpProvider should be used to send Hedera node calls
@@ -107,4 +107,4 @@ HttpProvider.prototype.supportsSubscriptions = function () {
     return false;
 };
 
-module.exports = HttpProvider;
+export default HttpProvider;

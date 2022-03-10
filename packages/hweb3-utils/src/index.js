@@ -20,7 +20,7 @@
  * @author Fabian Vogelsteller <fabian@ethereum.org>
  * @date 2017
  */
-import { Hbar, HbarUnit } from '@hashgraph/sdk';
+var { Hbar, HbarUnit } = require('@hashgraph/sdk');
 var ethjsUnit = require('ethjs-unit');
 var utils = require('./utils.js');
 var soliditySha3 = require('./soliditySha3.js');
@@ -219,9 +219,9 @@ var getUnitValue = function (unit) {
 
 
 /**
- * @method fromTinybar 
- * @param {string|BN} number 
- * @param {string} unit 
+ * @method fromTinybar
+ * @param {string|BN} number
+ * @param {string} unit
  * @returns {string|BN} converted tinybars to given unit
  */
 var fromTinybar = function (number, unit) {
@@ -243,7 +243,7 @@ var fromTinybar = function (number, unit) {
  * Takes a number of a unit and converts it to tinybar.
  * @method toTinybar
  * @param {String|BN} amount
- * @param {String} unit 
+ * @param {String} unit
  * @return {String|Object} When given a BN object it returns one as well
  */
 var toTinybar = function (number, unit) {
@@ -268,8 +268,8 @@ var toTinybar = function (number, unit) {
  *  Converts to a hedera checksum address
  *
  * @method toChecksumAddress
- * @param {String} address 
- * @param {NodeClient}  client 
+ * @param {String} address
+ * @param {NodeClient}  client
  * @return {String}
  */
 var toChecksumAddress = function (address, client) {
@@ -313,7 +313,7 @@ var compareBlockNumbers = function(a, b) {
             return 1;
         } else {
             // b !== ("pending" OR "latest"), thus a > b
-            return -1 
+            return -1
         }
     } else if (a == "pending") {
         // b (== OR <) "latest", thus a > b

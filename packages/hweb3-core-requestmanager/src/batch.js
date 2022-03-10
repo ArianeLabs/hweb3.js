@@ -78,5 +78,5 @@ Batch.prototype._sortResponses = function (responses) {
     return (responses || []).sort((a, b) => a.id - b.id);
 }
 
-module.exports = Batch;
+export default Batch;
 

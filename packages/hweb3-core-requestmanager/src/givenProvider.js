@@ -52,4 +52,4 @@ if (typeof global.hedera !== 'undefined') {
 /* jshint ignore:end */
 
 
-module.exports = givenProvider;
+export default givenProvider;

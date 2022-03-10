@@ -9,6 +9,7 @@
  web3.js is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
  GNU Lesser General Public License for more details.
 
  You should have received a copy of the GNU Lesser General Public License
@@ -22,23 +23,24 @@
 
 'use strict';
 
-var hederaCore = require("@hashgraph/sdk");
-var core = require('@micdeb-ariane/hweb3-core');
-var Method = require('@micdeb-ariane/hweb3-core-method');
-var Account = require('eth-lib/lib/account');
-var cryp = (typeof global === 'undefined') ? require('crypto-browserify') : require('crypto');
-var scrypt = require('scrypt-js');
-var uuid = require('uuid');
-var utils = require('@micdeb-ariane/hweb3-utils');
-var ethereumjsUtil = require('ethereumjs-util');
+import { PrivateKey } from "@hashgraph/sdk";
+import { packageInit } from '@micdeb-ariane/hweb3-core';
+import Method from '@micdeb-ariane/hweb3-core-method';
+import Account from 'eth-lib/lib/account';
+import scrypt from 'scrypt-js';
+import uuid from 'uuid';
+import utils from '@micdeb-ariane/hweb3-utils';
+import ethereumjsUtil from 'ethereumjs-util';
 
-const createNewAccountId = require('./createNewAccountId');
+const cryp = (typeof global === 'undefined') ? require('crypto-browserify') : require('crypto');
+
+import createNewAccountId from './createNewAccountId';
 
 var Accounts = function Accounts() {
     var _this = this;
 
     // sets _requestmanager
-    core.packageInit(this, arguments);
+    packageInit(this, arguments);
 
     // remove unecessary core functions
     delete this.BatchRequest;
@@ -49,52 +51,51 @@ var Accounts = function Accounts() {
             name: 'getNetworkId',
             call: 'net_version',
             params: 0,
-            outputFormatter: parseInt
+            outputFormatter: parseInt,
         }),
         new Method({
             name: 'getChainId',
             call: 'eth_chainId',
             params: 0,
-            outputFormatter: utils.hexToNumber
+            outputFormatter: utils.hexToNumber,
         }),
         new Method({
             name: 'getGasPrice',
             call: 'eth_gasPrice',
-            params: 0
+            params: 0,
         }),
         new Method({
             name: 'getTransactionCount',
             call: 'eth_getTransactionCount',
             params: 2,
-            inputFormatter: [function(address) {
+            inputFormatter: [function (address) {
                 if (utils.isAddress(address)) {
                     return address;
                 } else {
                     throw new Error('Address ' + address + ' is not a valid address to get the "transactionCount".');
                 }
-            }, function() {
+            }, function () {
                 return 'latest';
-            }]
+            }],
         }),
         new Method({
             name: 'getBlockByNumber',
             call: 'eth_getBlockByNumber',
             params: 2,
-            inputFormatter: [function(blockNumber) {
+            inputFormatter: [function (blockNumber) {
                 return blockNumber ? utils.toHex(blockNumber) : 'latest';
-            }, function() {
+            }, function () {
                 return false;
-            }]
+            }],
         }),
     ];
 
     // attach methods to this._ethereumCall
     this._ethereumCall = {};
-    _ethereumCall.forEach( (method) => {
+    _ethereumCall.forEach((method) => {
         method.attachToObject(_this._ethereumCall);
         method.setRequestManager(_this._requestManager);
     });
-
 
     this.wallet = new Wallet(this);
 };
@@ -127,7 +128,7 @@ Accounts.prototype._addAccountFunctions = function (newAccountPrivateKey, addres
 };
 
 Accounts.prototype.create = function create(cb) {
-    const newAccountPrivateKey = hederaCore.PrivateKey.generateED25519();
+    const newAccountPrivateKey = PrivateKey.generateED25519();
     createNewAccountId.call(this, newAccountPrivateKey, cb);
 };
 
@@ -166,13 +167,12 @@ Accounts.prototype.sign = function sign(data) {
 
     return {
         message: data,
-        signature: signature
+        signature: signature,
     };
 };
 
 Accounts.prototype.recover = function recover(message, signature, preFixed) {
     var args = [].slice.apply(arguments);
-
 
     if (!!message && typeof message === 'object') {
         return this.recover(message.messageHash, Account.encodeSignature([message.v, message.r, message.s]), true);
@@ -192,7 +192,7 @@ Accounts.prototype.recover = function recover(message, signature, preFixed) {
 };
 
 // Taken from https://github.com/ethereumjs/ethereumjs-wallet
-Accounts.prototype.decrypt = function(v3Keystore, password, nonStrict) {
+Accounts.prototype.decrypt = function (v3Keystore, password, nonStrict) {
     /* jshint maxcomplexity: 10 */
 
     if (!(typeof password === 'string')) {
@@ -237,7 +237,7 @@ Accounts.prototype.decrypt = function(v3Keystore, password, nonStrict) {
     return this.privateKeyToAccount(seed, true);
 };
 
-Accounts.prototype.encrypt = function(privateKey, password, options) {
+Accounts.prototype.encrypt = function (privateKey, password, options) {
     /* jshint maxcomplexity: 20 */
     // var account = this.privateKeyToAccount(privateKey, true);
 
@@ -249,7 +249,7 @@ Accounts.prototype.encrypt = function(privateKey, password, options) {
     var kdf = options.kdf || 'scrypt';
     var kdfparams = {
         dklen: options.dklen || 32,
-        salt: salt.toString('hex')
+        salt: salt.toString('hex'),
     };
 
     if (kdf === 'pbkdf2') {
@@ -271,29 +271,28 @@ Accounts.prototype.encrypt = function(privateKey, password, options) {
         throw new Error('Unsupported cipher');
     }
 
-
     var ciphertext = Buffer.from([
         ...cipher.update(Buffer.from(privateKey, 'hex')),
-        ...cipher.final()]
+        ...cipher.final()],
     );
 
     var mac = utils.sha3(Buffer.from([...derivedKey.slice(16, 32), ...ciphertext])).replace('0x', '');
 
     return {
         version: 3,
-        id: uuid.v4({random: options.uuid || cryp.randomBytes(16)}),
+        id: uuid.v4({ random: options.uuid || cryp.randomBytes(16) }),
         // TODO add accountId value
         // address: account.address.toLowerCase().replace('0x', ''),
         crypto: {
             ciphertext: ciphertext.toString('hex'),
             cipherparams: {
-                iv: iv.toString('hex')
+                iv: iv.toString('hex'),
             },
             cipher: options.cipher || 'aes-128-ctr',
             kdf: kdf,
             kdfparams: kdfparams,
-            mac: mac.toString('hex')
-        }
+            mac: mac.toString('hex'),
+        },
     };
 };
 
@@ -306,7 +305,7 @@ function Wallet(accounts) {
     this.defaultKeyName = 'web3js_wallet';
 }
 
-Wallet.prototype._findSafeIndex = function(pointer) {
+Wallet.prototype._findSafeIndex = function (pointer) {
     pointer = pointer || 0;
     if (this.hasOwnProperty(pointer)) {
         return this._findSafeIndex(pointer + 1);
@@ -315,27 +314,27 @@ Wallet.prototype._findSafeIndex = function(pointer) {
     }
 };
 
-Wallet.prototype._currentIndexes = function() {
+Wallet.prototype._currentIndexes = function () {
     var keys = Object.keys(this);
     var indexes = keys
-        .map(function(key) {
+        .map(function (key) {
             return parseInt(key);
         })
-        .filter(function(n) {
+        .filter(function (n) {
             return (n < 9e20);
         });
 
     return indexes;
 };
 
-Wallet.prototype.create = function(numberOfAccounts, entropy) {
+Wallet.prototype.create = function (numberOfAccounts, entropy) {
     for (var i = 0; i < numberOfAccounts; ++i) {
         this.add(this._accounts.create(entropy).privateKey);
     }
     return this;
 };
 
-Wallet.prototype.add = function(account) {
+Wallet.prototype.add = function (account) {
 
     if (typeof account === 'string') {
         account = this._accounts.privateKeyToAccount(account);
@@ -356,7 +355,7 @@ Wallet.prototype.add = function(account) {
     }
 };
 
-Wallet.prototype.remove = function(addressOrIndex) {
+Wallet.prototype.remove = function (addressOrIndex) {
     var account = this[addressOrIndex];
 
     if (account && account.address) {
@@ -378,33 +377,32 @@ Wallet.prototype.remove = function(addressOrIndex) {
     }
 };
 
-Wallet.prototype.clear = function() {
+Wallet.prototype.clear = function () {
     var _this = this;
     var indexes = this._currentIndexes();
 
-    indexes.forEach(function(index) {
+    indexes.forEach(function (index) {
         _this.remove(index);
     });
 
     return this;
 };
 
-Wallet.prototype.encrypt = function(password, options) {
+Wallet.prototype.encrypt = function (password, options) {
     var _this = this;
     var indexes = this._currentIndexes();
 
-    var accounts = indexes.map(function(index) {
+    var accounts = indexes.map(function (index) {
         return _this[index].encrypt(password, options);
     });
 
     return accounts;
 };
 
-
-Wallet.prototype.decrypt = function(encryptedWallet, password) {
+Wallet.prototype.decrypt = function (encryptedWallet, password) {
     var _this = this;
 
-    encryptedWallet.forEach(function(keystore) {
+    encryptedWallet.forEach(function (keystore) {
         var account = _this._accounts.decrypt(keystore, password);
 
         if (account) {
@@ -417,13 +415,13 @@ Wallet.prototype.decrypt = function(encryptedWallet, password) {
     return this;
 };
 
-Wallet.prototype.save = function(password, keyName) {
+Wallet.prototype.save = function (password, keyName) {
     localStorage.setItem(keyName || this.defaultKeyName, JSON.stringify(this.encrypt(password)));
 
     return true;
 };
 
-Wallet.prototype.load = function(password, keyName) {
+Wallet.prototype.load = function (password, keyName) {
     var keystore = localStorage.getItem(keyName || this.defaultKeyName);
 
     if (keystore) {
@@ -461,19 +459,19 @@ function storageAvailable(type) {
         return true;
     } catch (e) {
         return e && (
-                     // everything except Firefox
-                     e.code === 22 ||
-                     // Firefox
-                     e.code === 1014 ||
-                     // test name field too, because code might not be present
-                     // everything except Firefox
-                     e.name === 'QuotaExceededError' ||
-                     // Firefox
-                     e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-               // acknowledge QuotaExceededError only if there's something already stored
-               (storage && storage.length !== 0);
+                // everything except Firefox
+                e.code === 22 ||
+                // Firefox
+                e.code === 1014 ||
+                // test name field too, because code might not be present
+                // everything except Firefox
+                e.name === 'QuotaExceededError' ||
+                // Firefox
+                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
     }
 }
 
-module.exports = Accounts;
+export default Accounts;
 

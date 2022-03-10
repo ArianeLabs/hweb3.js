@@ -22,7 +22,7 @@
 
 "use strict";
 
-var core = require('@micdeb-ariane/hweb3-core');
+import { packageInit, addProviders } from '@micdeb-ariane/hweb3-core';
 var Method = require('@micdeb-ariane/hweb3-core-method');
 var utils = require('@micdeb-ariane/hweb3-utils');
 var Net = require('@micdeb-ariane/hweb3-net');
@@ -34,7 +34,7 @@ var Personal = function Personal() {
     var _this = this;
 
     // sets _requestmanager
-    core.packageInit(this, arguments);
+    packageInit(this, arguments);
 
     this.net = new Net(this);
 
@@ -141,10 +141,8 @@ var Personal = function Personal() {
     });
 };
 
-core.addProviders(Personal);
+addProviders(Personal);
 
-
-
-module.exports = Personal;
+export default Personal;
 
 

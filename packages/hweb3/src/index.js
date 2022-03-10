@@ -28,27 +28,26 @@
 "use strict";
 
 
+import Eth from '@micdeb-ariane/hweb3-eth';
+import { packageInit, addProviders } from '@micdeb-ariane/hweb3-core';
+import Personal from '@micdeb-ariane/hweb3-eth-personal';
+
 var version = require('../package.json').version;
-var core = require('@micdeb-ariane/hweb3-core');
-var Eth = require('@micdeb-ariane/hweb3-eth');
-var Net = require('@micdeb-ariane/hweb3-net');
-var Personal = require('@micdeb-ariane/hweb3-eth-personal');
-var Shh = require('@micdeb-ariane/hweb3-shh');
-var Bzz = require('@micdeb-ariane/hweb3-bzz');
-var utils = require('@micdeb-ariane/hweb3-utils');
+// var Net = require('@micdeb-ariane/hweb3-net');
+// var Shh = require('@micdeb-ariane/hweb3-shh');
+// var utils = require('@micdeb-ariane/hweb3-utils');
 
 var Web3 = function Web3() {
     var _this = this;
 
     // sets _requestmanager etc
-    core.packageInit(this, arguments);
+    packageInit(this, arguments);
 
     this.version = version;
-    this.utils = utils;
+    // this.utils = utils;
 
     this.eth = new Eth(this);
-    this.shh = new Shh(this);
-    this.bzz = new Bzz(this);
+    // this.shh = new Shh(this);
 
     // overwrite package setProvider
     var setProvider = this.setProvider;
@@ -65,16 +64,15 @@ var Web3 = function Web3() {
 };
 
 Web3.version = version;
-Web3.utils = utils;
+// Web3.utils = utils;
 Web3.modules = {
     Eth: Eth,
-    Net: Net,
+    // Net: Net,
     Personal: Personal,
-    Shh: Shh,
-    Bzz: Bzz
+    // Shh: Shh,
 };
 
-core.addProviders(Web3);
+addProviders(Web3);
 
-module.exports = Web3;
+export default Web3;
 

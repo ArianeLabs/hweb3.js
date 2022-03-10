@@ -22,19 +22,20 @@
 
 "use strict";
 
-var core = require('@micdeb-ariane/hweb3-core');
+import { packageInit, addProviders } from '@micdeb-ariane/hweb3-core';
 var helpers = require('@micdeb-ariane/hweb3-core-helpers');
 var Subscriptions = require('@micdeb-ariane/hweb3-core-subscriptions').subscriptions;
 var Method = require('@micdeb-ariane/hweb3-core-method');
 var utils = require('@micdeb-ariane/hweb3-utils');
 var Net = require('@micdeb-ariane/hweb3-net');
 
-var ENS = require('@micdeb-ariane/hweb3-eth-ens');
-var Personal = require('@micdeb-ariane/hweb3-eth-personal');
-var BaseContract = require('@micdeb-ariane/hweb3-eth-contract');
-var Iban = require('@micdeb-ariane/hweb3-eth-iban');
-var Accounts = require('@micdeb-ariane/hweb3-eth-accounts');
-var abi = require('@micdeb-ariane/hweb3-eth-abi');
+import Personal from '@micdeb-ariane/hweb3-eth-personal';
+import Accounts from '@micdeb-ariane/hweb3-eth-accounts';
+
+// var ENS = require('@micdeb-ariane/hweb3-eth-ens');
+// var BaseContract = require('@micdeb-ariane/hweb3-eth-contract');
+// var Iban = require('@micdeb-ariane/hweb3-eth-iban');
+// var abi = require('@micdeb-ariane/hweb3-eth-abi');
 
 var getNetworkType = require('./getNetworkType.js');
 var formatter = helpers.formatters;
@@ -65,7 +66,7 @@ var Eth = function Eth() {
     var _this = this;
 
     // sets _requestmanager
-    core.packageInit(this, arguments);
+    packageInit(this, arguments);
 
     // overwrite package setRequestManager
     var setRequestManager = this.setRequestManager;
@@ -337,53 +338,53 @@ var Eth = function Eth() {
     // not create this proxy type, changing the provider in one instance of
     // web3-eth would subsequently change the provider for _all_ contract
     // instances!
-    var self = this;
-    var Contract = function Contract() {
-        BaseContract.apply(this, arguments);
-
-        // when Eth.setProvider is called, call packageInit
-        // on all contract instances instantiated via this Eth
-        // instances. This will update the currentProvider for
-        // the contract instances
-        var _this = this;
-        var setProvider = self.setProvider;
-        self.setProvider = function() {
-          setProvider.apply(self, arguments);
-          core.packageInit(_this, [self]);
-        };
-    };
-
-    Contract.setProvider = function() {
-        BaseContract.setProvider.apply(this, arguments);
-    };
-
-    // make our proxy Contract inherit from web3-eth-contract so that it has all
-    // the right functionality and so that instanceof and friends work properly
-    Contract.prototype = Object.create(BaseContract.prototype);
-    Contract.prototype.constructor = Contract;
-
-    // add contract
-    this.Contract = Contract;
-    this.Contract.defaultAccount = this.defaultAccount;
-    this.Contract.defaultBlock = this.defaultBlock;
-    this.Contract.transactionBlockTimeout = this.transactionBlockTimeout;
-    this.Contract.transactionConfirmationBlocks = this.transactionConfirmationBlocks;
-    this.Contract.transactionPollingTimeout = this.transactionPollingTimeout;
-    this.Contract.transactionPollingInterval = this.transactionPollingInterval;
-    this.Contract.blockHeaderTimeout = this.blockHeaderTimeout;
-    this.Contract.handleRevert = this.handleRevert;
-    this.Contract._requestManager = this._requestManager;
-    this.Contract._ethAccounts = this.accounts;
-    this.Contract.currentProvider = this._requestManager.provider;
+    // var self = this;
+    // var Contract = function Contract() {
+    //     BaseContract.apply(this, arguments);
+    //
+    //     // when Eth.setProvider is called, call packageInit
+    //     // on all contract instances instantiated via this Eth
+    //     // instances. This will update the currentProvider for
+    //     // the contract instances
+    //     var _this = this;
+    //     var setProvider = self.setProvider;
+    //     self.setProvider = function() {
+    //       setProvider.apply(self, arguments);
+    //       packageInit(_this, [self]);
+    //     };
+    // };
+    //
+    // Contract.setProvider = function() {
+    //     BaseContract.setProvider.apply(this, arguments);
+    // };
+    //
+    // // make our proxy Contract inherit from web3-eth-contract so that it has all
+    // // the right functionality and so that instanceof and friends work properly
+    // Contract.prototype = Object.create(BaseContract.prototype);
+    // Contract.prototype.constructor = Contract;
+    //
+    // // add contract
+    // this.Contract = Contract;
+    // this.Contract.defaultAccount = this.defaultAccount;
+    // this.Contract.defaultBlock = this.defaultBlock;
+    // this.Contract.transactionBlockTimeout = this.transactionBlockTimeout;
+    // this.Contract.transactionConfirmationBlocks = this.transactionConfirmationBlocks;
+    // this.Contract.transactionPollingTimeout = this.transactionPollingTimeout;
+    // this.Contract.transactionPollingInterval = this.transactionPollingInterval;
+    // this.Contract.blockHeaderTimeout = this.blockHeaderTimeout;
+    // this.Contract.handleRevert = this.handleRevert;
+    // this.Contract._requestManager = this._requestManager;
+    // this.Contract._ethAccounts = this.accounts;
+    // this.Contract.currentProvider = this._requestManager.provider;
 
     // add IBAN
-    this.Iban = Iban;
-
-    // add ABI
-    this.abi = abi;
-
-    // add ENS
-    this.ens = new ENS(this);
+    // this.Iban = Iban;
+    //
+    // // add ABI
+    // this.abi = abi;
+    //
+    // // add ENS
+    // this.ens = new ENS(this);
 
     var methods = [
         new Method({
@@ -517,26 +518,26 @@ var Eth = function Eth() {
             inputFormatter: [formatter.inputAddressFormatter, formatter.inputDefaultBlockNumberFormatter],
             outputFormatter: utils.hexToNumber
         }),
-        new Method({
-            name: 'sendSignedTransaction',
-            call: 'eth_sendRawTransaction',
-            params: 1,
-            inputFormatter: [null],
-            abiCoder: abi
-        }),
+        // new Method({
+        //     name: 'sendSignedTransaction',
+        //     call: 'eth_sendRawTransaction',
+        //     params: 1,
+        //     inputFormatter: [null],
+        //     abiCoder: abi
+        // }),
         new Method({
             name: 'signTransaction',
             call: 'eth_signTransaction',
             params: 1,
             inputFormatter: [formatter.inputTransactionFormatter]
         }),
-        new Method({
-            name: 'sendTransaction',
-            call: 'eth_sendTransaction',
-            params: 1,
-            inputFormatter: [formatter.inputTransactionFormatter],
-            abiCoder: abi
-        }),
+        // new Method({
+        //     name: 'sendTransaction',
+        //     call: 'eth_sendTransaction',
+        //     params: 1,
+        //     inputFormatter: [formatter.inputTransactionFormatter],
+        //     abiCoder: abi
+        // }),
         new Method({
             name: 'sign',
             call: 'eth_sign',
@@ -547,13 +548,13 @@ var Eth = function Eth() {
                 return payload;
             }
         }),
-        new Method({
-            name: 'call',
-            call: 'eth_call',
-            params: 2,
-            inputFormatter: [formatter.inputCallFormatter, formatter.inputDefaultBlockNumberFormatter],
-            abiCoder: abi
-        }),
+        // new Method({
+        //     name: 'call',
+        //     call: 'eth_call',
+        //     params: 2,
+        //     inputFormatter: [formatter.inputCallFormatter, formatter.inputDefaultBlockNumberFormatter],
+        //     abiCoder: abi
+        // }),
         new Method({
             name: 'estimateGas',
             call: 'eth_estimateGas',
@@ -706,8 +707,8 @@ var Eth = function Eth() {
 };
 
 // Adds the static givenProvider and providers property to the Eth module
-core.addProviders(Eth);
+addProviders(Eth);
 
 
-module.exports = Eth;
+export default Eth;
 

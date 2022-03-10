@@ -30,7 +30,7 @@
 
 "use strict";
 
-var core = require('@micdeb-ariane/hweb3-core');
+import { packageInit } from '@micdeb-ariane/hweb3-core';
 var Method = require('@micdeb-ariane/hweb3-core-method');
 var utils = require('@micdeb-ariane/hweb3-utils');
 var Subscription = require('@micdeb-ariane/hweb3-core-subscriptions').subscription;
@@ -58,13 +58,13 @@ var Contract = function Contract(jsonInterface, address, options) {
     }
 
     this.setProvider = function () {
-        core.packageInit(_this, arguments);
+        packageInit(_this, arguments);
 
         _this.clearSubscriptions = _this._requestManager.clearSubscriptions;
     };
 
     // sets _requestmanager
-    core.packageInit(this, [this.constructor]);
+    packageInit(this, [this.constructor]);
 
     this.clearSubscriptions = this._requestManager.clearSubscriptions;
 
@@ -337,7 +337,7 @@ var Contract = function Contract(jsonInterface, address, options) {
  */
 Contract.setProvider = function(provider, accounts) {
     // Contract.currentProvider = provider;
-    core.packageInit(this, [provider]);
+    packageInit(this, [provider]);
 
     this._ethAccounts = accounts;
 };

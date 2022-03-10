@@ -21,9 +21,11 @@
 
 
 var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
-var BatchManager = require('./batch.js');
-var givenProvider = require('./givenProvider.js');
-var { Transaction, Client } = require('@hashgraph/sdk');
+import givenProvider from './givenProvider.js';
+import { Transaction, Client } from '@hashgraph/sdk';
+import HttpProvider from '@micdeb-ariane/hweb3-providers-http';
+
+export { default as BatchManager } from './batch.js';
 
 /**
  * It's responsible for passing messages to providers
@@ -47,7 +49,7 @@ var RequestManager = function RequestManager(client) {
 RequestManager.givenProvider = givenProvider;
 
 RequestManager.providers = {
-    HttpProvider: require('@micdeb-ariane/hweb3-providers-http'),
+    HttpProvider: HttpProvider,
 };
 
 
@@ -289,7 +291,4 @@ RequestManager.prototype._isIpcCloseError = function (event) {
     return typeof event === 'boolean' && event;
 };
 
-module.exports = {
-    Manager: RequestManager,
-    BatchManager: BatchManager
-};
+export const Manager = RequestManager;

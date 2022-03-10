@@ -6,7 +6,7 @@
     "engines": {
         "node": ">=11.0.0"
     },
-    "main": "./packages/hweb3/src/index.js",
+    "main": "./packages/hweb3/lib/index.js",
     "bundlesize": [
         {
             "path": "./packages/hweb3/dist/web3.min.js",

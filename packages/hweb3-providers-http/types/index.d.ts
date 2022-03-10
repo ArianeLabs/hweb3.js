@@ -25,7 +25,6 @@ import { Client, Transaction } from '@hashgraph/sdk';
 import { ITransactionResponse, ITransactionReceipt } from "@hashgraph/proto";
 import {proto} from '@hashgraph/proto/lib/proto';
 
-
 export class HttpProvider extends HttpProviderBase {
     client: Client;
     connected: boolean;

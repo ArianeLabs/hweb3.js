@@ -1,4 +1,4 @@
-const { AccountCreateTransaction } = require("@hashgraph/sdk");
+import { AccountCreateTransaction } from "@hashgraph/sdk";
 
 const createNewAccountId = function(newAccountPrivateKey, cb) {
     var _this = this;
@@ -9,17 +9,17 @@ const createNewAccountId = function(newAccountPrivateKey, cb) {
     const tx = new AccountCreateTransaction()
         .setKey(newAccountPublicKey);
 
-    _this.currentProvider.send(tx, (error, response) => {
+    _this.currentProvider.send(tx, (error, txResponse) => {
         if (error) {
             throw error;
         }
 
-        _this.currentProvider.getReceipt(response, (error, response) => {
+        _this.currentProvider.getReceipt(txResponse, (error, txReceipt) => {
             if (error) {
                 throw error;
             }
 
-            const resp = Object.assign({}, response);
+            const resp = Object.assign({}, txReceipt);
             resp.privateKey = newAccountPrivateKey;
             resp.publicKey = newAccountPublicKey;
 
@@ -28,4 +28,4 @@ const createNewAccountId = function(newAccountPrivateKey, cb) {
     });
 };
 
-module.exports = createNewAccountId;
+export default createNewAccountId;

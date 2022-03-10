@@ -20,10 +20,10 @@
  * @date 2017
  */
 
-const requestManager = require("@micdeb-ariane/hweb3-core-requestmanager");
+import { Manager, BatchManager } from "@micdeb-ariane/hweb3-core-requestmanager";
 const extend = require("./extend");
 
-const packageInit = (pkg, args) => {
+export const packageInit = (pkg, args) => {
     args = Array.prototype.slice.call(args);
 
     if (!pkg) {
@@ -46,12 +46,12 @@ const packageInit = (pkg, args) => {
     if (args[0] && args[0]._requestManager) {
         pkg._requestManager = args[0]._requestManager;
     } else {
-        pkg._requestManager = new requestManager.Manager(args[0], args[1]);
+        pkg._requestManager = new Manager(args[0], args[1]);
     }
 
     // add givenProvider
-    pkg.givenProvider = requestManager.Manager.givenProvider;
-    pkg.providers = requestManager.Manager.providers;
+    pkg.givenProvider = Manager.givenProvider;
+    pkg.providers = Manager.providers;
 
     pkg._provider = pkg._requestManager.provider;
 
@@ -70,18 +70,13 @@ const packageInit = (pkg, args) => {
     };
 
     // attach batch request creation
-    pkg.BatchRequest = requestManager.BatchManager.bind(null, pkg._requestManager);
+    pkg.BatchRequest = BatchManager.bind(null, pkg._requestManager);
 
     // attach extend function
     pkg.extend = extend(pkg);
 }
 
-const addProviders = (pkg) => {
-    pkg.givenProvider = requestManager.Manager.givenProvider;
-    pkg.providers = requestManager.Manager.providers;
-}
-
-module.exports = {
-    packageInit,
-    addProviders
-}
+export const addProviders = (pkg) => {
+    pkg.givenProvider = Manager.givenProvider;
+    pkg.providers = Manager.providers;
+};

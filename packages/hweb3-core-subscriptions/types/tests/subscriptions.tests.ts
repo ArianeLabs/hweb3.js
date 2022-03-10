@@ -20,7 +20,7 @@
  * @date 2019
  */
 
-import {Subscriptions, Subscription} from '@micdeb-ariane/hweb3-core-subscriptions';
+import {Subscriptions, Subscription} from '@arianelabs/hweb3-core-subscriptions';
 
 const subscriptions = new Subscriptions({
     name: '',

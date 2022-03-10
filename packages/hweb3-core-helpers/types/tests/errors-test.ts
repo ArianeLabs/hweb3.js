@@ -17,7 +17,7 @@
  * @date 2019
  */
 
-import { errors, WebSocketEvent } from '@micdeb-ariane/hweb3-core-helpers';
+import { errors, WebSocketEvent } from '@arianelabs/hweb3-core-helpers';
 
 // $ExpectType Error
 errors.ErrorResponse(new Error('hey'));

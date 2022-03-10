@@ -24,12 +24,12 @@
 'use strict';
 
 import { PrivateKey } from "@hashgraph/sdk";
-import { packageInit } from '@micdeb-ariane/hweb3-core';
-import Method from '@micdeb-ariane/hweb3-core-method';
+import { packageInit } from '@arianelabs/hweb3-core';
+import Method from '@arianelabs/hweb3-core-method';
 import Account from 'eth-lib/lib/account';
 import scrypt from 'scrypt-js';
 import uuid from 'uuid';
-import utils from '@micdeb-ariane/hweb3-utils';
+import utils from '@arianelabs/hweb3-utils';
 import ethereumjsUtil from 'ethereumjs-util';
 
 const cryp = (typeof global === 'undefined') ? require('crypto-browserify') : require('crypto');

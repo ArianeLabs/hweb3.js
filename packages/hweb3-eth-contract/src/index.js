@@ -30,14 +30,14 @@
 
 "use strict";
 
-import { packageInit } from '@micdeb-ariane/hweb3-core';
-var Method = require('@micdeb-ariane/hweb3-core-method');
-var utils = require('@micdeb-ariane/hweb3-utils');
-var Subscription = require('@micdeb-ariane/hweb3-core-subscriptions').subscription;
-var formatters = require('@micdeb-ariane/hweb3-core-helpers').formatters;
-var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
-var promiEvent = require('@micdeb-ariane/hweb3-core-promievent');
-var abi = require('@micdeb-ariane/hweb3-eth-abi');
+import { packageInit } from '@arianelabs/hweb3-core';
+var Method = require('@arianelabs/hweb3-core-method');
+var utils = require('@arianelabs/hweb3-utils');
+var Subscription = require('@arianelabs/hweb3-core-subscriptions').subscription;
+var formatters = require('@arianelabs/hweb3-core-helpers').formatters;
+var errors = require('@arianelabs/hweb3-core-helpers').errors;
+var promiEvent = require('@arianelabs/hweb3-core-promievent');
+var abi = require('@arianelabs/hweb3-eth-abi');
 
 
 /**

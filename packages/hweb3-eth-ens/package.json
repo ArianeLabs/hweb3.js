@@ -1,8 +1,8 @@
 {
-	"name": "@micdeb-ariane/hweb3-eth-ens",
+	"name": "@arianelabs/hweb3-eth-ens",
 	"version": "1.7.10",
 	"description": "ENS support for web3.",
-	"repository": "https://github.com/ethereum/web3.js/tree/1.x/packages/web3-eth-ens",
+	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-ens",
 	"license": "LGPL-3.0",
 	"engines": {
 		"node": ">=8.0.0"

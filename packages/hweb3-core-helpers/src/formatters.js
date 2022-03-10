@@ -23,8 +23,8 @@
 
 "use strict";
 
-var utils = require('@micdeb-ariane/hweb3-utils');
-var Iban = require('@micdeb-ariane/hweb3-eth-iban');
+var utils = require('@arianelabs/hweb3-utils');
+var Iban = require('@arianelabs/hweb3-eth-iban');
 
 
 /**

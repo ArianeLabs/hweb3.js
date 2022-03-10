@@ -25,7 +25,7 @@
 
 "use strict";
 
-const utils = require('@micdeb-ariane/hweb3-utils');
+const utils = require('@arianelabs/hweb3-utils');
 const BigNumber = require('bn.js');
 
 

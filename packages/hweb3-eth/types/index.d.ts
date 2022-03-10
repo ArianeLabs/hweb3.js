@@ -37,16 +37,16 @@ import {
     BlockNumber,
     LogsOptions,
     PastLogsOptions
-} from '@micdeb-ariane/hweb3-core';
-import {Subscription} from '@micdeb-ariane/hweb3-core-subscriptions';
-import {AbiCoder} from '@micdeb-ariane/hweb3-eth-abi';
-import {Accounts} from '@micdeb-ariane/hweb3-eth-accounts';
-import {Contract, ContractOptions} from '@micdeb-ariane/hweb3-eth-contract';
-import {Ens} from '@micdeb-ariane/hweb3-eth-ens';
-import {Iban} from '@micdeb-ariane/hweb3-eth-iban';
-import {Personal} from '@micdeb-ariane/hweb3-eth-personal';
-import {Network} from '@micdeb-ariane/hweb3-net';
-import {AbiItem} from '@micdeb-ariane/hweb3-utils';
+} from '@arianelabs/hweb3-core';
+import {Subscription} from '@arianelabs/hweb3-core-subscriptions';
+import {AbiCoder} from '@arianelabs/hweb3-eth-abi';
+import {Accounts} from '@arianelabs/hweb3-eth-accounts';
+import {Contract, ContractOptions} from '@arianelabs/hweb3-eth-contract';
+import {Ens} from '@arianelabs/hweb3-eth-ens';
+import {Iban} from '@arianelabs/hweb3-eth-iban';
+import {Personal} from '@arianelabs/hweb3-eth-personal';
+import {Network} from '@arianelabs/hweb3-net';
+import {AbiItem} from '@arianelabs/hweb3-utils';
 import {BigNumber} from 'bignumber.js';
 import BN = require('bn.js');
 
@@ -58,7 +58,7 @@ export {
     hardfork,
     Common,
     chain
-} from '@micdeb-ariane/hweb3-core';
+} from '@arianelabs/hweb3-core';
 
 export class Eth {
     constructor();

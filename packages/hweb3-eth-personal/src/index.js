@@ -22,12 +22,12 @@
 
 "use strict";
 
-import { packageInit, addProviders } from '@micdeb-ariane/hweb3-core';
-var Method = require('@micdeb-ariane/hweb3-core-method');
-var utils = require('@micdeb-ariane/hweb3-utils');
-var Net = require('@micdeb-ariane/hweb3-net');
+import { packageInit, addProviders } from '@arianelabs/hweb3-core';
+var Method = require('@arianelabs/hweb3-core-method');
+var utils = require('@arianelabs/hweb3-utils');
+var Net = require('@arianelabs/hweb3-net');
 
-var formatters = require('@micdeb-ariane/hweb3-core-helpers').formatters;
+var formatters = require('@arianelabs/hweb3-core-helpers').formatters;
 
 
 var Personal = function Personal() {

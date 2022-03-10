@@ -1,8 +1,8 @@
 {
-	"name": "@micdeb-ariane/hweb3-utils",
+	"name": "@arianelabs/hweb3-utils",
 	"version": "1.7.10",
-	"description": "Collection of utility functions used in web3.js.",
-	"repository": "https://github.com/ethereum/web3.js/tree/1.x/packages/web3-utils",
+	"description": "Collection of utility functions used in hweb3.js.",
+	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-utils",
 	"license": "LGPL-3.0",
 	"engines": {
 		"node": ">=8.0.0"

@@ -20,7 +20,7 @@
  * @date 2018
  */
 
-import { AbiCoder } from '@micdeb-ariane/hweb3-eth-abi';
+import { AbiCoder } from '@arianelabs/hweb3-eth-abi';
 
 const abiCoder = new AbiCoder();
 

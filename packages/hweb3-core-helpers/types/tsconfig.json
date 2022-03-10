@@ -11,7 +11,7 @@
         "allowSyntheticDefaultImports": false,
         "baseUrl": ".",
         "paths": {
-            "@micdeb-ariane/hweb3-core-helpers": ["."]
+            "@arianelabs/hweb3-core-helpers": ["."]
         }
     }
 }

@@ -17,7 +17,7 @@
  * @date 2018
  */
 
-import { formatters } from '@micdeb-ariane/hweb3-core-helpers';
+import { formatters } from '@arianelabs/hweb3-core-helpers';
 
 // $ExpectType number
 formatters.outputBigNumberFormatter(100);

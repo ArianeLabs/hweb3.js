@@ -20,10 +20,10 @@
 "use strict";
 
 
-var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
+var errors = require('@arianelabs/hweb3-core-helpers').errors;
 import givenProvider from './givenProvider.js';
 import { Transaction, Client } from '@hashgraph/sdk';
-import HttpProvider from '@micdeb-ariane/hweb3-providers-http';
+import HttpProvider from '@arianelabs/hweb3-providers-http';
 
 export { default as BatchManager } from './batch.js';
 

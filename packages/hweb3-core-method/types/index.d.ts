@@ -17,7 +17,7 @@
  * @date 2018
  */
 
-import {JsonRpcPayload} from '@micdeb-ariane/hweb3-core-helpers';
+import {JsonRpcPayload} from '@arianelabs/hweb3-core-helpers';
 
 export interface Method {
     name: string;

@@ -17,11 +17,11 @@
  * @date 2018
  */
 
-import { TransactionRevertInstructionError } from '@micdeb-ariane/hweb3-core-helpers';
-import { TransactionReceipt } from '@micdeb-ariane/hweb3-core';
-import { Contract } from '@micdeb-ariane/hweb3-eth-contract';
-import { Ens, ContentHash } from '@micdeb-ariane/hweb3-eth-ens';
-import { Eth } from '@micdeb-ariane/hweb3-eth';
+import { TransactionRevertInstructionError } from '@arianelabs/hweb3-core-helpers';
+import { TransactionReceipt } from '@arianelabs/hweb3-core';
+import { Contract } from '@arianelabs/hweb3-eth-contract';
+import { Ens, ContentHash } from '@arianelabs/hweb3-eth-ens';
+import { Eth } from '@arianelabs/hweb3-eth';
 
 const ens = new Ens(new Eth('http://localhost:8545'));
 

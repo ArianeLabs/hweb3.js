@@ -27,8 +27,8 @@ import {
     WebsocketProviderOptions,
     JsonRpcPayload,
     JsonRpcResponse
-} from '@micdeb-ariane/hweb3-core-helpers';
-import { Method } from '@micdeb-ariane/hweb3-core-method';
+} from '@arianelabs/hweb3-core-helpers';
+import { Method } from '@arianelabs/hweb3-core-method';
 import BN = require('bn.js');
 import BigNumber from 'bignumber.js';
 import { Client, Transaction } from '@hashgraph/sdk';

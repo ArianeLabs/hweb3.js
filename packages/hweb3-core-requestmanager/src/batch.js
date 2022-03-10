@@ -23,7 +23,7 @@
 "use strict";
 
 var Jsonrpc = require('./jsonrpc');
-var errors = require('@micdeb-ariane/hweb3-core-helpers').errors;
+var errors = require('@arianelabs/hweb3-core-helpers').errors;
 
 var Batch = function (requestManager) {
     this.requestManager = requestManager;

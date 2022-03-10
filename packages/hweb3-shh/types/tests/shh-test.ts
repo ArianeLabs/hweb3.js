@@ -17,7 +17,7 @@
  * @date 2018
  */
 
-import { Info, Notification, Shh } from '@micdeb-ariane/hweb3-shh';
+import { Info, Notification, Shh } from '@arianelabs/hweb3-shh';
 
 // $ExpectType Shh
 const shh_empty = new Shh();

@@ -1,8 +1,8 @@
 {
-    "name": "@micdeb-ariane/hweb3-bzz",
+    "name": "@arianelabs/hweb3-bzz",
     "version": "1.7.10",
     "description": "Web3 module to interact with the Swarm network.",
-    "repository": "https://github.com/ethereum/web3.js/tree/1.x/packages/web3-bzz",
+    "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-bzz",
     "license": "LGPL-3.0",
     "engines": {
         "node": ">=8.0.0"

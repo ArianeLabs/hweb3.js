@@ -1,8 +1,8 @@
 {
-    "name": "@micdeb-ariane/hweb3-eth-contract",
+    "name": "@arianelabs/hweb3-eth-contract",
     "version": "1.7.10",
-    "description": "Web3 module to interact with Ethereum smart contracts.",
-    "repository": "https://github.com/ethereum/web3.js/tree/1.x/packages/web3-eth-contract",
+    "description": "Hweb3 module to interact with Hedera smart contracts.",
+    "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-contract",
     "license": "LGPL-3.0",
     "engines": {
         "node": ">=8.0.0"

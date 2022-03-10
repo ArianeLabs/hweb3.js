@@ -28,14 +28,14 @@
 "use strict";
 
 
-import Eth from '@micdeb-ariane/hweb3-eth';
-import { packageInit, addProviders } from '@micdeb-ariane/hweb3-core';
-import Personal from '@micdeb-ariane/hweb3-eth-personal';
+import Eth from '@arianelabs/hweb3-eth';
+import { packageInit, addProviders } from '@arianelabs/hweb3-core';
+import Personal from '@arianelabs/hweb3-eth-personal';
 
 var version = require('../package.json').version;
-// var Net = require('@micdeb-ariane/hweb3-net');
-// var Shh = require('@micdeb-ariane/hweb3-shh');
-// var utils = require('@micdeb-ariane/hweb3-utils');
+// var Net = require('@arianelabs/hweb3-net');
+// var Shh = require('@arianelabs/hweb3-shh');
+// var utils = require('@arianelabs/hweb3-utils');
 
 var Web3 = function Web3() {
     var _this = this;

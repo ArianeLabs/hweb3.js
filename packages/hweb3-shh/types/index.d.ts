@@ -18,8 +18,8 @@
  */
 
 import * as net from 'net';
-import { BatchRequest, provider, Providers, Extension } from '@micdeb-ariane/hweb3-core';
-import { Network } from '@micdeb-ariane/hweb3-net';
+import { BatchRequest, provider, Providers, Extension } from '@arianelabs/hweb3-core';
+import { Network } from '@arianelabs/hweb3-net';
 
 export class Shh {
     constructor();

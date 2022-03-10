@@ -17,7 +17,7 @@
  * @date 2018
  */
 
-import { Network } from '@micdeb-ariane/hweb3-net';
+import { Network } from '@arianelabs/hweb3-net';
 
 // $ExpectType Network
 const network_empty = new Network();

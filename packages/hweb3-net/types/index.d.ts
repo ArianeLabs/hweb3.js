@@ -17,6 +17,6 @@
  * @date 2018
  */
 
-import { NetworkBase } from '@micdeb-ariane/hweb3-core';
+import { NetworkBase } from '@arianelabs/hweb3-core';
 
 export class Network extends NetworkBase {}

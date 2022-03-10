@@ -1,8 +1,8 @@
 {
-	"name": "@micdeb-ariane/hweb3-eth",
+	"name": "@arianelabs/hweb3-eth",
 	"version": "1.7.10",
-	"description": "Web3 module to interact with the Ethereum blockchain and smart contracts.",
-	"repository": "https://github.com/ethereum/web3.js/tree/1.x/packages/web3-eth",
+	"description": "Hweb3 module to interact with the Hedera hashgraph and smart contracts.",
+	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth",
 	"license": "LGPL-3.0",
 	"engines": {
 		"node": ">=8.0.0"
@@ -18,17 +18,17 @@
 		"typescript": "^3.9.5"
 	},
 	"dependencies": {
-		"@micdeb-ariane/hweb3-core": "1.7.10",
-		"@micdeb-ariane/hweb3-core-helpers": "1.7.10",
-		"@micdeb-ariane/hweb3-core-method": "1.7.10",
-		"@micdeb-ariane/hweb3-core-subscriptions": "1.7.10",
-		"@micdeb-ariane/hweb3-eth-abi": "1.7.10",
-		"@micdeb-ariane/hweb3-eth-accounts": "1.7.10",
-		"@micdeb-ariane/hweb3-eth-contract": "1.7.10",
-		"@micdeb-ariane/hweb3-eth-ens": "1.7.10",
-		"@micdeb-ariane/hweb3-eth-iban": "1.7.10",
-		"@micdeb-ariane/hweb3-eth-personal": "1.7.10",
-		"@micdeb-ariane/hweb3-net": "1.7.10",
-		"@micdeb-ariane/hweb3-utils": "1.7.10"
+		"@arianelabs/hweb3-core": "1.7.10",
+		"@arianelabs/hweb3-core-helpers": "1.7.10",
+		"@arianelabs/hweb3-core-method": "1.7.10",
+		"@arianelabs/hweb3-core-subscriptions": "1.7.10",
+		"@arianelabs/hweb3-eth-abi": "1.7.10",
+		"@arianelabs/hweb3-eth-accounts": "1.7.10",
+		"@arianelabs/hweb3-eth-contract": "1.7.10",
+		"@arianelabs/hweb3-eth-ens": "1.7.10",
+		"@arianelabs/hweb3-eth-iban": "1.7.10",
+		"@arianelabs/hweb3-eth-personal": "1.7.10",
+		"@arianelabs/hweb3-net": "1.7.10",
+		"@arianelabs/hweb3-utils": "1.7.10"
 	}
 }

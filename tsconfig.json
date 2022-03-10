@@ -2,9 +2,17 @@
     "compilerOptions": {
         "outDir": "./lib",
         "allowJs": true,
-        "target": "esnext",
+        "target": "es5",
         "pretty": true,
-        "module": "commonjs",
         "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "es2015",
+            "esnext",
+            "es5",
+            "dom"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
     }
 }

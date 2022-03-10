@@ -1,0 +1,26 @@
+{
+	"name": "@arianelabs/hweb3-core-helpers",
+	"version": "1.7.10",
+	"description": "Hweb3 core tools helper for sub packages. This is an internal package.",
+	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-helpers",
+	"license": "LGPL-3.0",
+	"engines": {
+		"node": ">=8.0.0"
+	},
+	"scripts": {
+		"compile": "tsc -b tsconfig.json",
+		"dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
+	},
+	"types": "types/index.d.ts",
+	"main": "lib/index.js",
+	"dependencies": {
+		"@hashgraph/sdk": "^2.9.1",
+		"@arianelabs/hweb3-eth-iban": "1.7.10",
+		"@arianelabs/hweb3-utils": "1.7.10"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.6",
+		"dtslint": "^3.4.1",
+		"typescript": "^3.9.5"
+	}
+}

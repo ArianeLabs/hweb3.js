@@ -1,0 +1,34 @@
+{
+	"name": "@arianelabs/hweb3-eth-accounts",
+	"version": "1.7.10",
+	"description": "Hweb3 module to generate Hedera accounts and sign data and transactions.",
+	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-accounts",
+	"license": "LGPL-3.0",
+	"engines": {
+		"node": ">=8.0.0"
+	},
+	"types": "types/index.d.ts",
+	"scripts": {
+		"compile": "tsc -b tsconfig.json",
+		"dtslint": "dtslint --localTs ../../node_modules/typescript/lib  types"
+	},
+	"main": "lib/index.js",
+	"dependencies": {
+		"@ethereumjs/common": "^2.5.0",
+		"@ethereumjs/tx": "^3.3.2",
+		"@hashgraph/sdk": "^2.10.1",
+		"@arianelabs/hweb3-core": "1.7.10",
+		"@arianelabs/hweb3-core-helpers": "1.7.10",
+		"@arianelabs/hweb3-core-method": "1.7.10",
+		"@arianelabs/hweb3-utils": "1.7.10",
+		"crypto-browserify": "3.12.0",
+		"eth-lib": "0.2.8",
+		"ethereumjs-util": "^7.0.10",
+		"scrypt-js": "^3.0.1",
+		"uuid": "3.3.2"
+	},
+	"devDependencies": {
+		"dtslint": "^3.4.1",
+		"typescript": "^3.9.5"
+	}
+}

@@ -1,15 +1,15 @@
 {
-    "name": "web3.js",
+    "name": "@arianelabs/web3.js",
     "private": true,
     "description": "Ethereum JavaScript API wrapper repository",
     "license": "LGPL-3.0",
     "engines": {
         "node": ">=11.0.0"
     },
-    "main": "./packages/web3/src/index.js",
+    "main": "./packages/hweb3/lib/index.js",
     "bundlesize": [
         {
-            "path": "./packages/web3/dist/web3.min.js",
+            "path": "./packages/hweb3/dist/web3.min.js",
             "maxSize": "1.5 mB",
             "compression": "none"
         }
@@ -17,7 +17,7 @@
     "scripts": {
         "version": "npm run build",
         "postinstall": "npm run bootstrap",
-        "build": "npm run bootstrap && lerna run compile && webpack && cp -r ./dist ./packages/web3",
+        "build": "npm run bootstrap && lerna run compile && webpack && cp -r ./dist ./packages/hweb3",
         "publish": "lerna publish",
         "bootstrap": "lerna bootstrap --hoist",
         "lint": "jshint *.js packages",

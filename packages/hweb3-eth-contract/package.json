@@ -1,0 +1,30 @@
+{
+    "name": "@arianelabs/hweb3-eth-contract",
+    "version": "1.7.10",
+    "description": "Hweb3 module to interact with Hedera smart contracts.",
+    "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-contract",
+    "license": "LGPL-3.0",
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "types": "types/index.d.ts",
+    "scripts": {
+        "compile": "tsc -b tsconfig.json",
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
+    },
+    "main": "lib/index.js",
+    "dependencies": {
+        "@micdeb-ariane/hweb3-core": "1.7.10",
+        "@micdeb-ariane/hweb3-core-helpers": "1.7.10",
+        "@micdeb-ariane/hweb3-core-method": "1.7.10",
+        "@micdeb-ariane/hweb3-core-promievent": "1.7.10",
+        "@micdeb-ariane/hweb3-core-subscriptions": "1.7.10",
+        "@micdeb-ariane/hweb3-eth-abi": "1.7.10",
+        "@micdeb-ariane/hweb3-utils": "1.7.10",
+        "@types/bn.js": "^4.11.5"
+    },
+    "devDependencies": {
+        "dtslint": "^3.4.1",
+        "typescript": "^3.9.5"
+    }
+}

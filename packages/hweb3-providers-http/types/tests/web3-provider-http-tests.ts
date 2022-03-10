@@ -20,7 +20,7 @@
  * @date 2018
  */
 
-import { HttpProvider } from 'web3-providers';
+import { HttpProvider } from '@micdeb-ariane/hweb3-providers';
 import { Client, Transaction } from '@hashgraph/sdk';
 import { proto } from '@hashgraph/proto/lib/proto';
 

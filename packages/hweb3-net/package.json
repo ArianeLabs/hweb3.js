@@ -1,0 +1,25 @@
+{
+    "name": "@arianelabs/hweb3-net",
+    "version": "1.7.10",
+    "description": "Web3 module to interact with the Ethereum nodes networking properties.",
+    "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-net",
+    "license": "LGPL-3.0",
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "types": "types/index.d.ts",
+    "scripts": {
+        "compile": "tsc -b tsconfig.json",
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
+    },
+    "main": "lib/index.js",
+    "dependencies": {
+        "@arianelabs/hweb3-core": "1.7.10",
+        "@arianelabs/hweb3-core-method": "1.7.10",
+        "@arianelabs/hweb3-utils": "1.7.10"
+    },
+    "devDependencies": {
+        "dtslint": "^3.4.1",
+        "typescript": "^3.9.5"
+    }
+}

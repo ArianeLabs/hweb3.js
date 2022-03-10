@@ -1,0 +1,40 @@
+{
+	"name": "@arianelabs/hweb3",
+	"version": "1.7.10",
+	"description": "Hedera JavaScript API",
+	"repository": "https://github.com/Arianelabs/hweb3.js",
+	"license": "LGPL-3.0",
+	"engines": {
+		"node": ">=8.0.0"
+	},
+	"main": "lib/index.js",
+	"bugs": {
+		"url": "https://github.com/Arianelabs/hweb3.js/issues"
+	},
+	"keywords": [
+		"Hedera",
+		"JavaScript",
+		"API"
+	],
+	"author": "Arianelabs",
+	"types": "types/index.d.ts",
+	"scripts": {
+		"compile": "tsc -b tsconfig.json",
+		"dtslint": "dtslint --localTs ../../node_modules/typescript/lib types",
+		"postinstall": "echo \"WARNING: the hweb3-shh and hweb3-bzz api will be deprecated in the next version\""
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.6",
+		"dtslint": "^3.4.1",
+		"typescript": "^3.9.5"
+	},
+	"dependencies": {
+		"@arianelabs/hweb3-bzz": "1.7.10",
+		"@arianelabs/hweb3-core": "1.7.10",
+		"@arianelabs/hweb3-eth": "1.7.10",
+		"@arianelabs/hweb3-eth-personal": "1.7.10",
+		"@arianelabs/hweb3-net": "1.7.10",
+		"@arianelabs/hweb3-shh": "1.7.10",
+		"@arianelabs/hweb3-utils": "1.7.10"
+	}
+}

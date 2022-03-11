@@ -10,10 +10,12 @@
     "types": "types/index.d.ts",
     "scripts": {
         "compile": "tsc -b tsconfig.json",
+        "compile:cjs": "tsc -b tsconfig.cjs.json",
         "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types",
         "postinstall": "echo \"WARNING: the web3-bzz api will be deprecated in the next version\""
     },
-    "main": "lib/index.js",
+    "main": "lib/cjs/index.js",
+    "module": "lib/index.js",
     "dependencies": {
         "@types/node": "^12.12.6",
         "got": "9.6.0",

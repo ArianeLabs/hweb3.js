@@ -7,9 +7,11 @@
     "engines": {
         "node": ">=8.0.0"
     },
-    "main": "lib/index.js",
+    "main": "lib/cjs/index.js",
+    "module": "lib/index.js",
     "scripts": {
-        "compile": "tsc -b tsconfig.json"
+        "compile": "tsc -b tsconfig.json",
+        "compile:cjs": "tsc -b tsconfig.cjs.json"
     },
     "dependencies": {
         "@hashgraph/sdk": "^2.9.1",

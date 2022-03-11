@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": "./lib",
+        "allowJs": true,
+        "target": "es5",
+        "pretty": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+    }
+}

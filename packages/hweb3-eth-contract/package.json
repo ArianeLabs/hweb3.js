@@ -10,6 +10,7 @@
     "types": "types/index.d.ts",
     "scripts": {
         "compile": "tsc -b tsconfig.json",
+        "compile:cjs": "tsc -b tsconfig.cjs.json",
         "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
     },
     "main": "lib/index.js",

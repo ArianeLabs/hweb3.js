@@ -4,12 +4,10 @@
         "allowJs": true,
         "target": "es5",
         "pretty": true,
-        "esModuleInterop": true,
+        "esModuleInterop": false,
         "allowSyntheticDefaultImports": true,
         "lib": [
-            "es2015",
             "esnext",
-            "es5",
             "dom"
         ],
         "module": "commonjs",

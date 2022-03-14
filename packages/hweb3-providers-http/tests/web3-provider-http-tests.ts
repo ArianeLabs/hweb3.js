@@ -20,20 +20,43 @@
  * @date 2018
  */
 
-import { HttpProvider } from '@arianelabs/hweb3-providers-http';
+import { HttpProvider } from '../src';
 import { Client, Transaction } from '@hashgraph/sdk';
 import { proto } from '@hashgraph/proto/lib/proto';
 
+require("dotenv").config();
+
+const accountId = process.env.MY_ACCOUNT_ID;
+const privateKey = process.env.MY_PRIVATE_KEY;
+
 const client = Client.forTestnet();
-client.setOperator('', '');
+client.setOperator(accountId, privateKey);
 
 const httpProvider = new HttpProvider(client);
 
-// $ExpectType void
-httpProvider.send(new Transaction(), (error: Error | null) => {});
-
-// $ExpectType void
-httpProvider.send(new Transaction(), (error: Error | null, result: proto.ITransactionResponse | undefined) => {});
-
 // $ExpectType boolean
 httpProvider.disconnect();
+
+// $ExpectType LedgerId
+httpProvider.getLedgerId();
+
+// $ExpectType {[key: string]: string | AccountId}
+httpProvider.getNetwork();
+
+// $ExpectType {[key: string]: string | AccountId}
+httpProvider.getMirrorNetwork();
+
+// $ExpectType Promise<AccountBalance>
+httpProvider.getAccountBalance(accountId).then(r => r);
+
+// $ExpectType Promise<AccountInfo>
+httpProvider.getAccountInfo(accountId).then(r => r);
+
+// // $ExpectType Promise<TransactionReceipt>
+// httpProvider.getTransactionReceipt().then(r => r);
+//
+// // $ExpectType Promise<TransactionResponse>
+// httpProvider.sendRequest().then(r => r);
+//
+// // $ExpectType Promise<TransactionReceipt>
+// httpProvider.waitForReceipt().then(r => r);

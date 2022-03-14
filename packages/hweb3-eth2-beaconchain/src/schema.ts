@@ -1,4 +1,4 @@
-import { BaseAPISchema } from '@micdeb-ariane/hweb3-eth2-core'
+import { BaseAPISchema } from '@arianelabs/hweb3-eth2-core'
 
 export const DefaultSchema: BaseAPISchema = {
     packageName: 'eth2-beaconchain',

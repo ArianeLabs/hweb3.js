@@ -3,8 +3,9 @@
     "compilerOptions": {
       "outDir": "./lib",
       "esModuleInterop": true,
+      "paths": {
+        "@arianelabs/hweb3-core-helpers": ["./node_modules/@arianelabs/hweb3-core-helpers/types"]
+      },
     },
-    "include": [
-      "./src"
-    ],
-   }
+    "include": ["./src"]
+}

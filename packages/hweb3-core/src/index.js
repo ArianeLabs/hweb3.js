@@ -20,7 +20,7 @@
  * @date 2017
  */
 
-import { Manager, BatchManager } from "@micdeb-ariane/hweb3-core-requestmanager";
+import { Manager, BatchManager } from "@arianelabs/hweb3-core-requestmanager";
 const extend = require("./extend");
 
 export const packageInit = (pkg, args) => {

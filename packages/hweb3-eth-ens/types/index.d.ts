@@ -20,7 +20,7 @@
 import { PromiEvent, TransactionConfig, TransactionReceipt } from '@arianelabs/hweb3-core';
 import { TransactionRevertInstructionError } from '@arianelabs/hweb3-core-helpers';
 import { Eth } from '@arianelabs/hweb3-eth';
-import { Contract } from '@arianelabs/hweb3-eth-contract';
+import { Contract } from '@arianelabs/hweb3-hed-contract';
 
 export interface ContentHash {
     protocolType: 'ipfs' | 'bzz' | 'onion' | 'onion3' | null,

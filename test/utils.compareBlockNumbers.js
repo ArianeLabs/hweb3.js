@@ -1,7 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 const BN = require('bn.js');
-const formatters = require('../packages/web3-utils/src/index.js');
+const formatters = require('../packages/hweb3-utils/src/index.js');
 
 const pending = "pending";
 const latest = "latest";
@@ -29,11 +29,11 @@ const tests = [
     { input: {a: pending, b: pending}, result: 0 },
     // Complex Strings
     // Genesis
-    { input: {a: earliest, b: 2}, result: -1 },    
+    { input: {a: earliest, b: 2}, result: -1 },
     { input: {a: earliest, b: new BN(2)}, result: -1 },
     { input: {a: earliest, b: latest}, result: -1 },
     { input: {a: earliest, b: pending}, result: -1 },
-    { input: {a: genesis, b: 2}, result: -1 },    
+    { input: {a: genesis, b: 2}, result: -1 },
     { input: {a: genesis, b: new BN(2)}, result: -1 },
     { input: {a: genesis, b: latest}, result: -1 },
     { input: {a: genesis, b: pending}, result: -1 },
@@ -41,7 +41,7 @@ const tests = [
     { input: {a: latest, b: 0}, result: 1 },
     { input: {a: latest, b: new BN(1)}, result: 1 },
     { input: {a: latest, b: pending}, result: -1 },
-    // pending 
+    // pending
     { input: {a: pending, b: 0}, result: 1 },
     { input: {a: pending, b: new BN(1)}, result: 1 },
 ];

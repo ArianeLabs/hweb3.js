@@ -10,7 +10,9 @@
     "scripts": {
         "compile": "tsc -b tsconfig.json",
         "compile:cjs": "tsc -b tsconfig.cjs.json",
-        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types",
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "npm run type-check -- --watch"
     },
     "types": "src/index.ts",
     "main": "lib/index.js",

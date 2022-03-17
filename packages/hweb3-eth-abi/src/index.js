@@ -21,6 +21,7 @@
  * @date 2018
  */
 
+import { ContractFunctionParameters } from '@hashgraph/sdk';
 var Buffer = require('buffer').Buffer;
 var utils = require('@arianelabs/hweb3-utils');
 
@@ -101,42 +102,16 @@ ABICoder.prototype.encodeParameters = function (types, params) {
     var self = this;
     types = self.mapTypes(types);
 
-    params = params.map(function (param, index) {
+    return params.reduce(function (parameters, param, index) {
         let type = types[index];
         if (typeof type === 'object' && type.type) {
             // We may get a named type of shape {name, type}
             type = type.type;
         }
 
-        param = self.formatParam(type, param);
-
-        // Format params for tuples
-        if (typeof type === 'string' && type.includes('tuple')) {
-            const coder = ethersAbiCoder._getCoder(ParamType.from(type));
-            const modifyParams = (coder, param) => {
-                if (coder.name === 'array') {
-                    return param.map(p =>
-                        modifyParams(
-                            ethersAbiCoder._getCoder(ParamType.from(coder.type.replace('[]', ''))),
-                            p
-                        )
-                    );
-                }
-                coder.coders.forEach((c, i) => {
-                    if (c.name === 'tuple') {
-                        modifyParams(c, param[i]);
-                    } else {
-                        param[i] = self.formatParam(c.name, param[i]);
-                    }
-                });
-            };
-            modifyParams(coder, param);
-        }
-
-        return param;
-    });
-
-    return ethersAbiCoder.encode(types, params);
+        parameters[`add${type[0].toUpperCase() + type.slice(1)}`](param);
+        return parameters;
+    }, new ContractFunctionParameters());;
 };
 
 /**

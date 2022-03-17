@@ -31,9 +31,9 @@ var Net = require('@arianelabs/hweb3-net');
 
 import Personal from '@arianelabs/hweb3-eth-personal';
 import Accounts from '@arianelabs/hweb3-eth-accounts';
+import BaseContract from '@arianelabs/hweb3-hed-contract';
 
 // var ENS = require('@arianelabs/hweb3-eth-ens');
-// var BaseContract = require('@arianelabs/hweb3-eth-contract');
 // var Iban = require('@arianelabs/hweb3-eth-iban');
 // var abi = require('@arianelabs/hweb3-eth-abi');
 
@@ -338,44 +338,44 @@ var Eth = function Eth() {
     // not create this proxy type, changing the provider in one instance of
     // web3-eth would subsequently change the provider for _all_ contract
     // instances!
-    // var self = this;
-    // var Contract = function Contract() {
-    //     BaseContract.apply(this, arguments);
-    //
-    //     // when Eth.setProvider is called, call packageInit
-    //     // on all contract instances instantiated via this Eth
-    //     // instances. This will update the currentProvider for
-    //     // the contract instances
-    //     var _this = this;
-    //     var setProvider = self.setProvider;
-    //     self.setProvider = function() {
-    //       setProvider.apply(self, arguments);
-    //       packageInit(_this, [self]);
-    //     };
-    // };
-    //
-    // Contract.setProvider = function() {
-    //     BaseContract.setProvider.apply(this, arguments);
-    // };
-    //
-    // // make our proxy Contract inherit from web3-eth-contract so that it has all
-    // // the right functionality and so that instanceof and friends work properly
-    // Contract.prototype = Object.create(BaseContract.prototype);
-    // Contract.prototype.constructor = Contract;
-    //
-    // // add contract
-    // this.Contract = Contract;
-    // this.Contract.defaultAccount = this.defaultAccount;
-    // this.Contract.defaultBlock = this.defaultBlock;
-    // this.Contract.transactionBlockTimeout = this.transactionBlockTimeout;
-    // this.Contract.transactionConfirmationBlocks = this.transactionConfirmationBlocks;
-    // this.Contract.transactionPollingTimeout = this.transactionPollingTimeout;
-    // this.Contract.transactionPollingInterval = this.transactionPollingInterval;
-    // this.Contract.blockHeaderTimeout = this.blockHeaderTimeout;
-    // this.Contract.handleRevert = this.handleRevert;
-    // this.Contract._requestManager = this._requestManager;
-    // this.Contract._ethAccounts = this.accounts;
-    // this.Contract.currentProvider = this._requestManager.provider;
+    var self = this;
+    var Contract = function Contract() {
+        BaseContract.apply(this, arguments);
+
+        // when Eth.setProvider is called, call packageInit
+        // on all contract instances instantiated via this Eth
+        // instances. This will update the currentProvider for
+        // the contract instances
+        var _this = this;
+        var setProvider = self.setProvider;
+        self.setProvider = function() {
+          setProvider.apply(self, arguments);
+          packageInit(_this, [self]);
+        };
+    };
+
+    Contract.setProvider = function() {
+        BaseContract.setProvider.apply(this, arguments);
+    };
+
+    // make our proxy Contract inherit from web3-eth-contract so that it has all
+    // the right functionality and so that instanceof and friends work properly
+    Contract.prototype = Object.create(BaseContract.prototype);
+    Contract.prototype.constructor = Contract;
+
+    // add contract
+    this.Contract = Contract;
+    this.Contract.defaultAccount = this.defaultAccount;
+    this.Contract.defaultBlock = this.defaultBlock;
+    this.Contract.transactionBlockTimeout = this.transactionBlockTimeout;
+    this.Contract.transactionConfirmationBlocks = this.transactionConfirmationBlocks;
+    this.Contract.transactionPollingTimeout = this.transactionPollingTimeout;
+    this.Contract.transactionPollingInterval = this.transactionPollingInterval;
+    this.Contract.blockHeaderTimeout = this.blockHeaderTimeout;
+    this.Contract.handleRevert = this.handleRevert;
+    this.Contract._requestManager = this._requestManager;
+    this.Contract._ethAccounts = this.accounts;
+    this.Contract.currentProvider = this._requestManager.provider;
 
     // add IBAN
     // this.Iban = Iban;

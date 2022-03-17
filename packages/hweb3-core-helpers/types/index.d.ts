@@ -165,11 +165,9 @@ export class IpcProviderBase {
     reconnect(): void;
 }
 
-export class HttpProviderBase {
+export interface HttpProviderBase {
     client: Client;
     connected: boolean;
-
-    constructor(client: Client);
 
     disconnect(): boolean;
 

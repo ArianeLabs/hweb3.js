@@ -1,11 +1,11 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-      "outDir": "./lib",
-      "esModuleInterop": true,
-      "paths": {
-        "@arianelabs/hweb3-core-helpers": ["./node_modules/@arianelabs/hweb3-core-helpers/types"]
-      },
+        "outDir": "./lib",
+        "baseUrl": "./",
+        "typeRoots": ["./src"]
     },
-    "include": ["./src"]
+    "include": [
+        "./src"
+    ]
 }

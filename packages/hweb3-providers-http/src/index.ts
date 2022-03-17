@@ -35,29 +35,22 @@ import {
     TransactionId,
     TransactionReceipt,
 } from '@hashgraph/sdk';
-import { HttpProviderBase } from '@arianelabs/hweb3-core-helpers';
-
-console.log('HttpProviderBase test', HttpProviderBase);
+import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
 
 /**
  * HttpProvider should be used to send Hedera node calls
  * @param {Client} client
  */
 
-export class HttpProvider extends HttpProviderBase {
+export class HttpProvider implements HttpProviderBase {
     client: Client;
     connected: boolean;
     constructor(client: Client) {
-        super(client);
         this.client = client;
         this.connected = true;
     }
 
-    disconnect = function(): boolean {
-        console.log('this.client', this.client);
-        // NO OP
-        return false;
-    };
+    disconnect = (): boolean => false;
 
     /**
      * Return the ID of the current network.
@@ -161,12 +154,6 @@ export class HttpProvider extends HttpProviderBase {
 
         return query.execute(this.client);
     };
+
+    supportsSubscriptions = (): boolean => false;
 }
-
-const accountId = '0.0.29674178';
-const privateKey = '302e020100300506032b657004220420857877963ad72e14a4bf323583eda74eefbb17cf8d8ddb8e9dd52028228286e6';
-
-const client = Client.forTestnet();
-client.setOperator(accountId, privateKey);
-
-new HttpProvider(client).disconnect();

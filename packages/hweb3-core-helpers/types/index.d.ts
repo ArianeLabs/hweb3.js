@@ -166,7 +166,6 @@ export class IpcProviderBase {
 }
 
 export interface HttpProviderBase {
-    client: Client;
     connected: boolean;
 
     disconnect(): boolean;
@@ -186,8 +185,6 @@ export interface HttpProviderBase {
     sendRequest(tx: Transaction): Promise<TransactionResponse>;
 
     waitForReceipt(response: TransactionResponse): Promise<TransactionReceipt>;
-
-    supportsSubscriptions(): boolean;
 }
 
 export interface HttpProviderOptions {

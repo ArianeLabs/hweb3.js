@@ -51,12 +51,3 @@ httpProvider.getAccountBalance(accountId).then(r => r);
 
 // $ExpectType Promise<AccountInfo>
 httpProvider.getAccountInfo(accountId).then(r => r);
-
-// // $ExpectType Promise<TransactionReceipt>
-// httpProvider.getTransactionReceipt().then(r => r);
-//
-// // $ExpectType Promise<TransactionResponse>
-// httpProvider.sendRequest().then(r => r);
-//
-// // $ExpectType Promise<TransactionReceipt>
-// httpProvider.waitForReceipt().then(r => r);

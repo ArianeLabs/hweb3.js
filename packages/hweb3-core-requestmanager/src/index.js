@@ -23,7 +23,7 @@
 var errors = require('@arianelabs/hweb3-core-helpers').errors;
 import givenProvider from './givenProvider.js';
 import { Transaction, Client } from '@hashgraph/sdk';
-import HttpProvider from '@arianelabs/hweb3-providers-http';
+import { HttpProvider } from '@arianelabs/hweb3-providers-http';
 
 export { default as BatchManager } from './batch.js';
 
@@ -58,18 +58,16 @@ RequestManager.providers = {
  *
  * @method setProvider
  *
- * @param {Client} client
+ * @param {HttpProviderBase} provider
  *
  * @returns void
  */
-RequestManager.prototype.setProvider = function (client) {
+RequestManager.prototype.setProvider = function (provider) {
     var _this = this;
 
-    if (!client && typeof client !== 'object') {
-        throw new Error('Can\'t set provider for "' + client + '"');
+    if (!provider && typeof provider !== 'object') {
+        throw new Error('Can\'t set provider for "' + provider + '"');
     }
-
-    let provider = new this.providers.HttpProvider(client);
 
     // reset the old one before changing, if still connected
     if (this.provider && this.provider.connected)
@@ -79,7 +77,7 @@ RequestManager.prototype.setProvider = function (client) {
 
     // listen to incoming notifications
     if (this.provider && this.provider.on) {
-        if (typeof provider.request === 'function') { // EIP-1193 provider
+        if (typeof this.provider.sendRequest === 'function') { // EIP-1193 provider
             this.provider.on('message', function (payload) {
                 if (payload && payload.type === 'eth_subscription' && payload.data) {
                     const data = payload.data
@@ -152,7 +150,7 @@ RequestManager.prototype.send = function (tx, callback) {
         return callback(errors.InvalidProvider());
     }
 
-    this.provider.send(tx, callback);
+    this.provider.sendRequest(tx);
 };
 
 /**

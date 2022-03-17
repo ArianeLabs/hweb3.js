@@ -34,6 +34,8 @@ import {
     TransactionReceiptQuery,
     TransactionId,
     TransactionReceipt,
+    PrivateKey,
+    ClientNetworkName,
 } from '@hashgraph/sdk';
 import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
 
@@ -43,11 +45,26 @@ import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
  */
 
 export class HttpProvider implements HttpProviderBase {
-    client: Client;
     connected: boolean;
-    constructor(client: Client) {
-        this.client = client;
+    private accountId: string | AccountId;
+    private client: Client;
+
+    constructor(client: Client);
+    constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
+    constructor(...args: any[]) {
         this.connected = true;
+        if (args.length === 1) {
+            this.client = args[0];
+        }
+        if (args.length >= 2) {
+            switch (args[2]) {
+                case 'testnet': this.client = Client.forTestnet(); break;
+                case 'previewnet': this.client = Client.forPreviewnet(); break;
+                default: this.client = Client.forMainnet();
+            }
+            this.client.setOperator(args[0], args[1]);
+            this.accountId = args[0];
+        }
     }
 
     disconnect = (): boolean => false;
@@ -90,10 +107,10 @@ export class HttpProvider implements HttpProviderBase {
      * @returns Promise<AccountBalance>
      */
     getAccountBalance = async function(
-        accountId: string | AccountId,
+        accountId?: string | AccountId,
     ): Promise<AccountBalance> {
         const query = new AccountBalanceQuery()
-            .setAccountId(accountId);
+            .setAccountId(accountId || this.accountId);
 
         return query.execute(this.client);
     };
@@ -106,10 +123,10 @@ export class HttpProvider implements HttpProviderBase {
      * @returns Promise<AccountInfo>
      */
     getAccountInfo = async function(
-        accountId: string | AccountId,
+        accountId?: string | AccountId,
     ): Promise<AccountInfo> {
         const query = new AccountInfoQuery()
-            .setAccountId(accountId);
+            .setAccountId(accountId || this.accountId);
 
         return query.execute(this.client);
     };
@@ -154,6 +171,4 @@ export class HttpProvider implements HttpProviderBase {
 
         return query.execute(this.client);
     };
-
-    supportsSubscriptions = (): boolean => false;
 }

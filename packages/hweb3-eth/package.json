@@ -17,7 +17,7 @@
         "@arianelabs/hweb3-core-subscriptions": "1.7.10",
         "@arianelabs/hweb3-eth-abi": "1.7.10",
         "@arianelabs/hweb3-eth-accounts": "1.7.10",
-        "@arianelabs/hweb3-eth-contract": "1.7.10",
+		"@arianelabs/hweb3-hed-contract": "1.7.10",
         "@arianelabs/hweb3-eth-ens": "1.7.10",
         "@arianelabs/hweb3-eth-iban": "1.7.10",
         "@arianelabs/hweb3-eth-personal": "1.7.10",

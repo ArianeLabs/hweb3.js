@@ -41,7 +41,7 @@ import {
 import {Subscription} from '@arianelabs/hweb3-core-subscriptions';
 import {AbiCoder} from '@arianelabs/hweb3-eth-abi';
 import {Accounts} from '@arianelabs/hweb3-eth-accounts';
-import {Contract, ContractOptions} from '@arianelabs/hweb3-eth-contract';
+import {Contract, ContractOptions} from '@arianelabs/hweb3-hed-contract';
 import {Ens} from '@arianelabs/hweb3-eth-ens';
 import {Iban} from '@arianelabs/hweb3-eth-iban';
 import {Personal} from '@arianelabs/hweb3-eth-personal';

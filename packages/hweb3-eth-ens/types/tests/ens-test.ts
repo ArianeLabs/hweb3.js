@@ -19,7 +19,7 @@
 
 import { TransactionRevertInstructionError } from '@arianelabs/hweb3-core-helpers';
 import { TransactionReceipt } from '@arianelabs/hweb3-core';
-import { Contract } from '@arianelabs/hweb3-eth-contract';
+import { Contract } from '@arianelabs/hweb3-hed-contract';
 import { Ens, ContentHash } from '@arianelabs/hweb3-eth-ens';
 import { Eth } from '@arianelabs/hweb3-eth';
 

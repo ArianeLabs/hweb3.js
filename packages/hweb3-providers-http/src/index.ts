@@ -34,8 +34,6 @@ import {
     TransactionReceiptQuery,
     TransactionId,
     TransactionReceipt,
-    PrivateKey,
-    ClientNetworkName,
 } from '@hashgraph/sdk';
 import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
 
@@ -49,8 +47,6 @@ export class HttpProvider implements HttpProviderBase {
     private accountId: string | AccountId;
     private client: Client;
 
-    constructor(client: Client);
-    constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
     constructor(...args: any[]) {
         this.connected = true;
         if (args.length === 1) {

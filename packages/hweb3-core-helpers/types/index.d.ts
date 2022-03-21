@@ -22,6 +22,8 @@ import * as http from 'http';
 import * as https from 'https';
 import {
     Client,
+    PrivateKey,
+    ClientNetworkName,
     TransactionResponse,
     Transaction,
     AccountInfo,
@@ -165,8 +167,11 @@ export class IpcProviderBase {
     reconnect(): void;
 }
 
-export interface HttpProviderBase {
+export abstract class HttpProviderBase {
     connected: boolean;
+
+    protected constructor(client: Client);
+    protected constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
 
     disconnect(): boolean;
 

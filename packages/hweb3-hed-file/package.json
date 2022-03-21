@@ -1,0 +1,29 @@
+{
+    "name": "@arianelabs/hweb3-hed-file",
+    "version": "1.7.10",
+    "description": "Hedera file service ",
+    "author": "Patryk Matyjasiak <patryk.matyjasiak@arianelabs.com>",
+    "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-hed-file",
+    "license": "LGPL-3.0",
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "types": "types/index.d.ts",
+    "main": "lib/cjs/index.js",
+    "module": "lib/index.js",
+    "scripts": {
+        "compile": "tsc -b tsconfig.json",
+        "compile:cjs": "tsc -b tsconfig.cjs.json",
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
+    },
+    "dependencies": {
+        "@arianelabs/hweb3-core": "^1.7.10",
+        "@arianelabs/hweb3-core-requestmanager": "^1.7.10",
+        "@hashgraph/sdk": "^2.10.1",
+        "@types/bn.js": "^4.11.5"
+    },
+    "devDependencies": {
+        "dtslint": "^3.4.1",
+        "typescript": "^3.9.5"
+    }
+}

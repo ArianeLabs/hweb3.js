@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var coder = require('../packages/web3-eth-abi');
+var coder = require('../packages/hweb3-eth-abi');
 
 // TODO check line 108 again!
 

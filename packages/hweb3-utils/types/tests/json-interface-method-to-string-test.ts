@@ -20,7 +20,7 @@
  * @date 2018
  */
 
-import {jsonInterfaceMethodToString, AbiItem} from 'web3-utils';
+import {jsonInterfaceMethodToString, AbiItem} from '@arianelabs/hweb3-utils';
 
 const abiItem: AbiItem = {
     anonymous: false,

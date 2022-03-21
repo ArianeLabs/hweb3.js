@@ -18,7 +18,7 @@
  * @date 2018
  */
 
-import { Contract } from 'web3-eth-contract';
+import { Contract } from '@arianelabs/hweb3-eth-contract';
 
 const contract = new Contract([]);
 

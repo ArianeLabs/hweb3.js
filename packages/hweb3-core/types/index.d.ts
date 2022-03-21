@@ -31,7 +31,17 @@ import {
 import { Method } from '@arianelabs/hweb3-core-method';
 import BN = require('bn.js');
 import BigNumber from 'bignumber.js';
-import { Client, Transaction } from '@hashgraph/sdk';
+import {
+    AccountBalance,
+    AccountId,
+    AccountInfo,
+    Client,
+    LedgerId,
+    Transaction,
+    TransactionId,
+    TransactionResponse,
+    TransactionReceipt as TransactionReceiptHashgraph,
+} from '@hashgraph/sdk';
 import { ITransactionResponse } from "@hashgraph/proto";
 
 export {
@@ -383,8 +393,30 @@ export class BatchRequest {
     execute(): void;
 }
 
-export class HttpProvider extends HttpProviderBase {
+export class HttpProvider implements HttpProviderBase {
+    client: Client;
+    connected: boolean;
     constructor(client: Client);
+
+    disconnect(): boolean;
+
+    getLedgerId(): LedgerId;
+
+    getNetwork(): {[key: string]: string | AccountId};
+
+    getMirrorNetwork(): string[];
+
+    getAccountBalance(accountId: string | AccountId): Promise<AccountBalance>;
+
+    getAccountInfo(accountId: string | AccountId): Promise<AccountInfo>;
+
+    getTransactionReceipt(transactionId: TransactionId): Promise<TransactionReceiptHashgraph>;
+
+    sendRequest(tx: Transaction): Promise<TransactionResponse>;
+
+    waitForReceipt(response: TransactionResponse): Promise<TransactionReceiptHashgraph>;
+
+    supportsSubscriptions(): boolean;
 }
 
 export class IpcProvider extends IpcProviderBase {

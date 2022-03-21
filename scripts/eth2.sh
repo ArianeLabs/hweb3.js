@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------------------------------
-# 
+#
 # --------------------------------------------------------------------
 
 
@@ -26,5 +26,5 @@ nohup docker run -p 9000:9000 -p 127.0.0.1:5052:5052 -v ${HOME}/.lighthouse:/roo
 npm run build
 
 # Test
-npm --prefix ./packages/web3-eth2-core run test
-npm --prefix ./packages/web3-eth2-beaconchain run test
+npm --prefix ./packages/hweb3-eth2-core run test
+npm --prefix ./packages/hweb3-eth2-beaconchain run test

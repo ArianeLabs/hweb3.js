@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {randomHex} from 'web3-utils';
+import {randomHex} from '@arianelabs/hweb3-utils';
 
 // $ExpectType string
 randomHex(32);

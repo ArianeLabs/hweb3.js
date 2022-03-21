@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import { toTinybar } from 'web3-utils';
+import { toTinybar } from '@arianelabs/hweb3-utils';
 
 const bigNumber = new BN(3);
 

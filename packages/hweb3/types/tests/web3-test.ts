@@ -17,7 +17,7 @@
  * @date 2018
  */
 
-import Web3 from 'web3';
+import Web3 from '@arianelabs/hweb3';
 import * as net from 'net';
 import { AbstractProvider, RequestArguments } from '@arianelabs/hweb3-core';
 import { JsonRpcPayload, JsonRpcResponse } from '@arianelabs/hweb3-core-helpers';

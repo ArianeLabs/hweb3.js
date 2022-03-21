@@ -20,8 +20,19 @@
 import * as net from 'net';
 import * as http from 'http';
 import * as https from 'https';
-import { Client, Transaction } from '@hashgraph/sdk';
-import {proto} from '@hashgraph/proto/lib/proto';
+import {
+    Client,
+    PrivateKey,
+    ClientNetworkName,
+    TransactionResponse,
+    Transaction,
+    AccountInfo,
+    AccountId,
+    LedgerId,
+    AccountBalance,
+    TransactionId,
+    TransactionReceipt,
+} from '@hashgraph/sdk';
 
 export class formatters {
     static outputBigNumberFormatter(number: number): number;
@@ -156,20 +167,29 @@ export class IpcProviderBase {
     reconnect(): void;
 }
 
-export class HttpProviderBase {
-    constructor(client: Client);
-
-    client: Client;
+export abstract class HttpProviderBase {
     connected: boolean;
 
-    supportsSubscriptions(): boolean;
-
-    send(
-        tx: Transaction,
-        callback: (error: Error | null, result?: proto.ITransactionResponse) => void
-    ): void;
+    protected constructor(client: Client);
+    protected constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
 
     disconnect(): boolean;
+
+    getLedgerId(): LedgerId;
+
+    getNetwork(): {[key: string]: string | AccountId};
+
+    getMirrorNetwork(): string[];
+
+    getAccountBalance(accountId: string | AccountId): Promise<AccountBalance>;
+
+    getAccountInfo(accountId: string | AccountId): Promise<AccountInfo>;
+
+    getTransactionReceipt(transactionId: TransactionId): Promise<TransactionReceipt>;
+
+    sendRequest(tx: Transaction): Promise<TransactionResponse>;
+
+    waitForReceipt(response: TransactionResponse): Promise<TransactionReceipt>;
 }
 
 export interface HttpProviderOptions {

@@ -1,6 +1,6 @@
 import { Client } from '@hashgraph/sdk';
 import { assert } from 'chai';
-import { toChecksumAddress } from '../packages/web3-utils'
+import { toChecksumAddress } from '../packages/hweb3-utils'
 
 const tests = [
     { address: '0.0.27516594', result: 'nmneb', client : 'mainnet'},
@@ -21,7 +21,7 @@ describe('lib/utils/utils', function () {
                 const actual = toChecksumAddress(test.address, clients[test.client]);
                 assert.equal(
                     actual,
-                    test.result, 
+                    test.result,
                     'Error incorrect value'
                 );
             });
@@ -32,6 +32,6 @@ describe('lib/utils/utils', function () {
             assert.throws(function () { toChecksumAddress('1.0.', clients.testnet); }, Error);
             assert.throws(function () { toChecksumAddress('1.0.1231233', clients.testnet); }, Error);
         });
-    
+
     });
 });

@@ -1,6 +1,6 @@
 import { Client } from '@hashgraph/sdk';
 import { assert } from 'chai';
-import { checkAddressChecksum } from '../packages/web3-utils';
+import { checkAddressChecksum } from '../packages/hweb3-utils';
 
 const tests = [
     { address: '0.0.27516594', checksum: 'nmneb', client: 'mainnet', is: true },

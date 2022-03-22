@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {toNumber} from 'web3-utils';
+import {toNumber} from '@arianelabs/hweb3-utils';
 
 // $ExpectType number
 toNumber('234');

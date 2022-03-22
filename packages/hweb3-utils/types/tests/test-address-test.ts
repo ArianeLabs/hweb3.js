@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {testAddress} from 'web3-utils';
+import {testAddress} from '@arianelabs/hweb3-utils';
 
 const bigNumber = new BN(3);
 

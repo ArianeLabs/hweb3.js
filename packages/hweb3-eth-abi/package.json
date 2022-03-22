@@ -1,27 +1,21 @@
 {
-    "name": "@arianelabs/hweb3-eth-abi",
-    "version": "1.7.10",
-    "description": "Hweb3 module encode and decode EVM in/output.",
-    "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-abi",
-    "license": "LGPL-3.0",
-    "engines": {
-        "node": ">=8.0.0"
-    },
-    "types": "types/index.d.ts",
-    "scripts": {
-        "compile": "tsc -b tsconfig.json",
-        "compile:cjs": "tsc -b tsconfig.cjs.json",
-        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
-    },
-    "main": "lib/cjs/index.js",
-    "module": "lib/index.js",
-    "dependencies": {
-        "@arianelabs/hweb3-utils": "1.7.10",
-        "@ethersproject/abi": "5.0.7",
-        "@hashgraph/sdk": "^2.10.1"
-    },
-    "devDependencies": {
-        "dtslint": "^3.4.1",
-        "typescript": "^3.9.5"
-    }
+	"name": "@arianelabs/hweb3-eth-abi",
+	"version": "1.7.10",
+	"description": "Hweb3 module encode and decode EVM in/output.",
+	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-abi",
+	"license": "LGPL-3.0",
+	"engines": {
+		"node": ">=8.0.0"
+	},
+	"types": "types/index.d.ts",
+	"main": "lib/cjs/index.js",
+	"module": "lib/index.js",
+	"dependencies": {
+		"@ethersproject/abi": "5.0.7",
+		"@hashgraph/sdk": "^2.10.1"
+	},
+	"devDependencies": {
+		"dtslint": "^3.4.1",
+		"typescript": "^3.9.5"
+	}
 }

@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {isBigNumber} from 'web3-utils';
+import {isBigNumber} from '@arianelabs/hweb3-utils';
 
 // $ExpectType boolean
 isBigNumber(new BN(3));

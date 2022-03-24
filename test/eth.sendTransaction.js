@@ -2,7 +2,7 @@ var testMethod = require('./helpers/test.method.js');
 var chai = require('chai');
 var assert = chai.assert;
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
-var Web3 = require('../packages/web3');
+var Web3 = require('../packages/hweb3');
 
 var clone = function (object) { return object ? JSON.parse(JSON.stringify(object)) : []; };
 
@@ -346,7 +346,7 @@ describe(method, function () {
                     assert.deepEqual(payload.params, test.formattedArgs2 || []);
                 });
             }
-            
+
             if (test.call3) {
                 provider.injectResult(clone(test.result3));
                 provider.injectValidation(function (payload) {

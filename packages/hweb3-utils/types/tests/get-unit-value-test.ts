@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {getUnitValue} from 'web3-utils';
+import {getUnitValue} from '@arianelabs/hweb3-utils';
 
 // $ExpectType string
 getUnitValue('ether');

@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {hexToNumberString} from 'web3-utils';
+import {hexToNumberString} from '@arianelabs/hweb3-utils';
 
 // $ExpectType string
 hexToNumberString('0xea');

@@ -21,7 +21,7 @@
  */
 
 import BN = require('bn.js');
-import {padRight} from 'web3-utils';
+import {padRight} from '@arianelabs/hweb3-utils';
 
 const bigNumber = new BN(3);
 

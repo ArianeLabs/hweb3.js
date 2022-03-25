@@ -33,15 +33,15 @@ export { default as BatchManager } from './batch.js';
  * Default poll timeout is 1 second
  * Singleton
  *
- * @param {Client} client
+ * @param {HttpProviderBase} provider
  *
  * @constructor
  */
-var RequestManager = function RequestManager(client) {
+var RequestManager = function RequestManager(provider) {
     this.provider = null;
     this.providers = RequestManager.providers;
 
-    this.setProvider(client);
+    this.setProvider(provider);
     this.subscriptions = new Map();
 };
 
@@ -64,9 +64,8 @@ RequestManager.providers = {
  */
 RequestManager.prototype.setProvider = function (provider) {
     var _this = this;
-
     if (!provider && typeof provider !== 'object') {
-        throw new Error('Can\'t set provider for "' + provider + '"');
+        throw new Error('Can\'t set test provider for "' + provider + '"');
     }
 
     // reset the old one before changing, if still connected

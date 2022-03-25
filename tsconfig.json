@@ -10,7 +10,7 @@
             "esnext",
             "dom"
         ],
-        "module": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
     }
 }

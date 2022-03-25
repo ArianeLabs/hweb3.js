@@ -43,9 +43,9 @@ import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
  */
 
 export class HttpProvider implements HttpProviderBase {
+    client: Client;
     connected: boolean;
     private accountId: string | AccountId;
-    private client: Client;
 
     constructor(...args: any[]) {
         this.connected = true;

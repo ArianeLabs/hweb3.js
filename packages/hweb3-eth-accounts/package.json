@@ -10,11 +10,11 @@
 	"types": "types/index.d.ts",
 	"scripts": {
 		"compile": "tsc -b tsconfig.json",
-        "compile:cjs": "tsc -b tsconfig.cjs.json",
+		"compile:cjs": "tsc -b tsconfig.cjs.json",
 		"dtslint": "dtslint --localTs ../../node_modules/typescript/lib  types"
 	},
-    "main": "lib/cjs/index.js",
-    "module": "lib/index.js",
+	"main": "lib/cjs/index.js",
+	"module": "lib/index.js",
 	"dependencies": {
 		"@ethereumjs/common": "^2.5.0",
 		"@ethereumjs/tx": "^3.3.2",

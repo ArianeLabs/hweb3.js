@@ -459,3 +459,5 @@ export type provider =
     | AbstractProvider
     | string
     | null;
+
+export function packageInit(pkg: any, args: IArguments | any[]): void;

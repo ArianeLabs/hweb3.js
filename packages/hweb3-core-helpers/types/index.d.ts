@@ -168,6 +168,7 @@ export class IpcProviderBase {
 }
 
 export abstract class HttpProviderBase {
+    client: Client;
     connected: boolean;
 
     protected constructor(client: Client);

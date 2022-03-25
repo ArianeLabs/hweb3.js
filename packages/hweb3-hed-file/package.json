@@ -18,7 +18,9 @@
     },
     "dependencies": {
         "@arianelabs/hweb3-core": "^1.7.10",
+        "@arianelabs/hweb3-core-helpers": "^1.7.10",
         "@arianelabs/hweb3-core-requestmanager": "^1.7.10",
+        "@arianelabs/hweb3-providers-http": "^1.7.10",
         "@hashgraph/sdk": "^2.10.1",
         "@types/bn.js": "^4.11.5"
     },

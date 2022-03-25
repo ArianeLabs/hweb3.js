@@ -11,8 +11,12 @@
 	"main": "lib/index.js",
 	"dependencies": {
 		"content-hash": "^2.5.2",
-		"eth-ens-namehash": "2.0.8"
-	},
+		"eth-ens-namehash": "2.0.8",
+        "@arianelabs/hweb3-core": "1.7.10",
+        "@arianelabs/hweb3-core-helpers":"1.7.10",
+        "@arianelabs/hweb3-eth": "1.7.10",
+        "@arianelabs/hweb3-hed-contract":"1.7.10"
+    },
 	"devDependencies": {
 		"dtslint": "^3.4.1",
 		"typescript": "^3.9.5"

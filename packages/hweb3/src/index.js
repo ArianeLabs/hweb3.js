@@ -32,7 +32,7 @@ import Eth from '@arianelabs/hweb3-eth';
 import { packageInit, addProviders } from '@arianelabs/hweb3-core';
 import Personal from '@arianelabs/hweb3-eth-personal';
 
-var version = require('../package.json').version;
+var version = require('../../package.json').version;
 // var Net = require('@arianelabs/hweb3-net');
 // var Shh = require('@arianelabs/hweb3-shh');
 // var utils = require('@arianelabs/hweb3-utils');

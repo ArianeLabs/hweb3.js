@@ -10,15 +10,14 @@
     "scripts": {
         "compile": "tsc -b tsconfig.json",
         "compile:cjs": "tsc -b tsconfig.cjs.json",
-        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types",
-        "type-check": "tsc --noEmit",
-        "type-check:watch": "npm run type-check -- --watch"
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
     },
-    "types": "src/index.ts",
-    "main": "lib/index.js",
+    "types": "types/index.d.ts",
+    "main": "lib/cjs/index.js",
+    "module": "lib/index.js",
     "dependencies": {
-        "@arianelabs/hweb3-core-helpers": "1.7.10",
-        "@hashgraph/sdk": "^2.9.1"
+        "@hashgraph/sdk": "^2.9.1",
+        "@arianelabs/hweb3-core-helpers": "1.7.10"
     },
     "devDependencies": {
         "dtslint": "^3.4.1",

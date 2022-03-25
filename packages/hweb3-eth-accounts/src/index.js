@@ -46,57 +46,6 @@ var Accounts = function Accounts() {
     delete this.BatchRequest;
     delete this.extend;
 
-    var _ethereumCall = [
-        new Method({
-            name: 'getNetworkId',
-            call: 'net_version',
-            params: 0,
-            outputFormatter: parseInt,
-        }),
-        new Method({
-            name: 'getChainId',
-            call: 'eth_chainId',
-            params: 0,
-            outputFormatter: utils.hexToNumber,
-        }),
-        new Method({
-            name: 'getGasPrice',
-            call: 'eth_gasPrice',
-            params: 0,
-        }),
-        new Method({
-            name: 'getTransactionCount',
-            call: 'eth_getTransactionCount',
-            params: 2,
-            inputFormatter: [function (address) {
-                if (utils.isAddress(address)) {
-                    return address;
-                } else {
-                    throw new Error('Address ' + address + ' is not a valid address to get the "transactionCount".');
-                }
-            }, function () {
-                return 'latest';
-            }],
-        }),
-        new Method({
-            name: 'getBlockByNumber',
-            call: 'eth_getBlockByNumber',
-            params: 2,
-            inputFormatter: [function (blockNumber) {
-                return blockNumber ? utils.toHex(blockNumber) : 'latest';
-            }, function () {
-                return false;
-            }],
-        }),
-    ];
-
-    // attach methods to this._ethereumCall
-    this._ethereumCall = {};
-    _ethereumCall.forEach((method) => {
-        method.attachToObject(_this._ethereumCall);
-        method.setRequestManager(_this._requestManager);
-    });
-
     this.wallet = new Wallet(this);
 };
 

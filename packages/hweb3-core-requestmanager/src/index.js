@@ -22,7 +22,8 @@
 
 var errors = require('@arianelabs/hweb3-core-helpers').errors;
 import givenProvider from './givenProvider.js';
-import { Transaction, Client } from '@hashgraph/sdk';
+import { Transaction, Client, TransactionResponse } from '@hashgraph/sdk';
+import { HttpProviderBase } from '@arianelabs/hweb3-core-helpers';
 import { HttpProvider } from '@arianelabs/hweb3-providers-http';
 
 export { default as BatchManager } from './batch.js';
@@ -63,10 +64,10 @@ RequestManager.providers = {
  * @returns void
  */
 RequestManager.prototype.setProvider = function (provider) {
-    var _this = this;
     if (!provider && typeof provider !== 'object') {
         throw new Error('Can\'t set test provider for "' + provider + '"');
     }
+
 
     // reset the old one before changing, if still connected
     if (this.provider && this.provider.connected)
@@ -75,8 +76,10 @@ RequestManager.prototype.setProvider = function (provider) {
     this.provider = provider || null;
 
     // listen to incoming notifications
+    /*
+        TODO: implement subscription
     if (this.provider && this.provider.on) {
-        if (typeof this.provider.sendRequest === 'function') { // EIP-1193 provider
+        if (typeof provider.sendRequest === 'function') { // EIP-1193 provider
             this.provider.on('message', function (payload) {
                 if (payload && payload.type === 'eth_subscription' && payload.data) {
                     const data = payload.data
@@ -132,6 +135,7 @@ RequestManager.prototype.setProvider = function (provider) {
 
         // TODO add end, timeout??
     }
+     */
 };
 
 /**
@@ -142,16 +146,44 @@ RequestManager.prototype.setProvider = function (provider) {
  * @param {Transaction} tx
  * @param {Function} callback
  */
-RequestManager.prototype.send = function (tx, callback) {
+RequestManager.prototype.send = async function (tx, callback) {
     callback = callback || function () { };
 
     if (!this.provider) {
         return callback(errors.InvalidProvider());
     }
 
-    this.provider.sendRequest(tx);
+    try {
+        const repsponse = await this.provider.sendRequest(tx);
+
+        return callback(null, repsponse);
+    } catch (e) {
+        return callback(e);
+    }
 };
 
+/**
+ * Should be used to take transaction receipt
+ *
+ * @method getReceipt
+ * @param {TransactionResponse} txResponse
+ * @param {Function} callback triggered on end with (err, result)
+ */
+RequestManager.prototype.getReceipt = async function (txResponse, callback) {
+    callback = callback || function () { };
+
+    if (!this.provider) {
+        return callback(errors.InvalidProvider());
+    }
+
+    try {
+        const receipt = await this.provider.waitForReceipt(txResponse);
+
+        return callback(null, receipt);
+    } catch (e) {
+        return callback(e);
+    }
+};
 /**
  * Asynchronously send batch request.
  * Only works if provider supports batch methods through `sendAsync` or `send`.
@@ -256,7 +288,7 @@ RequestManager.prototype.clearSubscriptions = function (keepIsSyncing) {
         if (this.provider.reset)
             this.provider.reset();
 
-        return true
+        return true;
     } catch (e) {
         throw new Error(`Error while clearing subscriptions: ${e}`)
     }

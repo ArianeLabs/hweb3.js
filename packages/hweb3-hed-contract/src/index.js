@@ -30,8 +30,13 @@
 
 "use strict";
 
+import {
+    ContractCallQuery, ContractCreateTransaction,
+    ContractExecuteTransaction, ContractFunctionParameters,
+    FileAppendTransaction,
+    FileCreateTransaction, FileId,
+} from '@hashgraph/sdk';
 import { packageInit } from '@arianelabs/hweb3-core';
-import { ContractCallQuery, ContractExecuteTransaction, ContractFunctionParameters } from '@hashgraph/sdk';
 var Method = require('@arianelabs/hweb3-core-method');
 var utils = require('@arianelabs/hweb3-utils');
 var Subscription = require('@arianelabs/hweb3-core-subscriptions').subscription;
@@ -609,34 +614,60 @@ Contract.prototype._decodeMethodReturn = function (outputs, returnValues) {
  * @param {Function} callback
  * @return {Object} EventEmitter possible events are "error", "transactionHash" and "receipt"
  */
-Contract.prototype.deploy = function(options, callback){
-
+Contract.prototype.deploy = function(options){
+    const _this = this;
+    const txObject = {};
     options = options || {};
 
     options.arguments = options.arguments || [];
-    options = this._getOrSetDefaultOptions(options);
 
-
-    // throw error, if no "data" is specified
-    if(!options.data) {
-        if (typeof callback === 'function'){
-            return callback(errors.ContractMissingDeployDataError());
-        }
+    if(!options.fileId) {
         throw errors.ContractMissingDeployDataError();
     }
 
-    var constructor = this.options.jsonInterface.find((method) => {
-        return (method.type === 'constructor');
-    }) || {};
-    constructor.signature = 'constructor';
+    txObject.send = (args, cb) => {
+        const contractTx = new ContractCreateTransaction()
+          .setBytecodeFileId(options.fileId)
+        ;
 
-    return this._createTxObject.apply({
-        method: constructor,
-        parent: this,
-        deployData: options.data,
-        _ethAccounts: this.constructor._ethAccounts
-    }, options.arguments);
+        if(!args.gas) {
+            return cb(errors.ContractMissingDeployDataError());
+        }
 
+        contractTx.setGas(args.gas.toTinybars());
+        if (options.arguments.constructorParameters) {
+            contractTx.setConstructorParameters(options.arguments.constructorParameters);
+        }
+        if (options.arguments.initialBalance) {
+            contractTx.setInitialBalance(options.arguments.initialBalance);
+        }
+        if (options.arguments.memo) {
+            contractTx.setContractMemo(options.arguments.memo);
+        }
+        if (options.arguments.renewPeriod) {
+            contractTx.setAutoRenewPeriod(options.arguments.renewPeriod);
+        }
+
+        _this._requestManager.send(contractTx, (err, res) => {
+            if (err) cb(err);
+
+            _this._requestManager.getReceipt(res, (err, receipt) => {
+                    if (err) cb(err);
+
+                    cb(null, new _this.constructor(_this.options.jsonInterface, receipt.contractId.toString()));
+                });
+        });
+    };
+
+    txObject.estimateGas = function () {
+        throw new Error('Not implemented');
+    };
+
+    txObject.createAccessList = function () {
+        throw new Error('Not implemented');
+    };
+
+    return txObject;
 };
 
 /**

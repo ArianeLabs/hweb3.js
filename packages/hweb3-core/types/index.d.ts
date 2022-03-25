@@ -21,10 +21,7 @@
 import * as net from 'net';
 import {
     HttpProviderBase,
-    HttpProviderOptions,
     IpcProviderBase,
-    WebsocketProviderBase,
-    WebsocketProviderOptions,
     JsonRpcPayload,
     JsonRpcResponse
 } from '@arianelabs/hweb3-core-helpers';
@@ -66,14 +63,8 @@ export interface Extension {
 
 export interface Providers {
     HttpProvider: new (
-        host: string,
-        options?: HttpProviderOptions
+        client: Client,
     ) => HttpProvider;
-    WebsocketProvider: new (
-        host: string,
-        options?: WebsocketProviderOptions
-    ) => WebsocketProvider;
-    IpcProvider: new (path: string, net: any) => IpcProvider;
 }
 
 export interface PromiEvent<T> extends Promise<T> {
@@ -423,10 +414,6 @@ export class IpcProvider extends IpcProviderBase {
     constructor(path: string, net: net.Server);
 }
 
-export class WebsocketProvider extends WebsocketProviderBase {
-    constructor(host: string, options?: WebsocketProviderOptions);
-}
-
 export interface PastLogsOptions extends LogsOptions {
     toBlock?: BlockNumber;
 }
@@ -453,11 +440,6 @@ export interface AbstractProvider {
   }
 
 export type provider =
-    | HttpProvider
-    | IpcProvider
-    | WebsocketProvider
-    | AbstractProvider
-    | string
-    | null;
+    | HttpProvider;
 
 export function packageInit(pkg: any, args: IArguments | any[]): void;

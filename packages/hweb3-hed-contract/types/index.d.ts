@@ -20,8 +20,9 @@
 import BN = require('bn.js');
 import {Common, PromiEvent, provider, hardfork, chain, BlockNumber, PastLogsOptions, LogsOptions} from '@arianelabs/hweb3-core';
 import {AbiItem} from '@arianelabs/hweb3-utils';
-import { Hbar, TransactionResponse, ContractFunctionResult } from '@hashgraph/sdk';
+import { Hbar, TransactionResponse, ContractFunctionResult, FileId, ContractFunctionParameters } from '@hashgraph/sdk';
 import * as BigNumber from 'bignumber.js';
+import { File } from '../../hweb3-hed-file/src';
 
 // TODO: Add generic type!
 export class Contract {
@@ -81,9 +82,16 @@ export interface Options extends ContractOptions {
     jsonInterface: AbiItem[];
 }
 
+export interface ContractArguments {
+    initialBalance?: Hbar,
+    constructorParameters?: ContractFunctionParameters,
+    memo?: string,
+    renewPeriod?: number,
+}
+
 export interface DeployOptions {
-    data: string;
-    arguments?: any[];
+    fileId: FileId;
+    arguments?: ContractArguments;
 }
 
 export interface ContractSendMethod {
@@ -123,9 +131,10 @@ export interface CallOptions {
 }
 
 export interface SendOptions {
-    from: string;
-    gas?: number;
+    gas: number;
+    from?: string;
     value?: number | string | BN | Long | Hbar;
+    maxTransactionFee?: number | string | Long | Hbar
 }
 
 export interface EstimateGasOptions {

@@ -22,7 +22,6 @@ import {Common, PromiEvent, provider, hardfork, chain, BlockNumber, PastLogsOpti
 import {AbiItem} from '@arianelabs/hweb3-utils';
 import { Hbar, TransactionResponse, ContractFunctionResult, FileId, ContractFunctionParameters } from '@hashgraph/sdk';
 import * as BigNumber from 'bignumber.js';
-import { File } from '../../hweb3-hed-file/src';
 
 // TODO: Add generic type!
 export class Contract {

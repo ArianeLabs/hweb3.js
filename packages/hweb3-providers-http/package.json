@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-providers-http",
-    "version": "1.7.10",
+    "version": "1.0.0",
     "description": "Module to handle Hweb3 transactions.",
     "repository": "https://github.com/ArianeLabs/hweb3.js/tree/1.x/packages/hweb3-providers-http",
     "license": "LGPL-3.0",
@@ -16,8 +16,8 @@
     "main": "lib/cjs/index.js",
     "module": "lib/index.js",
     "dependencies": {
-        "@hashgraph/sdk": "^2.9.1",
-        "@arianelabs/hweb3-core-helpers": "1.7.10"
+        "@arianelabs/hweb3-core-helpers": "1.0.0",
+        "@hashgraph/sdk": "^2.9.1"
     },
     "devDependencies": {
         "dtslint": "^3.4.1",

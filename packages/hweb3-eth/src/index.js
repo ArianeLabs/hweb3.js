@@ -23,7 +23,7 @@
 "use strict";
 
 import { packageInit, addProviders } from '@arianelabs/hweb3-core';
-import helpers from '@arianelabs/hweb3-core-helpers';
+import { formatters } from '@arianelabs/hweb3-core-helpers';
 import { subscriptions } from '@arianelabs/hweb3-core-subscriptions';
 import Method from '@arianelabs/hweb3-core-method';
 import utils from '@arianelabs/hweb3-utils';
@@ -38,7 +38,7 @@ import BaseContract from '@arianelabs/hweb3-hed-contract';
 // var abi = require('@arianelabs/hweb3-eth-abi');
 
 import getNetworkType from './getNetworkType.js';
-var formatter = helpers.formatters;
+var formatter = formatters;
 
 
 var blockCall = function (args) {

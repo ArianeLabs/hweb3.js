@@ -22,11 +22,7 @@
 
 "use strict";
 
-import errors from './errors';
-import formatters from './formatters';
+export { default as errors } from './errors';
+export { default as formatters } from './formatters';
 
-export default {
-    errors: errors,
-    formatters: formatters
-};
 

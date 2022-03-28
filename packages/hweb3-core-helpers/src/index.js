@@ -25,7 +25,7 @@
 var errors = require('./errors');
 var formatters = require('./formatters');
 
-module.exports = {
+export default {
     errors: errors,
     formatters: formatters
 };

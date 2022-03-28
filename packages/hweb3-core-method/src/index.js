@@ -967,4 +967,4 @@ Method.prototype.request = function () {
     return payload;
 };
 
-module.exports = Method;
+export default Method;

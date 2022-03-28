@@ -62,6 +62,6 @@ var Net = function () {
 core.addProviders(Net);
 
 
-module.exports = Net;
+export default Net;
 
 

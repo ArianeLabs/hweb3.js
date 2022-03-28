@@ -418,4 +418,4 @@ ABICoder.prototype.decodeLog = function (inputs, data, topics) {
 
 var coder = new ABICoder();
 
-module.exports = coder;
+export default coder;

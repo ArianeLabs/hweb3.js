@@ -71,4 +71,4 @@ PromiEvent.resolve = function(value) {
     return promise.eventEmitter;
 };
 
-module.exports = PromiEvent;
+export default PromiEvent;

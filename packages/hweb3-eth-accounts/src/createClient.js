@@ -7,4 +7,4 @@ const createClient = function(accountId, privateKey) {
     return client;
 };
 
-module.exports = createClient;
+export default createClient;

@@ -22,4 +22,4 @@
 
 var ENS = require('./ENS');
 
-module.exports = ENS;
+export default ENS;

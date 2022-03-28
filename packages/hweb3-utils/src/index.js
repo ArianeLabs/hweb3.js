@@ -333,7 +333,7 @@ var compareBlockNumbers = function(a, b) {
     }
 };
 
-module.exports = {
+export default {
     _fireError: _fireError,
     _jsonInterfaceMethodToString: _jsonInterfaceMethodToString,
     _flattenTypes: _flattenTypes,

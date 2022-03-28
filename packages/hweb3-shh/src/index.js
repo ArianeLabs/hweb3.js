@@ -198,6 +198,6 @@ core.addProviders(Shh);
 
 
 
-module.exports = Shh;
+export default Shh;
 
 

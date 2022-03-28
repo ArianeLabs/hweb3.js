@@ -518,9 +518,9 @@ var toNumber = function(value) {
 }
 
 /**
- * Hedera checksum algorithm 
- * @param {string} ledgerId 
- * @param {string} addr 
+ * Hedera checksum algorithm
+ * @param {string} ledgerId
+ * @param {string} addr
  * @returns string
  */
 var _checksum = function (addr, ledgerId) {
@@ -569,9 +569,9 @@ var _checksum = function (addr, ledgerId) {
 
 /**
  * return a hedera checksum address
- * @param {string} address 
- * @param {NodeClient} client 
- * @returns 
+ * @param {string} address
+ * @param {NodeClient} client
+ * @returns
  */
 var getChecksumAddress = function (address, client) {
     if (!isAddress(address)) {
@@ -584,7 +584,7 @@ var getChecksumAddress = function (address, client) {
     return _checksum(address, client._network.ledgerId._ledgerId);
 }
 
-module.exports = {
+export default {
     BN: BN,
     isBN: isBN,
     isBigNumber: isBigNumber,

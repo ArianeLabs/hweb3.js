@@ -32,18 +32,14 @@
 
 import {
     ContractCallQuery, ContractCreateTransaction,
-    ContractExecuteTransaction, ContractFunctionParameters,
-    FileAppendTransaction,
-    FileCreateTransaction, FileId,
+    ContractExecuteTransaction,
 } from '@hashgraph/sdk';
 import { packageInit } from '@arianelabs/hweb3-core';
-var Method = require('@arianelabs/hweb3-core-method');
-var utils = require('@arianelabs/hweb3-utils');
-var Subscription = require('@arianelabs/hweb3-core-subscriptions').subscription;
-var formatters = require('@arianelabs/hweb3-core-helpers').formatters;
-var errors = require('@arianelabs/hweb3-core-helpers').errors;
-var promiEvent = require('@arianelabs/hweb3-core-promievent');
-var abi = require('@arianelabs/hweb3-eth-abi');
+import Method from '@arianelabs/hweb3-core-method';
+import utils from '@arianelabs/hweb3-utils';
+import { formatters, errors } from '@arianelabs/hweb3-core-helpers';
+import promiEvent from '@arianelabs/hweb3-core-promievent';
+import abi from '@arianelabs/hweb3-eth-abi';
 
 
 /**

@@ -73,4 +73,4 @@ var getNetworkType = function (callback) {
         });
 };
 
-module.exports = getNetworkType;
+export default getNetworkType;

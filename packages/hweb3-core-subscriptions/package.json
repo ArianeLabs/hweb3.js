@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-core-subscriptions",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Manages hweb3 subscriptions. This is an internal package.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-subscriptions",
     "license": "LGPL-3.0",
@@ -16,7 +16,7 @@
     "main": "lib/cjs/index.js",
     "module": "lib/index.js",
     "dependencies": {
-        "@arianelabs/hweb3-core-helpers": "1.0.8",
+        "@arianelabs/hweb3-core-helpers": "1.0.9",
         "eventemitter3": "4.0.4"
     },
     "devDependencies": {

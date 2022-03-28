@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-core-promievent",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "This package extends the EventEmitter with the Promise class to allow chaining as well as multiple final states of a function.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-promievent",
     "license": "LGPL-3.0",

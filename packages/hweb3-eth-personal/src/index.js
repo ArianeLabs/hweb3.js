@@ -23,9 +23,9 @@
 "use strict";
 
 import { packageInit, addProviders } from '@arianelabs/hweb3-core';
-var Method = require('@arianelabs/hweb3-core-method');
-var utils = require('@arianelabs/hweb3-utils');
-var Net = require('@arianelabs/hweb3-net');
+import Method from '@arianelabs/hweb3-core-method';
+import utils from '@arianelabs/hweb3-utils';
+import Net from '@arianelabs/hweb3-net';
 
 var formatters = require('@arianelabs/hweb3-core-helpers').formatters;
 
@@ -77,68 +77,68 @@ var Personal = function Personal() {
     });
 
 
-    var methods = [
-        new Method({
-            name: 'getAccounts',
-            call: 'personal_listAccounts',
-            params: 0,
-            outputFormatter: utils.toChecksumAddress
-        }),
-        new Method({
-            name: 'newAccount',
-            call: 'personal_newAccount',
-            params: 1,
-            inputFormatter: [null],
-            outputFormatter: utils.toChecksumAddress
-        }),
-        new Method({
-            name: 'unlockAccount',
-            call: 'personal_unlockAccount',
-            params: 3,
-            inputFormatter: [formatters.inputAddressFormatter, null, null]
-        }),
-        new Method({
-            name: 'lockAccount',
-            call: 'personal_lockAccount',
-            params: 1,
-            inputFormatter: [formatters.inputAddressFormatter]
-        }),
-        new Method({
-            name: 'importRawKey',
-            call: 'personal_importRawKey',
-            params: 2
-        }),
-        new Method({
-            name: 'sendTransaction',
-            call: 'personal_sendTransaction',
-            params: 2,
-            inputFormatter: [formatters.inputTransactionFormatter, null]
-        }),
-        new Method({
-            name: 'signTransaction',
-            call: 'personal_signTransaction',
-            params: 2,
-            inputFormatter: [formatters.inputTransactionFormatter, null]
-        }),
-        new Method({
-            name: 'sign',
-            call: 'personal_sign',
-            params: 3,
-            inputFormatter: [formatters.inputSignFormatter, formatters.inputAddressFormatter, null]
-        }),
-        new Method({
-            name: 'ecRecover',
-            call: 'personal_ecRecover',
-            params: 2,
-            inputFormatter: [formatters.inputSignFormatter, null]
-        })
-    ];
-    methods.forEach(function(method) {
-        method.attachToObject(_this);
-        method.setRequestManager(_this._requestManager);
-        method.defaultBlock = _this.defaultBlock;
-        method.defaultAccount = _this.defaultAccount;
-    });
+    // var methods = [
+    //     new Method({
+    //         name: 'getAccounts',
+    //         call: 'personal_listAccounts',
+    //         params: 0,
+    //         outputFormatter: utils.toChecksumAddress
+    //     }),
+    //     new Method({
+    //         name: 'newAccount',
+    //         call: 'personal_newAccount',
+    //         params: 1,
+    //         inputFormatter: [null],
+    //         outputFormatter: utils.toChecksumAddress
+    //     }),
+    //     new Method({
+    //         name: 'unlockAccount',
+    //         call: 'personal_unlockAccount',
+    //         params: 3,
+    //         inputFormatter: [formatters.inputAddressFormatter, null, null]
+    //     }),
+    //     new Method({
+    //         name: 'lockAccount',
+    //         call: 'personal_lockAccount',
+    //         params: 1,
+    //         inputFormatter: [formatters.inputAddressFormatter]
+    //     }),
+    //     new Method({
+    //         name: 'importRawKey',
+    //         call: 'personal_importRawKey',
+    //         params: 2
+    //     }),
+    //     new Method({
+    //         name: 'sendTransaction',
+    //         call: 'personal_sendTransaction',
+    //         params: 2,
+    //         inputFormatter: [formatters.inputTransactionFormatter, null]
+    //     }),
+    //     new Method({
+    //         name: 'signTransaction',
+    //         call: 'personal_signTransaction',
+    //         params: 2,
+    //         inputFormatter: [formatters.inputTransactionFormatter, null]
+    //     }),
+    //     new Method({
+    //         name: 'sign',
+    //         call: 'personal_sign',
+    //         params: 3,
+    //         inputFormatter: [formatters.inputSignFormatter, formatters.inputAddressFormatter, null]
+    //     }),
+    //     new Method({
+    //         name: 'ecRecover',
+    //         call: 'personal_ecRecover',
+    //         params: 2,
+    //         inputFormatter: [formatters.inputSignFormatter, null]
+    //     })
+    // ];
+    // methods.forEach(function(method) {
+    //     method.attachToObject(_this);
+    //     method.setRequestManager(_this._requestManager);
+    //     method.defaultBlock = _this.defaultBlock;
+    //     method.defaultAccount = _this.defaultAccount;
+    // });
 };
 
 addProviders(Personal);

@@ -1,6 +1,6 @@
 {
 	"name": "@arianelabs/hweb3-eth-abi",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Hweb3 module encode and decode EVM in/output.",
 	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-abi",
 	"license": "LGPL-3.0",
@@ -10,8 +10,13 @@
 	"types": "types/index.d.ts",
 	"main": "lib/cjs/index.js",
 	"module": "lib/index.js",
+	"scripts": {
+		"compile": "tsc -b tsconfig.json",
+		"compile:cjs": "tsc -b tsconfig.cjs.json",
+		"dtslint": "dtslint --localTs ../../node_modules/typescript/lib  types"
+	},
 	"dependencies": {
-		"@arianelabs/hweb3-utils": "1.0.2",
+		"@arianelabs/hweb3-utils": "1.0.3",
 		"@ethersproject/abi": "5.0.7",
 		"@hashgraph/sdk": "^2.10.1"
 	},

@@ -1,6 +1,6 @@
 {
 	"name": "@arianelabs/hweb3-eth-ens",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "ENS support for web3.",
 	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth-ens",
 	"license": "LGPL-3.0",
@@ -10,10 +10,10 @@
 	"types": "types/index.d.ts",
 	"main": "lib/index.js",
 	"dependencies": {
-		"@arianelabs/hweb3-core": "1.0.4",
-		"@arianelabs/hweb3-core-helpers": "1.0.4",
-		"@arianelabs/hweb3-eth": "1.0.4",
-		"@arianelabs/hweb3-hed-contract": "1.0.4",
+		"@arianelabs/hweb3-core": "1.0.5",
+		"@arianelabs/hweb3-core-helpers": "1.0.5",
+		"@arianelabs/hweb3-eth": "1.0.5",
+		"@arianelabs/hweb3-hed-contract": "1.0.5",
 		"content-hash": "^2.5.2",
 		"eth-ens-namehash": "2.0.8"
 	},

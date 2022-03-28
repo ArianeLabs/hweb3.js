@@ -11,7 +11,8 @@
     "module": "lib/index.js",
     "scripts": {
         "compile": "tsc -b tsconfig.json",
-        "compile:cjs": "tsc -b tsconfig.cjs.json"
+        "compile:cjs": "tsc -b tsconfig.cjs.json",
+        "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
     },
     "dependencies": {
         "@arianelabs/hweb3-core-helpers": "1.0.0",

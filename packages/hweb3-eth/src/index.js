@@ -31,7 +31,7 @@ var Net = require('@arianelabs/hweb3-net');
 
 import Personal from '@arianelabs/hweb3-eth-personal';
 import Accounts from '@arianelabs/hweb3-eth-accounts';
-var BaseContract = require('@arianelabs/hweb3-hed-contract');
+import BaseContract from '@arianelabs/hweb3-hed-contract';
 
 // var ENS = require('@arianelabs/hweb3-eth-ens');
 // var Iban = require('@arianelabs/hweb3-eth-iban');

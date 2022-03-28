@@ -51,9 +51,9 @@ var Personal = function Personal() {
             }
 
             // update defaultBlock
-            methods.forEach(function(method) {
-                method.defaultAccount = defaultAccount;
-            });
+            // methods.forEach(function(method) {
+            //     method.defaultAccount = defaultAccount;
+            // });
 
             return val;
         },
@@ -67,9 +67,9 @@ var Personal = function Personal() {
             defaultBlock = val;
 
             // update defaultBlock
-            methods.forEach(function(method) {
-                method.defaultBlock = defaultBlock;
-            });
+            // methods.forEach(function(method) {
+            //     method.defaultBlock = defaultBlock;
+            // });
 
             return val;
         },

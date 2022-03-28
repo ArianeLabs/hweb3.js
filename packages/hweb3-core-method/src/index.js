@@ -23,11 +23,10 @@
 
 'use strict';
 
-var errors = require('@arianelabs/hweb3-core-helpers').errors;
-var formatters = require('@arianelabs/hweb3-core-helpers').formatters;
-var utils = require('@arianelabs/hweb3-utils');
-var promiEvent = require('@arianelabs/hweb3-core-promievent');
-var Subscriptions = require('@arianelabs/hweb3-core-subscriptions').subscriptions;
+import { errors, formatters } from '@arianelabs/hweb3-core-helpers';
+import utils from '@arianelabs/hweb3-utils';
+import promiEvent from '@arianelabs/hweb3-core-promievent';
+import Subscriptions from '@arianelabs/hweb3-core-subscriptions';
 
 var EthersTransactionUtils = require('@ethersproject/transactions');
 

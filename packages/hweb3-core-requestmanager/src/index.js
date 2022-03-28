@@ -20,7 +20,7 @@
 "use strict";
 
 
-var errors = require('@arianelabs/hweb3-core-helpers').errors;
+import {errors } from '@arianelabs/hweb3-core-helpers';
 import givenProvider from './givenProvider.js';
 import { Transaction, Client, TransactionResponse } from '@hashgraph/sdk';
 import { HttpProviderBase } from '@arianelabs/hweb3-core-helpers';

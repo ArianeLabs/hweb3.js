@@ -22,8 +22,8 @@
 
 "use strict";
 
-var errors = require('./errors');
-var formatters = require('./formatters');
+import errors from './errors';
+import formatters from './formatters';
 
 export default {
     errors: errors,

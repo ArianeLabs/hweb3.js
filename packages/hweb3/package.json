@@ -1,6 +1,6 @@
 {
 	"name": "@arianelabs/hweb3",
-	"version": "1.0.10",
+	"version": "1.0.11",
 	"description": "Hedera JavaScript API",
 	"repository": "https://github.com/Arianelabs/hweb3.js",
 	"license": "LGPL-3.0",
@@ -31,13 +31,13 @@
 		"typescript": "^3.9.5"
 	},
 	"dependencies": {
-		"@arianelabs/hweb3-bzz": "1.0.10",
-		"@arianelabs/hweb3-core": "1.0.10",
-		"@arianelabs/hweb3-core-helpers": "1.0.10",
-		"@arianelabs/hweb3-eth": "1.0.10",
-		"@arianelabs/hweb3-eth-personal": "1.0.10",
-		"@arianelabs/hweb3-net": "1.0.10",
-		"@arianelabs/hweb3-shh": "1.0.10",
-		"@arianelabs/hweb3-utils": "1.0.10"
+		"@arianelabs/hweb3-bzz": "1.0.11",
+		"@arianelabs/hweb3-core": "1.0.11",
+		"@arianelabs/hweb3-core-helpers": "1.0.11",
+		"@arianelabs/hweb3-eth": "1.0.11",
+		"@arianelabs/hweb3-eth-personal": "1.0.11",
+		"@arianelabs/hweb3-net": "1.0.11",
+		"@arianelabs/hweb3-shh": "1.0.11",
+		"@arianelabs/hweb3-utils": "1.0.11"
 	}
 }

@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-core-method",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "Creates the methods on the web3 modules. This is an internal package.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-method",
     "license": "LGPL-3.0",
@@ -16,10 +16,10 @@
     "main": "lib/cjs/index.js",
     "module": "lib/index.js",
     "dependencies": {
-        "@arianelabs/hweb3-core-helpers": "1.0.10",
-        "@arianelabs/hweb3-core-promievent": "1.0.10",
-        "@arianelabs/hweb3-core-subscriptions": "1.0.10",
-        "@arianelabs/hweb3-utils": "1.0.10",
+        "@arianelabs/hweb3-core-helpers": "1.0.11",
+        "@arianelabs/hweb3-core-promievent": "1.0.11",
+        "@arianelabs/hweb3-core-subscriptions": "1.0.11",
+        "@arianelabs/hweb3-utils": "1.0.11",
         "@ethersproject/transactions": "^5.0.0-beta.135"
     },
     "devDependencies": {

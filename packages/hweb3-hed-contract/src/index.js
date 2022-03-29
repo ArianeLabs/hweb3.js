@@ -966,11 +966,6 @@ Contract.prototype._executeMethod = function _executeMethod() {
 
             return _this._parent._requestManager.send(query, args.callback);
         case 'send':
-            // return error, if no "from" is specified
-            if(!utils.isAddress(args.options.from)) {
-                return utils._fireError(errors.ContractNoFromAddressDefinedError(), defer.eventEmitter, defer.reject, args.callback);
-            }
-
             if (typeof this._method.payable === 'boolean' && !this._method.payable && args.options.value && args.options.value > 0) {
                 return utils._fireError(new Error('Can not send value to non-payable contract method or constructor'), defer.eventEmitter, defer.reject, args.callback);
             }

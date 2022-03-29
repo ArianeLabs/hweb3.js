@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-bzz",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Web3 module to interact with the Swarm network.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-bzz",
     "license": "LGPL-3.0",

@@ -5,13 +5,11 @@ import {
   FileCreateTransaction,
   FileDeleteTransaction,
   FileId,
-  FileInfo,
   FileInfoQuery,
   FileUpdateTransaction,
   Timestamp,
   KeyList,
   LedgerId,
-  Transaction,
   Hbar,
   TransactionId,
 } from '@hashgraph/sdk';
@@ -21,6 +19,8 @@ import {HttpProviderBase} from "@arianelabs/hweb3-core-helpers";
 import {HttpProvider} from '@arianelabs/hweb3-providers-http';
 import Long from "long";
 import {BigNumber} from "@hashgraph/sdk/lib/transaction/Transaction";
+import {ArgumentType} from "@hashgraph/sdk/lib/contract/ContractFunctionSelector";
+import func = ArgumentType.func;
 
 interface createParams {
   contents?: string | Uint8Array
@@ -32,20 +32,17 @@ interface appendToFileParams {
   contents?: string | Uint8Array
   chunkSize?: number
   maxChunks?: number
-  fileId?: fileIdType,
+  fileId?: FileId,
 }
 
 interface updateFileParams {
   contents?: string | Uint8Array
   memo?: string
   expirationTime?: Date | Timestamp
-  fileId?: fileIdType,
+  fileId?: FileId,
 }
 
-type fileIdType = string | FileId | undefined;
-
 interface txObject {
-  tx: Transaction;
   send: Function
 }
 
@@ -59,50 +56,39 @@ interface sendArguments {
 
 export class File {
   currentProvider: HttpProviderBase
-  fileId: fileIdType;
+  fileId: FileId;
   _requestManager?: Manager
   keys: KeyList
   size: Long.Long
   expirationTime: Timestamp
-  deleted: boolean
+  isDeleted: boolean
   ledgerId: LedgerId | null
-  memo: string
-  tx: Transaction
+  fileMemo: string
 
-  constructor(fileId?: fileIdType) {
+  constructor(fileId?: FileId, ...args) {
+    if (args.length || (this._requestManager && this._requestManager.provider)) {
+      packageInit(this, args || [this._requestManager.provider]);
+    }
+
     this.fileId = fileId;
     this.keys = null;
     this.size = null;
     this.expirationTime = null;
-    this.deleted = null;
+    this.isDeleted = null;
     this.ledgerId = null;
-    this.memo = null;
+    this.fileMemo = null;
   }
 
-  _executeMethod() {
+  _createTxObject(tx, isCreate = false){
     const _this = this;
-    const args = Array.prototype.slice.call(arguments).shift();
-
-    switch (args) {
-      case 'send':
-        return this._requestManager.provider.sendRequest(_this.tx)
-          .then((txResponse) => {
-            return this._requestManager.provider.getTransactionReceipt(txResponse.transactionId)
-          });
-      default:
-        throw new Error('Method "' + args + '" not implemented.');
-    }
-  };
-
-  _createTxObject(tx){
-    var txObject: txObject = {
-      send: () => null,
-      tx,
+    const txObject: txObject = {
+      send: function () {},
     };
 
-    this.setTransaction(tx);
+    txObject.send = async function(args: sendArguments, callback?: Function) {
+      callback = callback || function () { };
+      args = args || {};
 
-    txObject.send = (args: sendArguments) => {
       if (args.transactionMemo) {
         tx.setTransactionMemo(args.transactionMemo);
       }
@@ -119,7 +105,19 @@ export class File {
         tx.setTransactionId(args.transactionId);
       }
 
-      return this._executeMethod.bind(this, 'send')
+      const txResponse = await _this._requestManager.provider.sendRequest(tx);
+      const txReceipt = await _this._requestManager.provider.getTransactionReceipt(txResponse.transactionId);
+
+      if (isCreate) {
+        const newFile = new File(txReceipt.fileId, _this._requestManager.provider);
+        await newFile.getFileInfo(txReceipt.fileId);
+        callback(newFile);
+        return newFile;
+      } else {
+        await _this.getFileInfo(txReceipt.fileId);
+        callback(_this);
+        return _this;
+      }
     };
 
     return txObject;
@@ -129,19 +127,15 @@ export class File {
     packageInit(this, [provider]);
   };
 
-  setFileId(fileId: fileIdType) {
+  setFileId(fileId: FileId) {
     this.fileId = fileId;
-  };
-
-  setTransaction(tx: Transaction) {
-    this.tx = tx;
   };
 
   createFile({
     contents,
     memo,
     expirationTime,
-  }: createParams = {}) {
+  }: createParams = {}): txObject {
     const tx = new FileCreateTransaction()
             .setKeys([this.currentProvider.client._operator.publicKey]);
 
@@ -149,18 +143,15 @@ export class File {
     if (memo) tx.setFileMemo(memo);
     if (expirationTime) tx.setExpirationTime(expirationTime);
 
-    return this._createTxObject(tx);
+    return this._createTxObject(tx, true);
   }
 
-  async appendToFile({
+  appendToFile({
     contents,
     chunkSize,
     maxChunks,
     fileId,
-  }: appendToFileParams = {}) {
-    var args = Array.prototype.slice.call(arguments);
-    var txObject = {};
-
+  }: appendToFileParams = {}): txObject {
     const id = fileId || this.fileId;
     if (!id) {
       throw new Error('No file ID');
@@ -175,7 +166,7 @@ export class File {
     return this._createTxObject(tx);
   }
 
-  async updateFile({
+  updateFile({
     contents,
     memo,
     expirationTime,
@@ -186,7 +177,7 @@ export class File {
       throw new Error('No file ID');
     }
 
-    const tx = await new FileUpdateTransaction()
+    const tx = new FileUpdateTransaction()
       .setFileId(id)
 
     if (contents) tx.setContents(contents);
@@ -196,48 +187,50 @@ export class File {
     return this._createTxObject(tx);
   }
 
-  async deleteFile(fileId?: string | FileId | undefined) {
+  deleteFile(fileId?: string | FileId) {
     const id = fileId || this.fileId;
     if (!id) {
       throw new Error('No file ID');
     }
-    //Create the transaction
-    const tx = await new FileDeleteTransaction().setFileId(id)
+    const tx = new FileDeleteTransaction().setFileId(id)
 
     return this._createTxObject(tx);
   }
 
-  async getFileContents(fileId?: FileId): Promise<Uint8Array> {
-   const id = fileId || this.fileId;
-   if (!id) {
-     throw new Error('No file ID');
-   }
+  async getFileContents(fileId?: FileId, callback?: Function) {
+    callback = callback || function () { };
+    const id = fileId || this.fileId;
+    if (!id) {
+      throw new Error('No file ID');
+    }
 
-   const query = new FileContentsQuery().setFileId(id);
+    const query = new FileContentsQuery().setFileId(id);
 
-   return await query.execute(this._requestManager.provider.client);
+    const contents = await query.execute(this._requestManager.provider.client);
+
+    callback(contents);
+    return contents;
   }
 
-  async getFileInfo(fileId?: FileId): Promise<FileInfo> {
-   const id = fileId || this.fileId;
-   if (!id) {
-     throw new Error('No file ID');
-   }
+  async getFileInfo(fileId?: FileId, callback?: Function) {
+    callback = callback || function () { };
+    const id = fileId || this.fileId;
+    if (!id) {
+      throw new Error('No file ID');
+    }
 
-   const query = new FileInfoQuery().setFileId(id);
-   return await query.execute(this._requestManager.provider.client)
+    const query = new FileInfoQuery().setFileId(id);
+    await query.execute(this._requestManager.provider.client).then(response => {
+      this.fileId = response.fileId;
+      this.keys = response.keys;
+      this.size = response.size;
+      this.expirationTime = response.expirationTime;
+      this.isDeleted = response.isDeleted;
+      this.ledgerId = response.ledgerId
+      this.fileMemo = response.fileMemo;
+    })
+
+    callback(this);
+    return this;
   }
 }
-
-const myAccountId = '0.0.29674178';
-const myPrivateKey= '302e020100300506032b657004220420857877963ad72e14a4bf323583eda74eefbb17cf8d8ddb8e9dd52028228286e6'
-const client = Client.forTestnet();
-client.setOperator(myAccountId, myPrivateKey);
-const test = new File();
-const provider = new HttpProvider(client);
-
-test.setProvider(provider);
-test.createFile({ contents: "the file contents" })
-  .send({
-    transactionMemo: "Transaction memo",
-  })().then((test) => console.log(test))

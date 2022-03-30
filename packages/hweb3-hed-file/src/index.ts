@@ -1,5 +1,4 @@
 import {
-  Client,
   FileAppendTransaction,
   FileContentsQuery,
   FileCreateTransaction,
@@ -16,11 +15,8 @@ import {
 import {Manager} from '@arianelabs/hweb3-core-requestmanager';
 import {packageInit} from '@arianelabs/hweb3-core';
 import {HttpProviderBase} from "@arianelabs/hweb3-core-helpers";
-import {HttpProvider} from '@arianelabs/hweb3-providers-http';
 import Long from "long";
 import {BigNumber} from "@hashgraph/sdk/lib/transaction/Transaction";
-import {ArgumentType} from "@hashgraph/sdk/lib/contract/ContractFunctionSelector";
-import func = ArgumentType.func;
 
 interface createParams {
   contents?: string | Uint8Array

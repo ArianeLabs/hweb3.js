@@ -12,6 +12,7 @@
     "main": "lib/cjs/index.js",
     "module": "lib/index.js",
     "scripts": {
+        "test": "jest",
         "compile": "tsc -b tsconfig.json",
         "compile:cjs": "tsc -b tsconfig.cjs.json",
         "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
@@ -25,7 +26,10 @@
         "@types/bn.js": "^4.11.5"
     },
     "devDependencies": {
+        "@types/jest": "^27.4.1",
         "dtslint": "^3.4.1",
+        "jest": "^27.5.1",
+        "ts-jest": "^27.1.4",
         "typescript": "^3.9.5"
     }
 }

@@ -973,16 +973,10 @@ Contract.prototype._executeMethod = function _executeMethod() {
             // make sure receipt logs are decoded
             var transaction = new ContractExecuteTransaction()
                 .setContractId(_this._parent.options.address)
-                .setFunction(_this._method.name)
+                .setFunction(_this._method.name, args.options.data || undefined)
                 .setGas(args.options.gas)
                 .setPayableAmount(args.options.value)
             ;
-
-            if (args.options.data) {
-                transaction
-                    .setFunctionParameters(args.options.data)
-                ;
-            }
 
             return _this._parent._requestManager.send(transaction, (err, response) => {
                 if (err) {

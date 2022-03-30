@@ -1,6 +1,6 @@
 {
 	"name": "@arianelabs/hweb3-core-helpers",
-	"version": "1.0.11",
+	"version": "1.0.12",
 	"description": "Hweb3 core tools helper for sub packages. This is an internal package.",
 	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-helpers",
 	"license": "LGPL-3.0",
@@ -16,8 +16,8 @@
 	"main": "lib/cjs/index.js",
 	"module": "lib/index.js",
 	"dependencies": {
-		"@arianelabs/hweb3-eth-iban": "1.0.11",
-		"@arianelabs/hweb3-utils": "1.0.11",
+		"@arianelabs/hweb3-eth-iban": "1.0.12",
+		"@arianelabs/hweb3-utils": "1.0.12",
 		"@hashgraph/sdk": "^2.9.1"
 	},
 	"devDependencies": {

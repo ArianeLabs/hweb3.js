@@ -65,7 +65,7 @@ RequestManager.providers = {
  */
 RequestManager.prototype.setProvider = function (provider) {
     if (!provider && typeof provider !== 'object') {
-        throw new Error('Can\'t set test provider for "' + provider + '"');
+        throw new Error('Can\'t set provider for "' + provider + '"');
     }
 
 

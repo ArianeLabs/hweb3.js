@@ -935,9 +935,19 @@ Contract.prototype._executeMethod = function _executeMethod() {
             return _this._parent._requestManager.send(transaction, (err, response) => {
                 if (err) {
                     args.callback(err);
+                    return;
                 }
 
-                return _this._parent._requestManager.getReceipt(response, args.callback);
+                return _this._parent._requestManager.getReceipt(response, (err, response) => {
+                    if (err) {
+                        args.callback(err);
+                    }
+                    if (_this._method.type === 'constructor') {
+                        response = new _this.constructor(_this.options.jsonInterface, response.contractId.toString());
+                    }
+
+                    return args.callback(null, response);
+                });
             });
         default:
             throw new Error('Method "' + args.type + '" not implemented.');

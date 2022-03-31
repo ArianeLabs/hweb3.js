@@ -29,7 +29,7 @@ import Method from '@arianelabs/hweb3-core-method';
 import Account from 'eth-lib/lib/account';
 import scrypt from 'scrypt-js';
 import uuid from 'uuid';
-import utils from '@arianelabs/hweb3-utils';
+import * as utils from '@arianelabs/hweb3-utils';
 import ethereumjsUtil from 'ethereumjs-util';
 
 const cryp = (typeof global === 'undefined') ? require('crypto-browserify') : require('crypto');

@@ -89,8 +89,8 @@ export interface ContractArguments {
 }
 
 export interface DeployOptions {
-    fileId: FileId;
-    arguments?: ContractArguments;
+    data: string | Uint8Array;
+    arguments?: any[];
 }
 
 export interface ContractSendMethod {

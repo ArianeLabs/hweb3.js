@@ -31,16 +31,15 @@
 "use strict";
 
 import {
-    ContractCallQuery, ContractCreateTransaction,
-    ContractExecuteTransaction,
+    ContractCallQuery,
+    ContractExecuteTransaction, ContractCreateFlow
 } from '@hashgraph/sdk';
 import { packageInit } from '@arianelabs/hweb3-core';
 import Method from '@arianelabs/hweb3-core-method';
-import utils from '@arianelabs/hweb3-utils';
+import * as utils from '@arianelabs/hweb3-utils';
 import { formatters, errors } from '@arianelabs/hweb3-core-helpers';
 import promiEvent from '@arianelabs/hweb3-core-promievent';
 import abi from '@arianelabs/hweb3-eth-abi';
-
 
 /**
  * Should be called to create new contract instance
@@ -537,43 +536,28 @@ Contract.prototype._encodeMethodABI = function _encodeMethodABI() {
     var methodSignature = this._method.signature,
         args = this.arguments || [];
 
-    var signature = false,
-        paramsABI = this._parent.options.jsonInterface.filter(function (json) {
-            return ((methodSignature === 'constructor' && json.type === methodSignature) ||
-                ((json.signature === methodSignature || json.signature === methodSignature.replace('0x','') || json.name === methodSignature) && json.type === 'function'));
-        }).map(function (json) {
-            var inputLength = (Array.isArray(json.inputs)) ? json.inputs.length : 0;
+    return this._parent.options.jsonInterface.filter(function (json) {
+        return (
+            (methodSignature === 'constructor' && json.type === methodSignature)
+            || (
+                (json.signature === methodSignature
+                    || json.signature === methodSignature.replace('0x','')
+                    || json.name === methodSignature
+                )
+                && json.type === 'function'
+            )
+        );
+    }).map(function (json) {
+        var inputLength = (Array.isArray(json.inputs)) ? json.inputs.length : 0;
 
-            if (inputLength !== args.length) {
-                throw new Error('The number of arguments is not matching the methods required number. You need to pass '+ inputLength +' arguments.');
-            }
-
-            return Array.isArray(json.inputs) ? json.inputs : [];
-        }).map(function (inputs) {
-            return abi.encodeParameters(inputs, args);
-        })[0] || '';
-
-    // return constructor
-    if(methodSignature === 'constructor') {
-        if(!this._deployData)
-            throw new Error('The contract has no contract data option set. This is necessary to append the constructor parameters.');
-
-        if(!this._deployData.startsWith('0x')) {
-            this._deployData = '0x' + this._deployData;
+        if (inputLength !== args.length) {
+            throw new Error('The number of arguments is not matching the methods required number. You need to pass '+ inputLength +' arguments.');
         }
 
-        return this._deployData + paramsABI;
-
-    }
-
-    // return method
-    var returnValue = (signature) ? signature + paramsABI : paramsABI;
-
-    if(!returnValue) {
-        throw new Error('Couldn\'t find a matching contract method named "'+ this._method.name +'".');
-    }
-
-    return paramsABI;
+        return Array.isArray(json.inputs) ? json.inputs : [];
+    }).map(function (inputs) {
+        return abi.encodeParameters(inputs, args);
+    })[0] || '';
 };
 
 /**
@@ -610,60 +594,28 @@ Contract.prototype._decodeMethodReturn = function (outputs, returnValues) {
  * @param {Function} callback
  * @return {Object} EventEmitter possible events are "error", "transactionHash" and "receipt"
  */
-Contract.prototype.deploy = function(options){
-    const _this = this;
-    const txObject = {};
+Contract.prototype.deploy = function(options, callback){
     options = options || {};
-
     options.arguments = options.arguments || [];
+    options = this._getOrSetDefaultOptions(options);
 
-    if(!options.fileId) {
+    if(!options.data) {
+        if (typeof callback === 'function'){
+            return callback(errors.ContractMissingDeployDataError());
+        }
         throw errors.ContractMissingDeployDataError();
     }
 
-    txObject.send = (args, cb) => {
-        const contractTx = new ContractCreateTransaction()
-          .setBytecodeFileId(options.fileId)
-        ;
+    var constructor = this.options.jsonInterface.find((method) => {
+        return (method.type === 'constructor');
+    }) || {};
+    constructor.signature = 'constructor';
 
-        if(!args.gas) {
-            return cb(errors.ContractMissingDeployDataError());
-        }
-
-        contractTx.setGas(args.gas.toTinybars());
-        if (options.arguments.constructorParameters) {
-            contractTx.setConstructorParameters(options.arguments.constructorParameters);
-        }
-        if (options.arguments.initialBalance) {
-            contractTx.setInitialBalance(options.arguments.initialBalance);
-        }
-        if (options.arguments.memo) {
-            contractTx.setContractMemo(options.arguments.memo);
-        }
-        if (options.arguments.renewPeriod) {
-            contractTx.setAutoRenewPeriod(options.arguments.renewPeriod);
-        }
-
-        _this._requestManager.send(contractTx, (err, res) => {
-            if (err) cb(err);
-
-            _this._requestManager.getReceipt(res, (err, receipt) => {
-                    if (err) cb(err);
-
-                    cb(null, new _this.constructor(_this.options.jsonInterface, receipt.contractId.toString()));
-                });
-        });
-    };
-
-    txObject.estimateGas = function () {
-        throw new Error('Not implemented');
-    };
-
-    txObject.createAccessList = function () {
-        throw new Error('Not implemented');
-    };
-
-    return txObject;
+    return this._createTxObject.apply({
+        method: constructor,
+        parent: this,
+        deployData: options.data,
+    }, options.arguments);
 };
 
 /**
@@ -842,6 +794,8 @@ Contract.prototype._createTxObject =  function _createTxObject(){
     var args = Array.prototype.slice.call(arguments);
     var txObject = {};
 
+    console.log({ t: this, args });
+
     if(this.method.type === 'function') {
         txObject.call = this.parent._executeMethod.bind(txObject, 'call');
         txObject.call.request = this.parent._executeMethod.bind(txObject, 'call', true); // to make batch requests
@@ -971,11 +925,11 @@ Contract.prototype._executeMethod = function _executeMethod() {
             }
 
             // make sure receipt logs are decoded
-            var transaction = new ContractExecuteTransaction()
-                .setContractId(_this._parent.options.address)
-                .setFunction(_this._method.name, args.options.data || undefined)
-                .setGas(args.options.gas)
-                .setPayableAmount(args.options.value)
+            var transaction = this._method.type === 'constructor' ? this._parent._contractCreateTransaction(this._deployData, args.options) : this._parent._contractExecuteTransaction(
+                    _this._parent.options.address,
+                    _this._method.name,
+                    args.options
+                )
             ;
 
             return _this._parent._requestManager.send(transaction, (err, response) => {
@@ -988,6 +942,45 @@ Contract.prototype._executeMethod = function _executeMethod() {
         default:
             throw new Error('Method "' + args.type + '" not implemented.');
     }
+};
+
+Contract.prototype._contractCreateTransaction = function (bytecode, options) {
+    const tx = new ContractCreateFlow()
+        .setBytecode(bytecode)
+    ;
+
+    if(!options.gas) {
+        throw errors.ContractMissingDeployDataError();
+    }
+
+    tx.setGas(options.gas);
+
+    if (options.data) {
+        tx.setConstructorParameters(options.data);
+    }
+
+    if (options.initialBalance) {
+        tx.setInitialBalance(options.initialBalance);
+    }
+
+    if (options.memo) {
+        tx.setContractMemo(options.memo);
+    }
+    if (options.renewPeriod) {
+        tx.setAutoRenewPeriod(options.renewPeriod);
+    }
+
+    return tx;
+};
+
+Contract.prototype._contractExecuteTransaction = function (contractId, methodName, options) {
+    const tx = new ContractExecuteTransaction()
+        .setContractId(contractId)
+        .setFunction(methodName, options.data || undefined)
+        .setGas(options.gas)
+        .setPayableAmount(options.value)
+    ;
+    return tx;
 };
 
 export default Contract;

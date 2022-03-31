@@ -24,7 +24,7 @@
 'use strict';
 
 import { errors, formatters } from '@arianelabs/hweb3-core-helpers';
-import utils from '@arianelabs/hweb3-utils';
+import * as utils from '@arianelabs/hweb3-utils';
 import promiEvent from '@arianelabs/hweb3-core-promievent';
 import Subscriptions from '@arianelabs/hweb3-core-subscriptions';
 

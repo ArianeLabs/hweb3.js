@@ -24,7 +24,7 @@
 
 import { packageInit, addProviders } from '@arianelabs/hweb3-core';
 import Method from '@arianelabs/hweb3-core-method';
-import utils from '@arianelabs/hweb3-utils';
+import * as utils from '@arianelabs/hweb3-utils';
 import Net from '@arianelabs/hweb3-net';
 
 var formatters = require('@arianelabs/hweb3-core-helpers').formatters;

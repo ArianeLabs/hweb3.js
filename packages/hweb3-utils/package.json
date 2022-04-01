@@ -1,6 +1,6 @@
 {
 	"name": "@arianelabs/hweb3-utils",
-	"version": "1.0.17",
+	"version": "1.0.18",
 	"description": "Collection of utility functions used in hweb3.js.",
 	"repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-utils",
 	"license": "LGPL-3.0",

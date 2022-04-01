@@ -111,8 +111,7 @@ ABICoder.prototype.encodeParameters = function (types, params) {
 
         parameters[`add${type[0].toUpperCase() + type.slice(1)}`](param);
         return parameters;
-    }, new ContractFunctionParameters())
-        ._build();
+    }, new ContractFunctionParameters());
 };
 
 /**

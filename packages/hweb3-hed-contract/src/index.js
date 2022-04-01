@@ -611,7 +611,7 @@ Contract.prototype.deploy = function(options, callback){
     }) || {};
     constructor.signature = 'constructor';
 
-    return this._createTxObject.apply(this, {
+    return this._createTxObject.apply({
         method: constructor,
         parent: this,
         deployData: options.data,

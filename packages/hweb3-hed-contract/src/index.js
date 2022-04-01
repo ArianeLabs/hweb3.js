@@ -783,7 +783,6 @@ Contract.prototype.getPastEvents = function(){
     return call(subOptions.params, subOptions.callback);
 };
 
-
 /**
  * returns the an object with call, send, estimate functions
  *
@@ -825,7 +824,6 @@ Contract.prototype._createTxObject =  function _createTxObject(){
 
     return txObject;
 };
-
 
 /**
  * Generates the options for the execute call
@@ -956,6 +954,13 @@ Contract.prototype._executeMethod = function _executeMethod() {
     }
 };
 
+/**
+ * Generates the ContractCreateFlow transaction for the execute send
+ *
+ * @method _contractCreateTransaction
+ * @param {Uint8Array | string} bytecode
+ * @param {Object} options
+ */
 Contract.prototype._contractCreateTransaction = function (bytecode, options) {
     const tx = new ContractCreateFlow()
         .setBytecode(bytecode)
@@ -985,6 +990,14 @@ Contract.prototype._contractCreateTransaction = function (bytecode, options) {
     return tx;
 };
 
+/**
+ * Generates the ContractExecuteTransaction transaction for the execute send
+ *
+ * @method _contractCreateTransaction
+ * @param {ContractId | string} contractId
+ * @param {string} methodName
+ * @param {Object} options
+ */
 Contract.prototype._contractExecuteTransaction = function (contractId, methodName, options) {
     const tx = new ContractExecuteTransaction()
         .setContractId(contractId)

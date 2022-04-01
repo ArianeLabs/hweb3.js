@@ -611,7 +611,7 @@ Contract.prototype.deploy = function(options, callback){
     }) || {};
     constructor.signature = 'constructor';
 
-    return this._createTxObject.apply({
+    return this._createTxObject.apply(this, {
         method: constructor,
         parent: this,
         deployData: options.data,
@@ -943,7 +943,9 @@ Contract.prototype._executeMethod = function _executeMethod() {
                         args.callback(err);
                     }
                     if (_this._method.type === 'constructor') {
-                        response = new _this.constructor(_this.options.jsonInterface, response.contractId.toString());
+                        const newContract = _this._parent.clone();
+                        newContract.options.address = response.contractId.toString();
+                        response = newContract;
                     }
 
                     return args.callback(null, response);

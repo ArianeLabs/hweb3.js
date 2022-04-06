@@ -198,30 +198,3 @@ export class HttpProvider implements HttpProviderBase {
         return query.execute(this.client);
     };
 }
-
-const accountId = '0.0.29674178';
-const privateKey = '302e020100300506032b657004220420857877963ad72e14a4bf323583eda74eefbb17cf8d8ddb8e9dd52028228286e6';
-
-const client = Client.forTestnet();
-client.setOperator(accountId, privateKey);
-
-console.log('client', client.ledgerId.isTestnet());
-//
-// const provider = new HttpProvider(client);
-//
-// const main = () => {
-//     const newAccountPrivateKey = PrivateKey.generateED25519();
-//
-//     const tx = new AccountCreateTransaction()
-//         .setKey(newAccountPrivateKey)
-//
-//      provider.sendRequest(tx)
-//         .then((resp) => console.log('test', resp))
-//         .catch((e) => console.log('error', e))
-// };
-// main();
-
-// tslint:disable-next-line:ban-ts-ignore
-// @ts-ignore
-// const failedProvider = new HttpProvider();
-// console.log('failedProvider', failedProvider);

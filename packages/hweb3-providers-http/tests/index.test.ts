@@ -22,8 +22,9 @@ const methods = [
 ];
 
 let provider;
-const accountId = '0.0.29674178';
-const privateKey = '302e020100300506032b657004220420857877963ad72e14a4bf323583eda74eefbb17cf8d8ddb8e9dd52028228286e6';
+// TODO add environment variable
+const accountId = '';
+const privateKey = '';
 
 describe("HttpProvider with the given client argument", () => {
     let client;

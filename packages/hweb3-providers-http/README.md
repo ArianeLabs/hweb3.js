@@ -2,7 +2,7 @@
 
 [![NPM Package][npm-image]][npm-url] [![Dependency Status][deps-image]][deps-url] [![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
-This is a HTTP provider sub-package for [web3.js][repo].
+This is a HTTP provider sub-package for [hweb3.js][repo].
 
 Please read the [documentation][docs] for more.
 
@@ -17,8 +17,7 @@ npm install hweb3-providers-http
 ## Usage
 
 ```js
-const http = require('http');
-const Web3HttpProvider = require('web3-providers-http');
+import { HttpProvider } from '@arianelabs/hweb3-providers-http'
 
 const options = {
     keepAlive: true,
@@ -28,7 +27,7 @@ const options = {
     agent: {http: http.Agent(...), baseUrl: ''}
 };
 
-const provider = new Web3HttpProvider('http://localhost:8545', options);
+const provider = new HttpProvider(options);
 ```
 
 ## Types

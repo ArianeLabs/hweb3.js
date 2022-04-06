@@ -20,7 +20,6 @@
  * Patryk Matyjasiak <patryk.matyjasiak@arianelabs.com>
  * @date 2022
  */
-
 import {
     AccountInfoQuery,
     Client,
@@ -34,6 +33,8 @@ import {
     TransactionReceiptQuery,
     TransactionId,
     TransactionReceipt,
+    PrivateKey,
+    ClientNetworkName, AccountCreateTransaction,
 } from '@hashgraph/sdk';
 import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
 
@@ -47,19 +48,30 @@ export class HttpProvider implements HttpProviderBase {
     private accountId: string | AccountId;
     private client: Client;
 
+    constructor(client: Client);
+    constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
     constructor(...args: any[]) {
-        this.connected = true;
-        if (args.length === 1) {
-            this.client = args[0];
-        }
-        if (args.length >= 2) {
-            switch (args[2]) {
-                case 'testnet': this.client = Client.forTestnet(); break;
-                case 'previewnet': this.client = Client.forPreviewnet(); break;
-                default: this.client = Client.forMainnet();
+        if (!args.length) {
+            throw new Error(
+                'You have to set the provider with one of the two combinations of arguments: ' +
+                '1. client: Client or ' +
+                '2. accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName'
+            );
+        } else {
+            this.connected = true;
+            if (args.length === 1) {
+                this.client = args[0];
+                this.accountId = args[0]._operator.accountId;
             }
-            this.client.setOperator(args[0], args[1]);
-            this.accountId = args[0];
+            if (args.length >= 2) {
+                switch (args[2]) {
+                    case 'testnet': this.client = Client.forTestnet(); break;
+                    case 'previewnet': this.client = Client.forPreviewnet(); break;
+                    default: this.client = Client.forMainnet();
+                }
+                this.client.setOperator(args[0], args[1]);
+                this.accountId = args[0];
+            }
         }
     }
 
@@ -105,6 +117,9 @@ export class HttpProvider implements HttpProviderBase {
     getAccountBalance = async function(
         accountId?: string | AccountId,
     ): Promise<AccountBalance> {
+        if (!(accountId || this.accountId)) {
+            throw new Error('You need to instantiate HttpProvider using the "new" keyword or pass correct accountId argument');
+        }
         const query = new AccountBalanceQuery()
             .setAccountId(accountId || this.accountId);
 
@@ -121,6 +136,9 @@ export class HttpProvider implements HttpProviderBase {
     getAccountInfo = async function(
         accountId?: string | AccountId,
     ): Promise<AccountInfo> {
+        if (!(accountId || this.accountId)) {
+            throw new Error('You need to instantiate HttpProvider using the "new" keyword or pass correct accountId argument');
+        }
         const query = new AccountInfoQuery()
             .setAccountId(accountId || this.accountId);
 
@@ -137,6 +155,12 @@ export class HttpProvider implements HttpProviderBase {
     getTransactionReceipt = async function(
         transactionId: TransactionId
     ): Promise<TransactionReceipt> {
+        if (!transactionId) {
+            throw new Error('Pass transactionId argument');
+        }
+        if (!(transactionId instanceof TransactionId)) {
+            throw new Error('Pass correct transactionId: TransactionId argument');
+        }
         const query = new TransactionReceiptQuery()
             .setTransactionId(transactionId)
 
@@ -151,7 +175,10 @@ export class HttpProvider implements HttpProviderBase {
      * @returns Promise<TransactionResponse>
      */
     sendRequest = async function(tx: Transaction): Promise<TransactionResponse> {
-        return tx.execute(this.client)
+        if (!(tx instanceof Transaction)) {
+            throw new Error('Pass correct tx: Transaction argument')
+        }
+        return tx.execute(this.client);
     }
 
     /**
@@ -162,9 +189,39 @@ export class HttpProvider implements HttpProviderBase {
      * @returns Promise<TransactionReceipt>
      */
     waitForReceipt = async function(response: TransactionResponse): Promise<TransactionReceipt> {
+        if (!(response instanceof TransactionResponse)) {
+            throw new Error('Pass correct response: TransactionResponse argument')
+        }
         const query = new TransactionReceiptQuery()
-            .setTransactionId(response.transactionId)
+            .setTransactionId(response.transactionId);
 
         return query.execute(this.client);
     };
 }
+
+const accountId = '0.0.29674178';
+const privateKey = '302e020100300506032b657004220420857877963ad72e14a4bf323583eda74eefbb17cf8d8ddb8e9dd52028228286e6';
+
+const client = Client.forTestnet();
+client.setOperator(accountId, privateKey);
+
+console.log('client', client.ledgerId.isTestnet());
+//
+// const provider = new HttpProvider(client);
+//
+// const main = () => {
+//     const newAccountPrivateKey = PrivateKey.generateED25519();
+//
+//     const tx = new AccountCreateTransaction()
+//         .setKey(newAccountPrivateKey)
+//
+//      provider.sendRequest(tx)
+//         .then((resp) => console.log('test', resp))
+//         .catch((e) => console.log('error', e))
+// };
+// main();
+
+// tslint:disable-next-line:ban-ts-ignore
+// @ts-ignore
+// const failedProvider = new HttpProvider();
+// console.log('failedProvider', failedProvider);

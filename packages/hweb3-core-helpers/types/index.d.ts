@@ -133,8 +133,8 @@ export class IpcProviderBase {
 export abstract class HttpProviderBase {
     connected: boolean;
 
-    protected constructor(client: Client);
-    protected constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
+    constructor(client: Client);
+    constructor(accountId: string | AccountId, privateKey: string | PrivateKey, networkType?: ClientNetworkName);
 
     disconnect(): boolean;
 
@@ -154,8 +154,6 @@ export abstract class HttpProviderBase {
 
     waitForReceipt(response: TransactionResponse): Promise<TransactionReceipt>;
 }
-
-
 
 export interface RequestItem {
     payload: JsonRpcPayload;

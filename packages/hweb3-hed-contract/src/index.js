@@ -35,12 +35,11 @@ import {
     ContractExecuteTransaction, ContractCreateFlow
 } from '@hashgraph/sdk';
 import { packageInit } from '@arianelabs/hweb3-core';
-import Method from '@arianelabs/hweb3-core-method';
 import * as utils from '@arianelabs/hweb3-utils';
 import { formatters, errors } from '@arianelabs/hweb3-core-helpers';
 import promiEvent from '@arianelabs/hweb3-core-promievent';
 import abi from '@arianelabs/hweb3-eth-abi';
-
+import { EventEmitter } from 'eventemitter3';
 /**
  * Should be called to create new contract instance
  *
@@ -317,12 +316,14 @@ var Contract = function Contract(jsonInterface, address, options) {
     this.events = {};
 
     this._address = null;
+    this._pollLink = null;
+    this._emmiter = new EventEmitter();
+    this.subscriptions = [];
     this._jsonInterface = [];
 
     // set getter/setter properties
     this.options.address = address;
     this.options.jsonInterface = jsonInterface;
-
 };
 
 /**
@@ -342,7 +343,6 @@ Contract.setProvider = function(provider, accounts) {
 
     this._ethAccounts = accounts;
 };
-
 
 /**
  * Get the callback and modify the array if necessary
@@ -371,7 +371,6 @@ Contract.prototype._checkListener = function(type, event){
     }
 };
 
-
 /**
  * Use default values, if options are not available
  *
@@ -393,7 +392,6 @@ Contract.prototype._getOrSetDefaultOptions = function getOrSetDefaultOptions(opt
 
     return options;
 };
-
 
 /**
  * Should be used to encode indexed params and options to one final object
@@ -717,43 +715,68 @@ Contract.prototype.once = function(event, options, callback) {
 Contract.prototype._on = function(){
     var subOptions = this._generateEventOptions.apply(this, arguments);
 
+    console.log({ subOptions });
+
     if (subOptions.params && subOptions.params.toBlock) {
         delete subOptions.params.toBlock;
         console.warn('Invalid option: toBlock. Use getPastEvents for specific range.');
     }
 
     // prevent the event "newListener" and "removeListener" from being overwritten
-    this._checkListener('newListener', subOptions.event.name);
-    this._checkListener('removeListener', subOptions.event.name);
+    // this._checkListener('newListener', subOptions.event.name);
+    // this._checkListener('removeListener', subOptions.event.name);
+
+
+    // this._createPollLink();
+
+    // add event listener
+    // this._listeners.push();
+    // this._emmiter.on(subOptions.event.name, subOptions.callback);
+
 
     // TODO check if listener already exists? and reuse subscription if options are the same.
 
     // create new subscription
-    var subscription = new Subscription({
-        subscription: {
-            params: 1,
-            inputFormatter: [formatters.inputLogFormatter],
-            outputFormatter: this._decodeEventABI.bind(subOptions.event),
-            // DUBLICATE, also in web3-eth
-            subscriptionHandler: function (output) {
-                if(output.removed) {
-                    this.emit('changed', output);
-                } else {
-                    this.emit('data', output);
-                }
+    // var subscription = new Subscription({
+    //     subscription: {
+    //         params: 1,
+    //         inputFormatter: [formatters.inputLogFormatter],
+    //         outputFormatter: this._decodeEventABI.bind(subOptions.event),
+    //         // DUBLICATE, also in web3-eth
+    //         subscriptionHandler: function (output) {
+    //             if(output.removed) {
+    //                 this.emit('changed', output);
+    //             } else {
+    //                 this.emit('data', output);
+    //             }
+    //
+    //             if (typeof this.callback === 'function') {
+    //                 this.callback(null, output, this);
+    //             }
+    //         }
+    //     },
+    //     type: 'eth',
+    //     requestManager: this._requestManager
+    // });
+    //
+    // subscription.subscribe('logs', subOptions.params, subOptions.callback || function () {});
 
-                if (typeof this.callback === 'function') {
-                    this.callback(null, output, this);
-                }
-            }
-        },
-        type: 'eth',
-        requestManager: this._requestManager
-    });
+    return {};
+};
 
-    subscription.subscribe('logs', subOptions.params, subOptions.callback || function () {});
+Contract.prototype._decodeEvent = function (eventName, log) {
+    const eventAbi = this._jsonInterface.find(e => e.name === eventName);
 
-    return subscription;
+    if (!log.topics.includes(eventAbi.signature)) {
+        return null;
+    }
+
+    try {
+        const decodedLog = abi.decodeLog(eventAbi.inputs, log.data, log.topics.slice(1));
+        return decodedLog;
+    } catch (e) {
+        return null;
+    }
 };
 
 /**
@@ -768,17 +791,17 @@ Contract.prototype._on = function(){
 Contract.prototype.getPastEvents = function(){
     var subOptions = this._generateEventOptions.apply(this, arguments);
 
-    var getPastLogs = new Method({
-        name: 'getPastLogs',
-        call: 'eth_getLogs',
-        params: 1,
-        inputFormatter: [formatters.inputLogFormatter],
-        outputFormatter: this._decodeEventABI.bind(subOptions.event)
-    });
-    getPastLogs.setRequestManager(this._requestManager);
-    var call = getPastLogs.buildCall();
+    // var getPastLogs = new Method({
+    //     name: 'getPastLogs',
+    //     call: 'eth_getLogs',
+    //     params: 1,
+    //     inputFormatter: [formatters.inputLogFormatter],
+    //     outputFormatter: this._decodeEventABI.bind(subOptions.event)
+    // });
+    // getPastLogs.setRequestManager(this._requestManager);
+    // var call = getPastLogs.buildCall();
 
-    getPastLogs = null;
+    // getPastLogs = null;
 
     return call(subOptions.params, subOptions.callback);
 };

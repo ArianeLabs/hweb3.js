@@ -20,12 +20,10 @@
 "use strict";
 
 
-import {errors } from '@arianelabs/hweb3-core-helpers';
-import givenProvider from './givenProvider.js';
-import { Transaction, Client, TransactionResponse } from '@hashgraph/sdk';
-import { HttpProviderBase } from '@arianelabs/hweb3-core-helpers';
+import { errors } from '@arianelabs/hweb3-core-helpers';
 import { HttpProvider } from '@arianelabs/hweb3-providers-http';
 
+import givenProvider from './givenProvider.js';
 export { default as BatchManager } from './batch.js';
 
 /**
@@ -44,6 +42,7 @@ var RequestManager = function RequestManager(client) {
 
     this.setProvider(client);
     this.subscriptions = new Map();
+    this.polling = null;
 };
 
 
@@ -213,6 +212,41 @@ RequestManager.prototype.sendBatch = function (txs, callback) {
     return callback('Not supported');
 };
 
+/**
+ * Create pollLink request to fetch logs
+ *
+ * @method addSubscription
+ * @param {ContractId} contractId
+ * @param {EventEmitter} eventEmitter
+ */
+RequestManager.prototype.createPollLink = function (contractId, eventEmitter) {
+
+    if (!this._pollLink) {
+        const network = this.provider.getMirrorNetwork();
+
+        let lastTimestamp = Date.now();
+        const url = `${network}/api/v1/contracts/${contractId}/results/logs?timestamp=gt%3A${lastTimestamp}&order=asc`;
+
+        const executePoll = async () => {
+            try {
+                const result = await fetch(url)
+                    .then(res => res.json());
+                console.log({ result });
+
+                if (result.length) {
+                    lastTimestamp = result.logs[result.logs.length - 1].timestamp;
+                    eventEmitter.emit('new_logs', result.logs);
+                }
+                this._pollLink = setTimeout(executePoll, 2000);
+            } catch (e) {
+                console.log({ e });
+                this._emmiter.emit('error', e);
+            }
+        };
+
+        this._pollLink = setTimeout(executePoll, 2000);
+    }
+};
 
 /**
  * Waits for notifications

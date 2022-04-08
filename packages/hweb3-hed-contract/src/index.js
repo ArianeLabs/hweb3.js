@@ -911,7 +911,7 @@ Contract.prototype._executeMethod = function _executeMethod() {
         case 'call':
             var query = new ContractCallQuery()
                 .setContractId(_this._parent.options.address)
-                .setFunction(_this._method.name, args.options.data || undefined)
+                .setFunction(_this._method.name)
                 .setGas(args.options.gas)
                 .setQueryPayment(args.options.queryPayment)
             ;

@@ -18,7 +18,7 @@
 	"dependencies": {
 		"@arianelabs/hweb3-eth-iban": "1.0.21",
 		"@arianelabs/hweb3-utils": "1.0.21",
-		"@hashgraph/sdk": "2.11.3"
+		"@hashgraph/sdk": "2.9.1"
 	},
 	"devDependencies": {
 		"@types/node": "^12.12.6",

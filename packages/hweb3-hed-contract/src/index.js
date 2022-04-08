@@ -554,7 +554,7 @@ Contract.prototype._encodeMethodABI = function _encodeMethodABI() {
         return Array.isArray(json.inputs) ? json.inputs : [];
     }).map(function (inputs) {
         return abi.encodeParameters(inputs, args);
-    })[0] || '';
+    })[0] || undefined;
 };
 
 /**

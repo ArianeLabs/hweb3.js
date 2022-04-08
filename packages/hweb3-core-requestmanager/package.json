@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-core-requestmanager",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "Hweb3 module to handle requests to external providers.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-requestmanager",
     "license": "LGPL-3.0",

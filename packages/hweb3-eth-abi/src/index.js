@@ -102,6 +102,10 @@ ABICoder.prototype.encodeParameters = function (types, params) {
     var self = this;
     types = self.mapTypes(types);
 
+    if (!params.length) {
+        return null;
+    }
+
     return params.reduce(function (parameters, param, index) {
         let type = types[index];
         if (typeof type === 'object' && type.type) {

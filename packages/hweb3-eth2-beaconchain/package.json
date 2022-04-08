@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-eth2-beaconchain",
-    "version": "1.0.19",
+    "version": "1.0.21",
     "description": "Hweb3 api",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/web3-eth2-beaconchain",
     "license": "LGPL-3.0",

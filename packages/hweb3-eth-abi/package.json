@@ -18,7 +18,7 @@
 	"dependencies": {
 		"@arianelabs/hweb3-utils": "1.0.19",
 		"@ethersproject/abi": "5.0.7",
-		"@hashgraph/sdk": "^2.10.1"
+		"@hashgraph/sdk": "2.11.3"
 	},
 	"devDependencies": {
 		"dtslint": "^3.4.1",

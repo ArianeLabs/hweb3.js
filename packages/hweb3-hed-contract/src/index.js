@@ -418,7 +418,6 @@ Contract.prototype._encodeEventABI = function (event, options) {
 
     // create topics based on filter
     } else {
-
         result.topics = [];
 
         // add event signature
@@ -864,8 +863,8 @@ Contract.prototype._processExecuteArguments = function _processExecuteArguments(
         processedArgs.options.to = this._parent.options.address;
 
     // return error, if no "data" is specified
-    if(!processedArgs.options.data)
-        return utils._fireError(new Error('Couldn\'t find a matching contract method, or the number of parameters is wrong.'), defer.eventEmitter, defer.reject, processedArgs.callback);
+    // if(!processedArgs.options.data)
+    //     return utils._fireError(new Error('Couldn\'t find a matching contract method, or the number of parameters is wrong.'), defer.eventEmitter, defer.reject, processedArgs.callback);
 
     return processedArgs;
 };

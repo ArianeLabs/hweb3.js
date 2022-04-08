@@ -103,7 +103,7 @@ ABICoder.prototype.encodeParameters = function (types, params) {
     types = self.mapTypes(types);
 
     if (!params.length) {
-        return null;
+        return undefined;
     }
 
     return params.reduce(function (parameters, param, index) {

@@ -58,7 +58,7 @@ export class formatters {
 
     static inputLogFormatter(log: any): any;
 
-    static outputLogFormatter(log: any): any;
+    static outputLogFormatter(log: any, ledgerId?: string): any;
 
     static inputPostFormatter(post: any): any; // TODO: Create Post interface
 

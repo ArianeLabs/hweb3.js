@@ -103,7 +103,7 @@ export function sha3Raw(value: string | BN): string;
 export function randomHex(bytesSize: number): string;
 export function utf8ToHex(string: string): string;
 export function stringToHex(string: string): string;
-export function toChecksumAddress(address: string, client: NodeClient): string;
+export function toChecksumAddress(address: string, client: string): string;
 export function toDecimal(hex: Hex): number;
 export function toHex(value: number | string | BN): string;
 export function toUtf8(string: string): string;

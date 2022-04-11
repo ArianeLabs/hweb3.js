@@ -268,11 +268,11 @@ var toTinybar = function (number, unit) {
  *
  * @method toChecksumAddress
  * @param {String} address
- * @param {NodeClient}  client
+ * @param {String} ledgerId
  * @return {String}
  */
-var toChecksumAddress = function (address, client) {
-    return utils.getChecksumAddress(address, client);
+var toChecksumAddress = function (address, ledgerId) {
+    return utils.getChecksumAddress(address, ledgerId);
 };
 
 

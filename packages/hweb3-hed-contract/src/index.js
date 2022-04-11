@@ -31,6 +31,7 @@
 "use strict";
 
 import {
+    AccountId,
     ContractCallQuery,
     ContractCreateFlow,
     ContractExecuteTransaction,
@@ -466,14 +467,16 @@ Contract.prototype._encodeEventABI = function (event, options) {
  *
  * @method _decodeEventABI
  * @param {Object} data
+ * @param {String} ledgerId
  * @return {Object} result object with decoded indexed && not indexed params
  */
-Contract.prototype._decodeEventABI = function (data) {
+Contract.prototype._decodeEventABI = function (data, ledgerId) {
     var event = this;
 
     data.data = data.data || '';
     data.topics = data.topics || [];
-    var result = formatters.outputLogFormatter(data);
+    data.address = AccountId.fromSolidityAddress(data.address);
+    var result = formatters.outputLogFormatter(data, ledgerId);
 
     // if allEvents get the right event
     if(event.name === 'ALLEVENTS') {
@@ -732,27 +735,46 @@ Contract.prototype._on = function(){
     this._emiter.on(subOptions.event.signature, subOptions.callback);
 
     if (!(subOptions.event.signature in this.subscriptions)) {
-        this.subscriptions[subOptions.event.signature] = new EventEmitter();
+        this.subscriptions[subOptions.event.signature] = {
+            emiter: new EventEmitter(),
+            event: subOptions.event,
+        };
     }
 
     // TODO check if listener already exists? and reuse subscription if options are the same.
 
-    return this.subscriptions[subOptions.event.signature];
+    return this.subscriptions[subOptions.event.signature].emiter;
 };
 
 Contract.prototype._parseLogs = function (logs) {
-    console.log({ logs });
+    const subscribedTopics = Object.keys(this.subscriptions);
+
+    logs.forEach(log => {
+        subscribedTopics.forEach(topic => {
+            if (log.topics.includes(topic)) {
+                const decodedLog = this._decodeEventABI.call(this.subscriptions[topic].event, log, this._requestManager.getLedgerId());
+                console.log({ decodedLog });
+                if (decodedLog) {
+                    this._emiter.emit(topic, null, decodedLog);
+                } else {
+                    this._emiter.emit(topic, decodedLog);
+                }
+            }
+        });
+    });
 };
 
-Contract.prototype._decodeEvent = function (eventName, log) {
-    const eventAbi = this._jsonInterface.find(e => e.name === eventName);
-
-    if (!log.topics.includes(eventAbi.signature)) {
-        return null;
-    }
-
+Contract.prototype._decodeEvent = function (event, log) {
     try {
-        const decodedLog = abi.decodeLog(eventAbi.inputs, log.data, log.topics.slice(1));
+        const decodedLog = abi.decodeLog(event.inputs, log.data, log.topics.slice(1));
+
+        const returnEvent = {
+            event: event.eventName,
+            signature: event.signature,
+            address: '',
+            returnValues: decodedLog,
+
+        }
         return decodedLog;
     } catch (e) {
         return null;

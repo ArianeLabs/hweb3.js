@@ -393,9 +393,10 @@ var inputLogFormatter = function (options) {
  *
  * @method outputLogFormatter
  * @param {Object} log object
+ * @param {String} ledgerId
  * @returns {Object} log
  */
-var outputLogFormatter = function (log) {
+var outputLogFormatter = function (log, ledgerId) {
 
     // generate a custom log id
     if (typeof log.blockHash === 'string' &&
@@ -415,7 +416,7 @@ var outputLogFormatter = function (log) {
         log.logIndex = utils.hexToNumber(log.logIndex);
 
     if (log.address) {
-        log.address = utils.toChecksumAddress(log.address);
+        log.address = utils.toChecksumAddress(log.address, ledgerId);
     }
 
     return log;

@@ -84,7 +84,7 @@ var toTwosComplement = function (number) {
  */
 var isAddress = function (address) {
     // check if it has the basic requirements of an address
-    return /^0\.0\.\d+$/.test(address);
+    return /^0\.0\.\d+$/.test(address) || /^0x[0-9A-Fa-f]{40}$/.test(address);
 };
 
 
@@ -569,19 +569,19 @@ var _checksum = function (addr, ledgerId) {
 
 /**
  * return a hedera checksum address
- * @param {string} address
- * @param {NodeClient} client
+ * @param {String} address
+ * @param {String} ledgerId
  * @returns
  */
-var getChecksumAddress = function (address, client) {
+var getChecksumAddress = function (address, ledgerId) {
     if (!isAddress(address)) {
         throw new Error('Address is incorrect');
     }
-    if (!client._network.ledgerId._ledgerId) {
+    if (!ledgerId) {
         throw new Error('Incorrect client');
     }
 
-    return _checksum(address, client._network.ledgerId._ledgerId);
+    return _checksum(address, ledgerId);
 }
 
 export default {

@@ -21,9 +21,7 @@
  */
 
 import { HttpProviderBase } from '@arianelabs/hweb3-core-helpers';
-import { Client, Transaction } from '@hashgraph/sdk';
-import { ITransactionResponse, ITransactionReceipt } from "@hashgraph/proto";
-import {proto} from '@hashgraph/proto/lib/proto';
+import { Client, Transaction, TransactionResponse, TransactionReceipt } from '@hashgraph/sdk';
 
 export class HttpProvider extends HttpProviderBase {
     client: Client;
@@ -33,14 +31,14 @@ export class HttpProvider extends HttpProviderBase {
 
     send(
         tx: Transaction,
-        callback: (error: Error | null, result?: proto.ITransactionResponse) => void
+        callback: (error: Error | null, result?: TransactionResponse) => void
     ): void;
 
     getReceipt(
-        txReceipt: ITransactionResponse,
+        txReceipt: TransactionResponse,
         callback?: (
             error: Error | null,
-            result: ITransactionReceipt | undefined
+            result: TransactionReceipt | undefined
         ) => void
     ): void;
 

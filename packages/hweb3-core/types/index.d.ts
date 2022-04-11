@@ -39,7 +39,6 @@ import {
     TransactionResponse,
     TransactionReceipt as TransactionReceiptHashgraph,
 } from '@hashgraph/sdk';
-import { ITransactionResponse } from "@hashgraph/proto";
 
 export {
     Transaction
@@ -434,7 +433,7 @@ export interface RequestArguments {
 
 export interface AbstractProvider {
     sendAsync(payload: JsonRpcPayload, callback: (error: Error | null, result?: JsonRpcResponse) => void): void;
-    send?(tx: Transaction, callback: (error: Error | null, result?: ITransactionResponse) => void): void;
+    send?(tx: Transaction, callback: (error: Error | null, result?: TransactionResponse) => void): void;
     request?(args: RequestArguments): Promise<any>;
     connected?: boolean;
   }

@@ -23,7 +23,7 @@
 
 "use strict";
 
-module.exports = {
+export default {
     ErrorResponse: function (result) {
         var message = !!result && !!result.error && !!result.error.message ? result.error.message : JSON.stringify(result);
         var data = (!!result.error && !!result.error.data) ? result.error.data : null;

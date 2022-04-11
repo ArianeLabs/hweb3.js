@@ -23,22 +23,22 @@
 "use strict";
 
 import { packageInit, addProviders } from '@arianelabs/hweb3-core';
-var helpers = require('@arianelabs/hweb3-core-helpers');
-var Subscriptions = require('@arianelabs/hweb3-core-subscriptions').subscriptions;
-var Method = require('@arianelabs/hweb3-core-method');
-var utils = require('@arianelabs/hweb3-utils');
-var Net = require('@arianelabs/hweb3-net');
+import { formatters } from '@arianelabs/hweb3-core-helpers';
+import { subscriptions } from '@arianelabs/hweb3-core-subscriptions';
+import Method from '@arianelabs/hweb3-core-method';
+import * as utils from '@arianelabs/hweb3-utils';
+import Net from '@arianelabs/hweb3-net';
 
 import Personal from '@arianelabs/hweb3-eth-personal';
 import Accounts from '@arianelabs/hweb3-eth-accounts';
-var BaseContract = require('@arianelabs/hweb3-hed-contract');
+import BaseContract from '@arianelabs/hweb3-hed-contract';
 
 // var ENS = require('@arianelabs/hweb3-eth-ens');
 // var Iban = require('@arianelabs/hweb3-eth-iban');
 // var abi = require('@arianelabs/hweb3-eth-abi');
 
-var getNetworkType = require('./getNetworkType.js');
-var formatter = helpers.formatters;
+import getNetworkType from './getNetworkType.js';
+var formatter = formatters;
 
 
 var blockCall = function (args) {

@@ -65,5 +65,5 @@ var extend = function (pckg) {
 
 
 
-module.exports = extend;
+export default extend;
 

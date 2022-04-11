@@ -144,7 +144,6 @@ var _flattenTypes = function(includeTuple, puts)
 
     return types;
 };
- 
 
 /**
  * Returns a random hex string by the given bytes size
@@ -333,7 +332,7 @@ var compareBlockNumbers = function(a, b) {
     }
 };
 
-module.exports = {
+export default {
     _fireError: _fireError,
     _jsonInterfaceMethodToString: _jsonInterfaceMethodToString,
     _flattenTypes: _flattenTypes,

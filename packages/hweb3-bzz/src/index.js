@@ -83,5 +83,5 @@ Bzz.prototype.setProvider = function(provider) {
 };
 
 
-module.exports = Bzz;
+export default Bzz;
 

@@ -21,7 +21,7 @@
  */
 
 import { Manager, BatchManager } from "@arianelabs/hweb3-core-requestmanager";
-const extend = require("./extend");
+import extend from "./extend";
 
 export const packageInit = (pkg, args) => {
     args = Array.prototype.slice.call(args);
@@ -74,7 +74,7 @@ export const packageInit = (pkg, args) => {
 
     // attach extend function
     pkg.extend = extend(pkg);
-}
+};
 
 export const addProviders = (pkg) => {
     pkg.givenProvider = Manager.givenProvider;

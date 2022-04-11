@@ -508,7 +508,7 @@ var outputSyncingFormatter = function (result) {
     return result;
 };
 
-module.exports = {
+export default {
     inputDefaultBlockNumberFormatter: inputDefaultBlockNumberFormatter,
     inputBlockNumberFormatter: inputBlockNumberFormatter,
     inputCallFormatter: inputCallFormatter,

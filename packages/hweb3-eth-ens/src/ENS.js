@@ -534,4 +534,4 @@ ENS.prototype.checkNetwork = async function () {
     return this._detectedAddress;
 };
 
-module.exports = ENS;
+export default ENS;

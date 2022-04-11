@@ -34,7 +34,9 @@ import {
     TransactionId,
     TransactionReceipt,
     PrivateKey,
-    ClientNetworkName, AccountCreateTransaction,
+    ClientNetworkName,
+    Executable,
+    ContractCreateFlow,
 } from '@hashgraph/sdk';
 import { HttpProviderBase } from "@arianelabs/hweb3-core-helpers";
 
@@ -171,11 +173,11 @@ export class HttpProvider implements HttpProviderBase {
      * Sign and send a request using the wallet.
      *
      * @method sendRequest
-     * @param {Transaction} tx
-     * @returns Promise<TransactionResponse>
+     * @param {Executable | ContractCreateFlow} tx
+     * @returns Promise<any>
      */
-    sendRequest = async function(tx: Transaction): Promise<TransactionResponse> {
-        if (!(tx instanceof Transaction)) {
+    sendRequest = async function<Req, Res>(tx: Executable<Req, Res, TransactionResponse> | ContractCreateFlow): Promise<TransactionResponse> {
+        if (!(tx instanceof Executable) && !(tx instanceof ContractCreateFlow)) {
             throw new Error('Pass correct tx: Transaction argument')
         }
         return tx.execute(this.client);

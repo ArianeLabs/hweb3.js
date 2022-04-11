@@ -23,7 +23,7 @@
 "use strict";
 
 var core = require('@arianelabs/hweb3-core');
-var Method = require('@arianelabs/hweb3-core-method');
+// var Method = require('@arianelabs/hweb3-core-method');
 var utils = require('@arianelabs/hweb3-utils');
 
 
@@ -34,34 +34,34 @@ var Net = function () {
     core.packageInit(this, arguments);
 
 
-    [
-        new Method({
-            name: 'getId',
-            call: 'net_version',
-            params: 0,
-            outputFormatter: parseInt
-        }),
-        new Method({
-            name: 'isListening',
-            call: 'net_listening',
-            params: 0
-        }),
-        new Method({
-            name: 'getPeerCount',
-            call: 'net_peerCount',
-            params: 0,
-            outputFormatter: utils.hexToNumber
-        })
-    ].forEach(function(method) {
-        method.attachToObject(_this);
-        method.setRequestManager(_this._requestManager);
-    });
+    // [
+    //     new Method({
+    //         name: 'getId',
+    //         call: 'net_version',
+    //         params: 0,
+    //         outputFormatter: parseInt
+    //     }),
+    //     new Method({
+    //         name: 'isListening',
+    //         call: 'net_listening',
+    //         params: 0
+    //     }),
+    //     new Method({
+    //         name: 'getPeerCount',
+    //         call: 'net_peerCount',
+    //         params: 0,
+    //         outputFormatter: utils.hexToNumber
+    //     })
+    // ].forEach(function(method) {
+    //     method.attachToObject(_this);
+    //     method.setRequestManager(_this._requestManager);
+    // });
 
 };
 
 core.addProviders(Net);
 
 
-module.exports = Net;
+export default Net;
 
 

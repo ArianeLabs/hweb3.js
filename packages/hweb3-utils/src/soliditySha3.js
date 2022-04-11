@@ -267,7 +267,7 @@ var encodePacked = function () {
 };
 
 
-module.exports = {
+export default {
     soliditySha3: soliditySha3,
     soliditySha3Raw: soliditySha3Raw,
     encodePacked: encodePacked

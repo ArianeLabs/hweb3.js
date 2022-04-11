@@ -23,7 +23,7 @@
 
 import { ContractFunctionParameters } from '@hashgraph/sdk';
 var Buffer = require('buffer').Buffer;
-var utils = require('@arianelabs/hweb3-utils');
+import * as utils from '@arianelabs/hweb3-utils';
 
 var EthersAbiCoder = require('@ethersproject/abi').AbiCoder;
 var ParamType = require('@ethersproject/abi').ParamType;
@@ -102,6 +102,10 @@ ABICoder.prototype.encodeParameters = function (types, params) {
     var self = this;
     types = self.mapTypes(types);
 
+    if (!params.length) {
+        return undefined;
+    }
+
     return params.reduce(function (parameters, param, index) {
         let type = types[index];
         if (typeof type === 'object' && type.type) {
@@ -111,7 +115,7 @@ ABICoder.prototype.encodeParameters = function (types, params) {
 
         parameters[`add${type[0].toUpperCase() + type.slice(1)}`](param);
         return parameters;
-    }, new ContractFunctionParameters());;
+    }, new ContractFunctionParameters());
 };
 
 /**
@@ -418,4 +422,4 @@ ABICoder.prototype.decodeLog = function (inputs, data, topics) {
 
 var coder = new ABICoder();
 
-module.exports = coder;
+export default coder;

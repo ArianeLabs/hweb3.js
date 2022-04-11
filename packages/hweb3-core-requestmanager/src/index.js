@@ -20,12 +20,10 @@
 "use strict";
 
 
-var errors = require('@arianelabs/hweb3-core-helpers').errors;
-import givenProvider from './givenProvider.js';
-import { Transaction, Client, TransactionResponse } from '@hashgraph/sdk';
-import { HttpProviderBase } from '@arianelabs/hweb3-core-helpers';
+import { errors } from '@arianelabs/hweb3-core-helpers';
 import { HttpProvider } from '@arianelabs/hweb3-providers-http';
 
+import givenProvider from './givenProvider.js';
 export { default as BatchManager } from './batch.js';
 
 /**
@@ -44,6 +42,7 @@ var RequestManager = function RequestManager(client) {
 
     this.setProvider(client);
     this.subscriptions = new Map();
+    this.polling = null;
 };
 
 
@@ -154,9 +153,9 @@ RequestManager.prototype.send = async function (tx, callback) {
     }
 
     try {
-        const repsponse = await this.provider.sendRequest(tx);
+        const response = await this.provider.sendRequest(tx);
 
-        return callback(null, repsponse);
+        return callback(null, response);
     } catch (e) {
         return callback(e);
     }
@@ -213,6 +212,37 @@ RequestManager.prototype.sendBatch = function (txs, callback) {
     return callback('Not supported');
 };
 
+/**
+ * Create pollLink request to fetch logs
+ *
+ * @method addSubscription
+ * @param {ContractId} contractId
+ * @param {EventEmitter} eventEmitter
+ */
+RequestManager.prototype.createPolling = function (contractId, eventEmitter) {
+    let lastTimestamp = Date.now();
+    const network = this.provider.getMirrorNetwork();
+    const url = `${network}/api/v1/contracts/${contractId}/results/logs?timestamp=gt%3A${lastTimestamp}&order=asc`;
+
+    const executePoll = async () => {
+        try {
+            const result = await fetch(url)
+                .then(res => res.json());
+
+            if (result.length) {
+                lastTimestamp = result.logs[result.logs.length - 1].timestamp;
+                eventEmitter.emit('data', result.logs);
+            }
+        } catch (e) {
+            console.log({ e });
+            this._emmiter.emit('error', e);
+        } finally {
+            return setTimeout(executePoll, 2000);
+        }
+    };
+
+    return executePoll;
+};
 
 /**
  * Waits for notifications

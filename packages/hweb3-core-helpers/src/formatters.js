@@ -23,7 +23,7 @@
 
 "use strict";
 
-var utils = require('@arianelabs/hweb3-utils');
+import utils from '@arianelabs/hweb3-utils';
 var Iban = require('@arianelabs/hweb3-eth-iban');
 
 

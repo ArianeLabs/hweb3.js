@@ -25,7 +25,7 @@
 
 var formatters = require('@arianelabs/hweb3-core-helpers').formatters;
 var Method = require('@arianelabs/hweb3-core-method');
-var utils = require('@arianelabs/hweb3-utils');
+import utils from '@arianelabs/hweb3-utils';
 
 
 var extend = function (pckg) {

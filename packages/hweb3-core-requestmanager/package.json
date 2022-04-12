@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-core-requestmanager",
-    "version": "1.0.25",
+    "version": "1.0.26",
     "description": "Hweb3 module to handle requests to external providers.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core-requestmanager",
     "license": "LGPL-3.0",
@@ -15,8 +15,8 @@
         "dtslint": "dtslint --localTs ../../node_modules/typescript/lib types"
     },
     "dependencies": {
-        "@arianelabs/hweb3-core-helpers": "1.0.25",
-        "@arianelabs/hweb3-providers-http": "1.0.25",
+        "@arianelabs/hweb3-core-helpers": "1.0.26",
+        "@arianelabs/hweb3-providers-http": "1.0.26",
         "@hashgraph/sdk": "2.11.0",
         "util": "^0.12.0"
     }

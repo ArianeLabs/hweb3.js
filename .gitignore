@@ -6,6 +6,8 @@
 npm-debug.log
 .npm/
 /coverage
+**/coverage
+*/**/coverage
 /tmp
 node_modules
 .idea/

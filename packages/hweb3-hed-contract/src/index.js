@@ -595,7 +595,7 @@ Contract.prototype._decodeMethodReturn = function (outputs, returnValues) {
  * @param {Function} callback
  * @return {Object} EventEmitter possible events are "error", "transactionHash" and "receipt"
  */
-Contract.prototype.deploy = function(options, callback){
+Contract.prototype.deploy = function(options, callback) {
     options = options || {};
     options.arguments = options.arguments || [];
     options = this._getOrSetDefaultOptions(options);
@@ -748,11 +748,12 @@ Contract.prototype._on = function(){
 
 Contract.prototype._parseLogs = function (logs) {
     const subscribedTopics = Object.keys(this.subscriptions);
+    console.log({ t: this });
 
     logs.forEach(log => {
         subscribedTopics.forEach(topic => {
             if (log.topics.includes(topic)) {
-                const decodedLog = this._decodeEventABI.call(this.subscriptions[topic].event, log, this._requestManager.getLedgerId());
+                const decodedLog = this._decodeEventABI.call(this.subscriptions[topic].event, log, this._requestManager.provider.getLedgerId());
                 console.log({ decodedLog });
                 if (decodedLog) {
                     this._emiter.emit(topic, null, decodedLog);

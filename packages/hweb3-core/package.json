@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-core",
-    "version": "1.0.30",
+    "version": "1.0.31",
     "description": "Hweb3 core tools for sub-packages. This is an internal package.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-core",
     "license": "LGPL-3.0",
@@ -18,7 +18,7 @@
     "dependencies": {
         "@arianelabs/hweb3-core-helpers": "1.0.30",
         "@arianelabs/hweb3-core-method": "1.0.30",
-        "@arianelabs/hweb3-core-requestmanager": "1.0.30",
+        "@arianelabs/hweb3-core-requestmanager": "1.0.31",
         "@arianelabs/hweb3-utils": "1.0.28",
         "@hashgraph/sdk": "2.11.0",
         "@types/bn.js": "^4.11.5",

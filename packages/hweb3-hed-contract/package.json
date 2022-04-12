@@ -1,6 +1,6 @@
 {
     "name": "@arianelabs/hweb3-hed-contract",
-    "version": "1.0.30",
+    "version": "1.0.31",
     "description": "Hweb3 module to interact with Hedera smart contracts.",
     "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-hed-contract",
     "license": "LGPL-3.0",
@@ -16,7 +16,7 @@
     "main": "lib/cjs/index.js",
     "module": "lib/index.js",
     "dependencies": {
-        "@arianelabs/hweb3-core": "1.0.30",
+        "@arianelabs/hweb3-core": "1.0.31",
         "@arianelabs/hweb3-core-helpers": "1.0.30",
         "@arianelabs/hweb3-core-method": "1.0.30",
         "@arianelabs/hweb3-core-promievent": "1.0.18",

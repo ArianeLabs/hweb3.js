@@ -42,6 +42,8 @@ import { formatters, errors } from '@arianelabs/hweb3-core-helpers';
 import promiEvent from '@arianelabs/hweb3-core-promievent';
 import abi from '@arianelabs/hweb3-eth-abi';
 import { EventEmitter } from 'eventemitter3';
+
+console.log({ utils });
 /**
  * Should be called to create new contract instance
  *

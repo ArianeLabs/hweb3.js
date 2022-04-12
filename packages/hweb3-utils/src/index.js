@@ -22,10 +22,11 @@
  */
 var { Hbar, HbarUnit } = require('@hashgraph/sdk');
 var ethjsUnit = require('ethjs-unit');
-var utils = require('./utils.js');
-var soliditySha3 = require('./soliditySha3.js');
 var randombytes = require('randombytes');
 var BN = require('bn.js');
+
+import utils from './utils.js';
+import soliditySha3 from './soliditySha3.js';
 
 
 /**

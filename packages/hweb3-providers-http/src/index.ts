@@ -96,7 +96,7 @@ export class HttpProvider implements HttpProviderBase {
      * @returns {[key: string]: string | AccountId}
      */
     getNetwork = function(): {[key: string]: string | AccountId} {
-        return this.client.getLedgerId().toString();
+        return this.client.ledgerId.toString();
     };
 
     /**

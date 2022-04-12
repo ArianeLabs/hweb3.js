@@ -398,6 +398,8 @@ var inputLogFormatter = function (options) {
  */
 var outputLogFormatter = function (log, ledgerId) {
 
+    console.log({ log });
+
     // generate a custom log id
     if (typeof log.blockHash === 'string' &&
         typeof log.transactionHash === 'string' &&

@@ -720,13 +720,6 @@ Contract.prototype.once = function(event, options, callback) {
 Contract.prototype._on = function(){
     var subOptions = this._generateEventOptions.apply(this, arguments);
 
-    console.log({ subOptions });
-
-    if (subOptions.params && subOptions.params.toBlock) {
-        delete subOptions.params.toBlock;
-        console.warn('Invalid option: toBlock. Use getPastEvents for specific range.');
-    }
-
     if (!this._polling) {
         this._polling = this._requestManager.createPolling(subOptions.params.address, this._emiter);
 
@@ -743,20 +736,21 @@ Contract.prototype._on = function(){
         };
     }
 
-    // TODO check if listener already exists? and reuse subscription if options are the same.
-
     return this.subscriptions[subOptions.event.signature].emiter;
 };
 
 Contract.prototype._parseLogs = function (logs) {
     const subscribedTopics = Object.keys(this.subscriptions);
-    console.log({ t: this });
 
     logs.forEach(log => {
         subscribedTopics.forEach(topic => {
             if (log.topics.includes(topic)) {
-                const decodedLog = this._decodeEventABI.call(this.subscriptions[topic].event, log, this._requestManager.provider.getLedgerId());
-                console.log({ decodedLog });
+                const decodedLog = this._decodeEventABI.call(
+                    this.subscriptions[topic].event,
+                    log,
+                    this._requestManager.provider.getLedgerId()._toStringForChecksum()
+                );
+
                 if (decodedLog) {
                     this._emiter.emit(topic, null, decodedLog);
                 } else {
@@ -765,23 +759,6 @@ Contract.prototype._parseLogs = function (logs) {
             }
         });
     });
-};
-
-Contract.prototype._decodeEvent = function (event, log) {
-    try {
-        const decodedLog = abi.decodeLog(event.inputs, log.data, log.topics.slice(1));
-
-        const returnEvent = {
-            event: event.eventName,
-            signature: event.signature,
-            address: '',
-            returnValues: decodedLog,
-
-        }
-        return decodedLog;
-    } catch (e) {
-        return null;
-    }
 };
 
 /**

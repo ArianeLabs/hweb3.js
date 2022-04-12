@@ -221,12 +221,10 @@ RequestManager.prototype.sendBatch = function (txs, callback) {
  */
 RequestManager.prototype.createPolling = function (contractId, eventEmitter) {
     let lastTimestamp = '1234567890';
-    const network = this.provider.getMirrorNetwork();
-    // const url = `${network}/api/v1/contracts/${contractId}/results/logs?timestamp=gt%3A${lastTimestamp}&order=asc`;
-
     const executePoll = async () => {
         try {
-            const url = `https://previewnet.mirrornode.hedera.com/api/v1/contracts/${contractId}/results/logs?timestamp=gt%3A${lastTimestamp}&order=asc`;
+            const network = this.provider.getNetwork();
+            const url = `https://${network}.mirrornode.hedera.com/api/v1/contracts/${contractId}/results/logs?timestamp=gt%3A${lastTimestamp}&order=asc`;
             const result = await fetch(url)
                 .then(res => res.json());
 

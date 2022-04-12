@@ -36,7 +36,7 @@ import {
     ContractCreateFlow,
     ContractExecuteTransaction,
 } from '@hashgraph/sdk';
-import * as utils from '@arianelabs/hweb3-utils';
+import utils from '@arianelabs/hweb3-utils';
 import { packageInit } from '@arianelabs/hweb3-core';
 import { formatters, errors } from '@arianelabs/hweb3-core-helpers';
 import promiEvent from '@arianelabs/hweb3-core-promievent';

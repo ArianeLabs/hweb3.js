@@ -23,7 +23,7 @@
 
 import { ContractFunctionParameters } from '@hashgraph/sdk';
 var Buffer = require('buffer').Buffer;
-import * as utils from '@arianelabs/hweb3-utils';
+import utils from '@arianelabs/hweb3-utils';
 
 var EthersAbiCoder = require('@ethersproject/abi').AbiCoder;
 var ParamType = require('@ethersproject/abi').ParamType;

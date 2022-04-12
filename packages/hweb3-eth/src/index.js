@@ -26,7 +26,7 @@ import { packageInit, addProviders } from '@arianelabs/hweb3-core';
 import { formatters } from '@arianelabs/hweb3-core-helpers';
 import { subscriptions } from '@arianelabs/hweb3-core-subscriptions';
 import Method from '@arianelabs/hweb3-core-method';
-import * as utils from '@arianelabs/hweb3-utils';
+import utils from '@arianelabs/hweb3-utils';
 import Net from '@arianelabs/hweb3-net';
 
 import Personal from '@arianelabs/hweb3-eth-personal';

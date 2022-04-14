@@ -469,16 +469,14 @@ Contract.prototype._encodeEventABI = function (event, options) {
  *
  * @method _decodeEventABI
  * @param {Object} data
- * @param {String} ledgerId
  * @return {Object} result object with decoded indexed && not indexed params
  */
-Contract.prototype._decodeEventABI = function (data, ledgerId) {
+Contract.prototype._decodeEventABI = function (data) {
     var event = this;
 
     data.data = data.data || '';
     data.topics = data.topics || [];
-    data.address = AccountId.fromSolidityAddress(data.address);
-    var result = formatters.outputLogFormatter(data, ledgerId);
+    var result = formatters.outputLogFormatter(data);
 
     // if allEvents get the right event
     if(event.name === 'ALLEVENTS') {
@@ -748,13 +746,14 @@ Contract.prototype._parseLogs = function (logs) {
                 const decodedLog = this._decodeEventABI.call(
                     this.subscriptions[topic].event,
                     log,
-                    this._requestManager.provider.getLedgerId()._toStringForChecksum()
                 );
 
                 if (decodedLog) {
                     this._emiter.emit(topic, null, decodedLog);
+                    this.subscriptions[topic].emiter.emit('data', decodedLog);
                 } else {
                     this._emiter.emit(topic, decodedLog);
+                    this.subscriptions[topic].emiter.emit('error', decodedLog);
                 }
             }
         });

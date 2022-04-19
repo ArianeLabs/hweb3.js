@@ -716,7 +716,11 @@ Contract.prototype.once = function(event, options, callback) {
  * @return {Object} the event subscription
  */
 Contract.prototype._on = function(){
+    // TODO: apply filters, topics, parameters,
+    // use contract interval option to create polling
     var subOptions = this._generateEventOptions.apply(this, arguments);
+
+    console.log({ subOptions });
 
     if (!this._polling) {
         this._polling = this._requestManager.createPolling(subOptions.params.address, this._emiter);

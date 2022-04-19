@@ -21,7 +21,7 @@
  * @date 2018
  */
 
-import { ContractFunctionParameters } from '@hashgraph/sdk';
+import { ContractFunctionParameters, AccountId } from '@hashgraph/sdk';
 var Buffer = require('buffer').Buffer;
 import utils from '@arianelabs/hweb3-utils';
 
@@ -111,6 +111,10 @@ ABICoder.prototype.encodeParameters = function (types, params) {
         if (typeof type === 'object' && type.type) {
             // We may get a named type of shape {name, type}
             type = type.type;
+        }
+
+        if (type === 'address' && !param.includes('0x')) {
+            param = AccountId.fromString(param).toSolidityAddress();
         }
 
         parameters[`add${type[0].toUpperCase() + type.slice(1)}`](param);

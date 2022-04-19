@@ -1,6 +1,6 @@
 {
  "name": "@arianelabs/hweb3-eth",
- "version": "1.0.33",
+ "version": "1.0.34",
  "description": "Hweb3 module to interact with the Hedera hashgraph and smart contracts.",
  "repository": "https://github.com/Arianelabs/hweb3.js/tree/1.x/packages/hweb3-eth",
  "license": "LGPL-3.0",
@@ -20,12 +20,12 @@
   "@arianelabs/hweb3-core-helpers": "1.0.33",
   "@arianelabs/hweb3-core-method": "1.0.33",
   "@arianelabs/hweb3-core-subscriptions": "1.0.33",
-  "@arianelabs/hweb3-eth-abi": "1.0.28",
+  "@arianelabs/hweb3-eth-abi": "1.0.34",
   "@arianelabs/hweb3-eth-accounts": "1.0.33",
-  "@arianelabs/hweb3-eth-ens": "1.0.33",
+  "@arianelabs/hweb3-eth-ens": "1.0.34",
   "@arianelabs/hweb3-eth-iban": "1.0.28",
   "@arianelabs/hweb3-eth-personal": "1.0.33",
-  "@arianelabs/hweb3-hed-contract": "1.0.33",
+  "@arianelabs/hweb3-hed-contract": "1.0.34",
   "@arianelabs/hweb3-net": "1.0.33",
   "@arianelabs/hweb3-utils": "1.0.28"
  },

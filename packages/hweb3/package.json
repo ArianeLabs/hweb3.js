@@ -1,6 +1,6 @@
 {
 	"name": "@arianelabs/hweb3",
-	"version": "1.0.33",
+	"version": "1.0.34",
 	"description": "Hedera JavaScript API",
 	"repository": "https://github.com/Arianelabs/hweb3.js",
 	"license": "LGPL-3.0",
@@ -34,7 +34,7 @@
 		"@arianelabs/hweb3-bzz": "1.0.21",
 		"@arianelabs/hweb3-core": "1.0.33",
 		"@arianelabs/hweb3-core-helpers": "1.0.33",
-		"@arianelabs/hweb3-eth": "1.0.33",
+		"@arianelabs/hweb3-eth": "1.0.34",
 		"@arianelabs/hweb3-eth-personal": "1.0.33",
 		"@arianelabs/hweb3-net": "1.0.33",
 		"@arianelabs/hweb3-shh": "1.0.33",
